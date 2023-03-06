@@ -1,0 +1,23 @@
+@font-face {
+    font-family: friz-quadrata;
+    src: url('../resources/fonts/friz-quadrata-tt.woff');
+}
+* {
+    margin: 0;
+    display: border-box;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('../resources/images/fundo-app.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+div#root {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(1.5px); 
+    overflow-x: hidden;
+}
