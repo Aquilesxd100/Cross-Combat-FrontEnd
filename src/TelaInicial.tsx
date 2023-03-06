@@ -1,4 +1,4 @@
-function App() {
+function TelaInicial() {
   return (
     <div>
       <header>
@@ -8,4 +8,4 @@ function App() {
   );
 }
 
-export default App;
+export default TelaInicial;
