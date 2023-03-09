@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import IMGLogo from "../../resources/images/logo.png";
-import IMGbotaoMusicaON from "../../resources/images/icone-som.png";
-import IMGbotaoMusicaOFF from "../../resources/images/icone-som-desligado.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 function TelaInicial() {
     const navigate = useNavigate();
@@ -11,7 +9,6 @@ function TelaInicial() {
     return (
         <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
             <header className="h-3/6 w-full flex justify-center relative">
-                <button className="min-h-[6vw] h-14 min-w-[6vw] w-14 absolute left-1 top-3 bg-contain brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${IMGbotaoMusicaON})`}} />
                 <img src={IMGLogo} className="h-6/7 -top-4 relative" alt="logo-cross-combat"/>
             </header>
             <main className="h-3/6 w-full flex justify-start items-center flex-col">

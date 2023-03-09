@@ -15,23 +15,22 @@ function TelaSelecao() {
     return (
         <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
             <header className="h-[35%] w-full flex justify-end items-center relative">
-                <button className="min-h-[6vw] h-14 min-w-[6vw] w-14 absolute left-1 top-3 bg-contain brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${IMGbotaoMusicaON})`}} />
                 <div className="px-[14vw] py-[3vw] bg-100%" style={{ backgroundImage : `url(${IMGtituloMenu})`}}>
                     <h3 className="font-light text-[4vw] text-[#FFA64D]">De qual universo<br />será o seu time?</h3>
                 </div>
                 <button onClick={(() => { linkHandler('/telainicial') })} className="h-[10vw] w-[10vw] bg-100% mr-[10vw] ml-[2vw] brightness-[0.85] hover:brightness-105" style={{backgroundImage: `url(${IMGbotaoVoltar})`}}></button>
             </header>
             <main className="h-[65%] w-full flex justify-center items-center">
-                <div className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardDisney})`}}>
+                <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardDisney})`}}>
                     <h4 className="text-[#99B2FF] text-cardsSEL" style={{                fontKerning: 'normal'}}>Disney</h4>
                 </div>
-                <div className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardAnimes})`}}>
+                <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardAnimes})`}}>
                     <h4 className="text-cardsSEL text-[#FFFFFF]">Animes</h4>
                 </div>
-                <div className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardHerois})`}}>
+                <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardHerois})`}}>
                     <h4 className="text-cardsSEL heroi-gradiente">Heróis</h4>
                 </div>
-                <div className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardMisturado})`}}>
+                <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardMisturado})`}}>
                     <h4 className="text-cardsSEL text-[#D6A96B]">Misturado</h4>
                 </div>
             </main>

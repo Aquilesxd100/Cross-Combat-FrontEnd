@@ -52,3 +52,6 @@ h4.heroi-gradiente {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+hr {
+    box-shadow: 0.25vw 0.3vw 0.25vw rgba(0, 0, 0, 0.8);
+}

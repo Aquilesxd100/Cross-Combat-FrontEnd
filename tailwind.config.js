@@ -11,7 +11,7 @@ module.exports = {
                 lineHeight: 'normal',
                 letterSpacing: '0.5px',
                 fontWeight: 'normal',
-            }]
+            }],
         }
     }
   },
