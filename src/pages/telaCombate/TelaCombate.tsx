@@ -11,7 +11,7 @@ function TelaCombate() {
     }
     return (
         <div className="h-full w-full px-2.5 flex flex-col">
-            <div className="h-[50%] flex items-end justify-center">
+            <div className="h-[50%] flex items-end justify-center pb-1">
                 <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
                 <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
                 <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
