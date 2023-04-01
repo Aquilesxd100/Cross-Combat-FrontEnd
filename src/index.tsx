@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import IconeSom from './components/iconeSom/IconeSom';
 import Rotas from './components/rotas/Rotas';
 import "./styles/global.css";
-import store from './store/configureStore';
+import store from './redux/store/configureStore';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

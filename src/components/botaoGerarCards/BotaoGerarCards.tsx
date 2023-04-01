@@ -2,16 +2,48 @@ import { BotaoGerarCardsPropsType, CardType } from "../../types/types";
 import IMGtituloMenu from "../../resources/images/titulo-fundo-maior.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {} from "../../";
+import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
+
+
+    // ------------------ DEMO ------------------  //
+    
+    const cardBase1 = {
+        id: "45",
+        escondido: false,
+        morto: false,
+        trunfo: false,        
+        nome: "The Destroyer",
+        imagem: "",
+        forca: 7,
+        destreza: 9,
+        inteligencia: 2,
+        universo: "Disney"
+    }
+    const cardBase2 = {
+        id: "23",
+        escondido: true,
+        morto: false,
+        trunfo: false,        
+        nome: "World Eater",
+        imagem: "",
+        forca: 2,
+        destreza: 3,
+        inteligencia: 11,
+        universo: "Disney"
+    }
+    const timeInimigoBase : Array<CardType> = [cardBase2, cardBase2, cardBase2];
+    const timeAliadoBase : Array<CardType> = [cardBase1, cardBase1, cardBase1];
+
+    // ------------------------------------------ //
 
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
     const gerarCards = (() => {
         if(props.texto === "Gerar Inimigos"){
-
+            dispatch(setTimeInimigo (timeInimigoBase));
         }
         else{
-
+            dispatch(setTimeJogador(timeAliadoBase));
         }
     })
 

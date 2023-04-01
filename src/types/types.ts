@@ -1,5 +1,6 @@
 export interface CardType {
     id: string,
+    escondido: boolean,
     morto: boolean,
     trunfo: boolean,
     universo: string,
@@ -16,3 +17,7 @@ export interface SetCardsStateType {
     timeInimigo: Array<CardType>,
     timeJogador: Array<CardType>
 };
+export interface CardPropsType {
+    tipo : string,
+    cardInfos : CardType
+}
