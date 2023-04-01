@@ -40,7 +40,7 @@ h3 {
 .reset-filter {
     filter: none;
 }
-button h3 {
+.gradiente-laranja {
     background: -webkit-linear-gradient(#E68E46, #E87B4E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

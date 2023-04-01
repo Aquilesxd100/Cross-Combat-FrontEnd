@@ -3,13 +3,27 @@ import Card from "../../components/cardGerador/Card";
 import PainelCombate from "../../components/painelCombate/PainelCombate";
 
 function TelaCombate() {
-    const cardBase = {
+    // ------------------ DEMO ------------------  //
+    
+    const cardBase1 = {
         nome: "The Destroyer",
         forca: 7,
         destreza: 9,
         inteligencia: 2,
         universo: "Disney"
     }
+    const cardBase2 = {
+        nome: "World Eater",
+        forca: 2,
+        destreza: 3,
+        inteligencia: 11,
+        universo: "Disney"
+    }
+    const timeInimigo = [cardBase1, cardBase2, cardBase2];
+    const timeAliado = [cardBase1, cardBase1, cardBase1];
+
+    // ------------------------------------------ //
+    
     return (
         <div className="h-full w-full px-2.5 flex flex-col">
             <div className="h-[50%] flex items-end justify-center pb-1">
