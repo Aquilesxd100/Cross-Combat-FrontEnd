@@ -23,7 +23,7 @@ function TelaCombate() {
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards texto="Gerar Inimigos" />} 
                 {!!cardsInimigos.length && cardsInimigos.map((card) => 
-                    <Card tipo="Inimigo" cardInfos={card} />
+                    <Card tipo="Inimigo" cardInfos={card} key={card.id} />
                 )}               
                 {/* <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
                 <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
@@ -34,7 +34,7 @@ function TelaCombate() {
             <div className="h-[50%] flex items-start justify-center">
                 {!cardsJogador.length && <BotaoGerarCards texto="Gerar Time" />} 
                 {!!cardsJogador.length && cardsJogador.map((card) => 
-                    <Card tipo="Aliado" cardInfos={card} />
+                    <Card tipo="Aliado" cardInfos={card} key={card.id} />
                 )}               
                 {/* <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />
                 <Card nome={cardBase.nome} forca={cardBase.forca} inteligencia={cardBase.inteligencia} destreza={cardBase.destreza} />

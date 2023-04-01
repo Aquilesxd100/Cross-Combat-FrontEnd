@@ -31,16 +31,24 @@ import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice
         inteligencia: 11,
         universo: "Disney"
     }
-    const timeInimigoBase : Array<CardType> = [cardBase2, cardBase2, cardBase2];
-    const timeAliadoBase : Array<CardType> = [cardBase1, cardBase1, cardBase1];
-
+    let timeInimigoBase : Array<CardType> = [structuredClone(cardBase2), structuredClone(cardBase2), structuredClone(cardBase2)];
+    let timeAliadoBase : Array<CardType> = [structuredClone(cardBase1), structuredClone(cardBase1), structuredClone(cardBase1)];
+    timeInimigoBase = timeInimigoBase.map((card) => {
+        card.id = crypto.randomUUID();
+        return card;
+    })
+    timeAliadoBase = timeAliadoBase.map((card) => {
+        card.id = crypto.randomUUID();
+        return card;
+    })
+    console.log(timeAliadoBase)
     // ------------------------------------------ //
 
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
     const gerarCards = (() => {
         if(props.texto === "Gerar Inimigos"){
-            dispatch(setTimeInimigo (timeInimigoBase));
+            dispatch(setTimeInimigo(timeInimigoBase));
         }
         else{
             dispatch(setTimeJogador(timeAliadoBase));
