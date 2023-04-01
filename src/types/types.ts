@@ -1,5 +1,6 @@
 export interface CardType {
     id: string,
+    morto: boolean,
     trunfo: boolean,
     universo: string,
     nome: string,
@@ -10,7 +11,6 @@ export interface CardType {
 }
 export interface BotaoGerarCardsPropsType {
     texto: string,
-    funcao: Function,
 }
 export interface SetCardsStateType {
     timeInimigo: Array<CardType>,
