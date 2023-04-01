@@ -22,7 +22,7 @@ function TelaSelecao() {
             </header>
             <main className="h-[65%] w-full flex justify-center items-center">
                 <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardDisney})`}}>
-                    <h4 className="text-[#99B2FF] text-cardsSEL" style={{                fontKerning: 'normal'}}>Disney</h4>
+                    <h4 className="text-[#99B2FF] text-cardsSEL">Disney</h4>
                 </div>
                 <div onClick={(() => { linkHandler('/combate') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] hover:cursor-pointer" style={{backgroundImage: `url(${IMGCardAnimes})`}}>
                     <h4 className="text-cardsSEL text-[#FFFFFF]">Animes</h4>
