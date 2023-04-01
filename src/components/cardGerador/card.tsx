@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
     const entrarModoCombate = (atributo : "forca" | "inteligencia" | "destreza", valorAtributo : number) => {
-        if(props.tipo === "Aliado") {
+        if(props.tipo === "Aliado" && !props.cardInfos.morto) {
             dispatch(setModoCombate());
             //mandar parametros para status de modo combate + mudar cursor
         }

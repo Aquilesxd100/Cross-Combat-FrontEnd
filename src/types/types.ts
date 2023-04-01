@@ -21,3 +21,8 @@ export interface CardPropsType {
     tipo : string,
     cardInfos : CardType
 }
+export interface CombateInfosType {
+    idCard: string | undefined,
+    atributo: "forca" | "destreza" | "inteligencia" | undefined,
+    valorAtributo: number | undefined
+}

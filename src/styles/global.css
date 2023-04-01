@@ -27,6 +27,9 @@ div#root {
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(1.5px); 
 }
+.cursorCombate {
+    cursor: url("../resources//cursors/sword-cursor.cur"), auto;
+}
 h3, h4 {
     font-family: impact1;
     filter: drop-shadow(2px 0 0 rgba(0, 0, 0, 0.3)) drop-shadow(-2px 0 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 -2px 0 rgba(0, 0, 0, 0.3)) drop-shadow(1px 1px rgba(0, 0, 0, 0.3)) drop-shadow(-1px -1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(1px -1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(-1px 1px 0 rgba(0, 0, 0, 0.3)); 
