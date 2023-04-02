@@ -14,6 +14,7 @@ function Card(props: CardPropsType) {
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const [checkMorte, setCheckMorte] = useState(0);
+    const [checkModo, setCheckModo] = useState(0);
     const cardRef : any = useRef();
     const atributoForca : any = useRef();
     const atributoDestreza : any = useRef();
@@ -93,6 +94,17 @@ function Card(props: CardPropsType) {
             cardRef.current.classList.remove("pretoEBranco");
         }
     }, [checkMorte]);
+    useEffect(() => {
+        setTimeout((() => {setCheckModo(checkModo + 1)}), 10);
+    }, [modoAtual])
+    useEffect(() => {
+        if(modoAtual === "combate" && !props.cardInfos.morto && props.tipo === "Inimigo") {
+            cardRef.current.classList.add("hoverInimigo");
+        }
+        else {
+            cardRef.current.classList.remove("hoverInimigo");
+        }
+    }, [checkModo])
     return(
         <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5">
             <div className="absolute w-full h-full z-[1] text-center">
