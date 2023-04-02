@@ -15,14 +15,21 @@ export interface BotaoGerarCardsPropsType {
 }
 export interface SetCardsStateType {
     timeInimigo: Array<CardType>,
-    timeJogador: Array<CardType>
+    timeJogador: Array<CardType>,
 };
 export interface CardPropsType {
     tipo : string,
     cardInfos : CardType
-}
-export interface CombateInfosType {
+};
+export interface PropInfoCardCombateType {
+    idCard: string | undefined,
+    valorAtributo: number | undefined
+};
+export interface InfoCardCombateType {
     idCard: string | undefined,
     atributo: "forca" | "destreza" | "inteligencia" | undefined,
     valorAtributo: number | undefined
+};
+export interface CombateInfosType {
+    infosAtacante: InfoCardCombateType;
 }

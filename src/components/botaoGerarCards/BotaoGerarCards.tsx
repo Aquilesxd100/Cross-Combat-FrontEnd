@@ -41,7 +41,6 @@ import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice
         card.id = crypto.randomUUID();
         return card;
     })
-    console.log(timeAliadoBase)
     // ------------------------------------------ //
 
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
