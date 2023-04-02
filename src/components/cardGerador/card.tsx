@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { setModoCombate, setModoNormal } from "../../redux/slices/setModoSlice";
 import fundoCard from "../../resources/images/card_fundo.png";
+import fundoCardTrunfo from "../../resources/images/card_fundo_trunfo.png";
 import cardEscondido from "../../resources/images/card_fundo_tras.png";
 import { CardPropsType, PropInfoCardCombateType } from "../../types/types";
 import { useSelector, useDispatch } from "react-redux";
@@ -117,9 +118,11 @@ function Card(props: CardPropsType) {
                 </div>
                 <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">Disney</h6>
             </div>
-            {/* <CharacterImageStyle src={character.image} /> */}
+            <img src={props.cardInfos.imagem} className="absolute w-[92%] h-[55%] top-[10%] right-[4%]" />
             {props.cardInfos.escondido && <img className="absolute w-full h-full z-[2]" src={cardEscondido} />}
-            <img className="absolute w-full h-full" src={fundoCard} />
+            {props.cardInfos.trunfo
+                ? <img className="absolute w-full h-full" src={fundoCardTrunfo} />
+                : <img className="absolute w-full h-full" src={fundoCard} />}
         </div>
     );
 };

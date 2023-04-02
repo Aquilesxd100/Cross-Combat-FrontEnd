@@ -10,6 +10,11 @@ export interface CardType {
     destreza: number,
     inteligencia: number
 }
+export interface CardStatusType {
+    forca: number,
+    destreza: number,
+    inteligencia: number
+}
 export interface BotaoGerarCardsPropsType {
     texto: string,
 }
