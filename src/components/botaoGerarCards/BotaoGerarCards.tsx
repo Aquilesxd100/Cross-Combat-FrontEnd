@@ -3,6 +3,8 @@ import IMGtituloMenu from "../../resources/images/titulo-fundo-maior.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
+import gerarCardDisney from "../../requests/temasCards/gerarCardDisney";
+import gerarCardsAPI from "../../requests/gerarCardsAPI";
 
 
     // ------------------ DEMO ------------------  //
@@ -45,9 +47,11 @@ import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice
 
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
-    const gerarCards = (() => {
+    const gerarCards = (async () => {
         if(props.texto === "Gerar Inimigos"){
             dispatch(setTimeInimigo(timeInimigoBase));
+            const cardsGerados = await gerarCardsAPI("disney");
+            console.log(cardsGerados)
         }
         else{
             dispatch(setTimeJogador(timeAliadoBase));
