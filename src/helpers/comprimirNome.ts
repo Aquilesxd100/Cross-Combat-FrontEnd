@@ -12,6 +12,7 @@ function comprimirNome(nome : string) : string {
     if(nomeProcessado === "")nomeProcessado = nome.substring(0, 18);
     if(nomeProcessado.indexOf(" and") === nomeProcessado.length - 4)nomeProcessado = nomeProcessado.substring(0, nomeProcessado.length - 4);
     if(nomeProcessado.indexOf(" the") === nomeProcessado.length - 4)nomeProcessado = nomeProcessado.substring(0, nomeProcessado.length - 4);
+    if(nomeProcessado.indexOf(" of") === nomeProcessado.length - 3)nomeProcessado = nomeProcessado.substring(0, nomeProcessado.length - 3);
     return nomeProcessado;
 }
 export default comprimirNome;

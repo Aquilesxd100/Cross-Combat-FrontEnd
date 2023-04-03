@@ -7,7 +7,7 @@ import { CardStatusType, CardType } from "../../types/types";
 async function gerarCardHeroi(nomesCardsRegistrados : Array<string>, tipoCard : string) {
     let cardGerado : CardType | undefined = undefined;
     while(!cardGerado) {
-        const idAleatorio : number = Math.trunc(Math.random() * 7438);
+        const idAleatorio : number = Math.trunc(Math.random() * 732);
         let checkIMG : any = false;
         await fetch(`https://api.disneyapi.dev/characters/${idAleatorio}`)
             .then((res) => res.json())

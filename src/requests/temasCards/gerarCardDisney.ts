@@ -10,15 +10,11 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
 
-        await fetch(`https://superheroapi.com/api/2613840595440470/100`, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-            })
+/*         await fetch(`https://superheroapi.com/api/2613840595440470/100`)
             .then((res) => res.json())
             .then(data => console.log(data))
+ */
+
 
         await fetch(`https://api.disneyapi.dev/characters/${idAleatorio}`)
             .then((res) => res.json())
