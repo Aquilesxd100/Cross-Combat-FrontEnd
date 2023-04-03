@@ -3,7 +3,6 @@ function setTrunfo() : boolean {
     if(chanceTrunfo <= 8) {
         return true;
     }
-    console.log("CHANCE TRUNFO: " + chanceTrunfo)
     return false;
 };
 export default setTrunfo;
