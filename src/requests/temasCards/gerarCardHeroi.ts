@@ -4,22 +4,11 @@ import setAtributos from "../../helpers/setAtributos";
 import setTrunfo from "../../helpers/setTrunfo";
 import { CardStatusType, CardType } from "../../types/types";
 
-async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard : string) {
+async function gerarCardHeroi(nomesCardsRegistrados : Array<string>, tipoCard : string) {
     let cardGerado : CardType | undefined = undefined;
     while(!cardGerado) {
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
-
-        await fetch(`https://superheroapi.com/api/2613840595440470/100`, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-            })
-            .then((res) => res.json())
-            .then(data => console.log(data))
-
         await fetch(`https://api.disneyapi.dev/characters/${idAleatorio}`)
             .then((res) => res.json())
             .then(async function(data) {
@@ -50,4 +39,4 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
     };
     return cardGerado;
 };
-export default gerarCardDisney;
+export default gerarCardHeroi;

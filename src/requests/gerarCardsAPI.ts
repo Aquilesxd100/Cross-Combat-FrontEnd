@@ -1,6 +1,7 @@
 import { CardType } from "../types/types";
 import gerarCardAnime from "./temasCards/gerarCardAnime";
 import gerarCardDisney from "./temasCards/gerarCardDisney";
+import gerarCardHeroi from "./temasCards/gerarCardHeroi";
 
 async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais? : Array<CardType>) {
     const cardsGerados : Array<CardType> | [] = !cardsAtuais ? [] : cardsAtuais;
@@ -13,7 +14,9 @@ async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais
                 nomesCards.push(cardGeradoDisney.nome);
             break;
             case "herois":
-            
+                const cardGeradoHeroi : CardType = await gerarCardHeroi(nomesCards, tipoCard);
+                cardsGerados.push(cardGeradoHeroi);
+                nomesCards.push(cardGeradoHeroi.nome);
             break;
             case "animes":
                 const cardGeradoAnime : CardType = await gerarCardAnime(nomesCards, tipoCard);

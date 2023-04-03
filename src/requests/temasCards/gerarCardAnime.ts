@@ -1,4 +1,3 @@
-/* import checkDisneyIMG from "../../helpers/checkDisneyIMG"; */
 import comprimirNome from "../../helpers/comprimirNome";
 import setAtributos from "../../helpers/setAtributos";
 import setTrunfo from "../../helpers/setTrunfo";
@@ -17,7 +16,7 @@ async function gerarCardAnime(nomesCardsRegistrados : Array<string>, tipoCard : 
             })
             .then((data) => {
                 console.log(data);
-                if((data.image.original !== undefined && data.image.original !== null) && !nomesCardsRegistrados.some(nome => nome === data.canonicalName)) {
+                if((data.image !== null && data.image.original !== undefined && data.image.original !== null) && !nomesCardsRegistrados.some(nome => nome === data.canonicalName)) {
                     const trunfoStatus : boolean = setTrunfo();
                     const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
                     cardGerado = {
