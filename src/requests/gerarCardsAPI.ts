@@ -1,4 +1,5 @@
 import { CardType } from "../types/types";
+import gerarCardAnime from "./temasCards/gerarCardAnime";
 import gerarCardDisney from "./temasCards/gerarCardDisney";
 
 async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais? : Array<CardType>) {
@@ -7,15 +8,17 @@ async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais
     while(cardsGerados.length !== 3) {
         switch(temaGerado) {
             case "disney":
-                const cardGerado : CardType = await gerarCardDisney(nomesCards, tipoCard);
-                cardsGerados.push(cardGerado);
-                nomesCards.push(cardGerado.nome);
+                const cardGeradoDisney : CardType = await gerarCardDisney(nomesCards, tipoCard);
+                cardsGerados.push(cardGeradoDisney);
+                nomesCards.push(cardGeradoDisney.nome);
             break;
             case "herois":
             
             break;
             case "animes":
-            
+                const cardGeradoAnime : CardType = await gerarCardAnime(nomesCards, tipoCard);
+                cardsGerados.push(cardGeradoAnime);
+                nomesCards.push(cardGeradoAnime.nome);
             break;
             case "aleatorio":
             

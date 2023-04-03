@@ -116,7 +116,7 @@ function Card(props: CardPropsType) {
                     <h5 ref={atributoDestreza} onClick={(() => { entrarModoCombate("destreza", props.cardInfos.destreza) })} className="p-[1.5px] sombra-padrao relative w-[75%] -top-[3px] brightness-[0.8] hover:brightness-110 cursor-pointer">DESTREZA: <span>{props.cardInfos.destreza}</span></h5>
                     <h5 ref={atributoInteligencia} onClick={(() => { entrarModoCombate("inteligencia", props.cardInfos.inteligencia) })} className="p-[1.5px] sombra-padrao relative w-[75%] -top-[6px] brightness-[0.8] hover:brightness-110 cursor-pointer">INTELIGÊNCIA: <span>{props.cardInfos.inteligencia}</span></h5>
                 </div>
-                <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">Disney</h6>
+                <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">{props.cardInfos.universo}</h6>
             </div>
             <img src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]" />
             {props.cardInfos.escondido && <img className="absolute w-full h-full z-[2]" src={cardEscondido} />}
