@@ -1,4 +1,5 @@
 import checkDisneyIMG from "../../helpers/checkDisneyIMG";
+import comprimirNome from "../../helpers/comprimirNome";
 import setAtributos from "../../helpers/setAtributos";
 import setTrunfo from "../../helpers/setTrunfo";
 import { CardStatusType, CardType } from "../../types/types";
@@ -12,6 +13,7 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
             .then((res) => res.json())
             .then(async function(data) {
                 checkIMG = await checkDisneyIMG(data.imageUrl);
+                data.name = data.name.length > 18 ? comprimirNome(data.name) : data.name;
                 return data;
             })
             .then((data) => {
