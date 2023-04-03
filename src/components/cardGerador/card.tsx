@@ -118,7 +118,7 @@ function Card(props: CardPropsType) {
                 </div>
                 <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">Disney</h6>
             </div>
-            <img src={props.cardInfos.imagem} className="absolute w-[92%] h-[55%] top-[10%] right-[4%]" />
+            <img src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]" />
             {props.cardInfos.escondido && <img className="absolute w-full h-full z-[2]" src={cardEscondido} />}
             {props.cardInfos.trunfo
                 ? <img className="absolute w-full h-full" src={fundoCardTrunfo} />

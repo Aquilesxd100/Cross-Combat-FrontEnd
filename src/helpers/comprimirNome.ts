@@ -13,4 +13,3 @@ function comprimirNome(nome : string) : string {
     return nomeProcessado;
 }
 export default comprimirNome;
-// "Ana de Armas da Si|||lva"
