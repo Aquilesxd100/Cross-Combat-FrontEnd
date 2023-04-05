@@ -19,7 +19,7 @@ async function gerarCardHeroi(nomesCardsRegistrados : Array<string>, tipoCard : 
             })
             .then((data : Array<any>) => {
                 data.forEach((cardBruto : any) => {
-                    if(cardBruto.image.url !== undefined && !nomesCardsRegistrados.some(nome => nome === cardBruto.name)) {
+                    if(!nomesCardsRegistrados.some(nome => nome === cardBruto.name)) {
                         const trunfoStatus : boolean = setTrunfo();
                         const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
                         cardsGerados.push({
