@@ -10,9 +10,9 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
 
-/*         await fetch(`https://cross-combat-api-nocors.vercel.app/api/request`)
+        await fetch(`https://cross-combat-api-nocors.vercel.app/api/request`)
             .then((res) => res.json())
-            .then(data => console.log(data)) */
+            .then(data => console.log(data))
 
 
 

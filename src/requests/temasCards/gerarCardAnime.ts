@@ -15,7 +15,6 @@ async function gerarCardAnime(nomesCardsRegistrados : Array<string>, tipoCard : 
                 return data;
             })
             .then((data) => {
-                console.log(data);
                 if((data.image !== null && data.image.original !== undefined && data.image.original !== null) && !nomesCardsRegistrados.some(nome => nome === data.canonicalName)) {
                     const trunfoStatus : boolean = setTrunfo();
                     const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
@@ -31,6 +30,7 @@ async function gerarCardAnime(nomesCardsRegistrados : Array<string>, tipoCard : 
                         destreza: statusGerados.destreza,
                         inteligencia: statusGerados.inteligencia
                     }
+                    console.log(data);
                 }
             })
             .catch((error) => console.log(error))
