@@ -10,11 +10,11 @@ function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
     const gerarCards = (async () => {
         if(props.texto === "Gerar Inimigos"){
-            const cardsGerados = await gerarCardsAPI("disney", "inimigo");
+            const cardsGerados = await gerarCardsAPI("herois", "inimigo");
             dispatch(setTimeInimigo(cardsGerados));
         }
         else{
-            const cardsGerados = await gerarCardsAPI("disney", "aliado");
+            const cardsGerados = await gerarCardsAPI("herois", "aliado");
             dispatch(setTimeJogador(cardsGerados));
         }
     })

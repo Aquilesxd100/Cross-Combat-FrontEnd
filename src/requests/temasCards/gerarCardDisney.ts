@@ -9,13 +9,6 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
     while(!cardGerado) {
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
-
-        await fetch(`https://cross-combat-api-nocors.vercel.app/api/request`)
-            .then((res) => res.json())
-            .then(data => console.log(data))
-
-
-
         await fetch(`https://api.disneyapi.dev/characters/${idAleatorio}`)
             .then((res) => res.json())
             .then(async function(data) {
