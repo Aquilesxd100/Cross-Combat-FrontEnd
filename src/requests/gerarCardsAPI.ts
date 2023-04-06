@@ -23,7 +23,26 @@ async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais
                 nomesCards.push(cardGeradoAnime.nome);
             break;
             case "aleatorio":
-            
+                let qntCardsHerois : number = 0;
+                const tipoCardAleatorio : any = [
+                    function(){ return gerarCardDisney(nomesCards, tipoCard) },
+                    function(){ return gerarCardAnime(nomesCards, tipoCard) },
+                    (() => { return 1 })
+                ];
+                for(let c = 0; c <= 3 - cardsGerados.length; c++) {
+                    const indexCardAleatorio : number = Math.floor(Math.random() * 3);
+                    const cardAleatorio : any = await tipoCardAleatorio[indexCardAleatorio]();
+                    console.log(cardAleatorio)
+                    if(typeof cardAleatorio !== "number") {
+                        cardsGerados.push(cardAleatorio);
+                        nomesCards.push(cardAleatorio.nome);
+                    } else {
+                        qntCardsHerois += 1;
+                    }
+                };
+                if(qntCardsHerois !== 0) {
+                    cardsGerados = cardsGerados.concat(await gerarCardsHerois(nomesCards, tipoCard));
+                };
             break;
         };
     };
