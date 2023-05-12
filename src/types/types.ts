@@ -39,3 +39,6 @@ export interface InfoCardCombateType {
 export interface CombateInfosType {
     infosAtacante: InfoCardCombateType;
 }
+export interface PlayerCardType {
+    playerCardType : 'disney' | 'herois' | 'animes' | 'aleatorio'
+};

@@ -1,13 +1,15 @@
 import { BotaoGerarCardsPropsType, CardType } from "../../types/types";
 import IMGtituloMenu from "../../resources/images/titulo-fundo-maior.png";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
 import gerarCardDisney from "../../requests/temasCards/gerarCardDisney";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
+import { RootState } from "../../redux/store/configureStore";
 
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
+    const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const gerarCards = (async () => {
         if(props.texto === "Gerar Inimigos"){
             const cardsGerados = await gerarCardsAPI("aleatorio", "inimigo");
@@ -15,7 +17,7 @@ function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
             console.log(cardsGerados)
         }
         else{
-            const cardsGerados = await gerarCardsAPI("aleatorio", "aliado");
+            const cardsGerados = await gerarCardsAPI(playerCardType, "aliado");
             dispatch(setTimeJogador(cardsGerados));
             console.log(cardsGerados)
         }
