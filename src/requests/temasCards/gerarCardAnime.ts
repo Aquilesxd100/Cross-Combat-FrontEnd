@@ -20,6 +20,7 @@ async function gerarCardAnime(nomesCardsRegistrados : Array<string>, tipoCard : 
                     const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
                     cardGerado = {
                         id: crypto.randomUUID(),
+                        idAPI: idAleatorio,
                         escondido: tipoCard === "inimigo" ? true : false,
                         morto: false,
                         trunfo: trunfoStatus,

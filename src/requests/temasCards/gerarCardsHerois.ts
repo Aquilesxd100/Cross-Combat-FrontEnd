@@ -16,12 +16,13 @@ async function gerarCardHeroi(nomesCardsRegistrados : Array<string>, tipoCard : 
     .then((res) => res.json())
     .then((data : Array<any>) => data)
     .catch((error) => console.log(error));
-    
+    console.log(infosAPI)
     const cardsGerados : Array<CardType> = infosAPI.map((cardBruto : any) => {
         const trunfoStatus : boolean = setTrunfo();
         const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
         return({
             id: crypto.randomUUID(),
+            idAPI: cardBruto.id,
             escondido: tipoCard === "inimigo" ? true : false,
             morto: false,
             trunfo: trunfoStatus,

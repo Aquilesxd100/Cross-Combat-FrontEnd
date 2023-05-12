@@ -32,7 +32,6 @@ async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais
                 for(let c = 0; c <= 3 - cardsGerados.length; c++) {
                     const indexCardAleatorio : number = Math.floor(Math.random() * 3);
                     const cardAleatorio : any = await tipoCardAleatorio[indexCardAleatorio]();
-                    console.log(cardAleatorio)
                     if(typeof cardAleatorio !== "number") {
                         cardsGerados.push(cardAleatorio);
                         nomesCards.push(cardAleatorio.nome);

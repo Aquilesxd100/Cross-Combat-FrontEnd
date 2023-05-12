@@ -1,5 +1,6 @@
 export interface CardType {
     id: string,
+    idAPI: number,
     escondido: boolean,
     morto: boolean,
     trunfo: boolean,

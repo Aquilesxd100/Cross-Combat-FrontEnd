@@ -9,20 +9,20 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
     while(!cardGerado) {
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
-        await fetch(`https://api.disneyapi.dev/characters/${idAleatorio}`)
+        await fetch(`https://api.disneyapi.dev/character/${idAleatorio}`)
             .then((res) => res.json())
             .then(async function(data) {
-                checkIMG = await checkDisneyIMG(data.imageUrl);
-                data.name = data.name.length > 18 ? comprimirNome(data.name) : data.name;
-                return data;
+                checkIMG = await checkDisneyIMG(data.data.imageUrl);
+                data.data.name = data.data.name.length > 18 ? comprimirNome(data.data.name) : data.data.name;
+                return data.data;
             })
             .then((data) => {
-                console.log(data);
                 if(data.imageUrl !== undefined && checkIMG && !nomesCardsRegistrados.some(nome => nome === data.name)) {
                     const trunfoStatus : boolean = setTrunfo();
-                    const statusGerados : CardStatusType = setAtributos(trunfoStatus); 
+                    const statusGerados : CardStatusType = setAtributos(trunfoStatus);
                     cardGerado = {
                         id: crypto.randomUUID(),
+                        idAPI: idAleatorio,
                         escondido: tipoCard === "inimigo" ? true : false,
                         morto: false,
                         trunfo: trunfoStatus,
@@ -33,6 +33,7 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
                         destreza: statusGerados.destreza,
                         inteligencia: statusGerados.inteligencia
                     }
+                    console.log(data)
                 }
             })
             .catch((error) => console.log(error))
