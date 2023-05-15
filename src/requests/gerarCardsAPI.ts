@@ -51,7 +51,6 @@ async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais
                     function(){ return gerarCardAnime(nomesCards, tipoCard) },
                     (() => { return 1 })
                 ];
-                console.log(qntCardsAGerar)
                 for(let c = 1; c <= qntCardsAGerar; c++) {
                     const indexCardAleatorio : number = Math.floor(Math.random() * 3);
                     const cardAleatorio : number | CardType = await tipoCardAleatorio[indexCardAleatorio]();
