@@ -6,14 +6,17 @@ import { CardStatusType, CardType } from "../../types/types";
 
 async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard : string) {
     let cardGerado : CardType | undefined = undefined;
-    while(!cardGerado) {
+    let erroAPI : number = -1;
+    while(!cardGerado && erroAPI < 10) {
         const idAleatorio : number = Math.trunc(Math.random() * 7438);
         let checkIMG : any = false;
         await fetch(`https://api.disneyapi.dev/character/${idAleatorio}`)
             .then((res) => res.json())
             .then(async function(data) {
-                checkIMG = await checkDisneyIMG(data.data.imageUrl);
-                data.data.name = data.data.name.length > 18 ? comprimirNome(data.data.name) : data.data.name;
+                if(data.data && data.data.imageUrl && data.data.name) {
+                    checkIMG = await checkDisneyIMG(data.data.imageUrl);
+                    data.data.name = data.data.name.length > 18 ? comprimirNome(data.data.name) : data.data.name;
+                };
                 return data.data;
             })
             .then((data) => {
@@ -37,6 +40,9 @@ async function gerarCardDisney(nomesCardsRegistrados : Array<string>, tipoCard :
                 }
             })
             .catch((error) => console.log(error))
+        if (!cardGerado) {
+            erroAPI += 1;
+        };
     };
     return cardGerado;
 };

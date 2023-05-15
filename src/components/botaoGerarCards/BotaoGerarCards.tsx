@@ -10,15 +10,20 @@ import { RootState } from "../../redux/store/configureStore";
 function BotaoGerarCards(props : BotaoGerarCardsPropsType) {
     const dispatch = useDispatch();
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
+    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const gerarCards = (async () => {
-        if(props.texto === "Gerar Inimigos"){
-            const cardsGerados = await gerarCardsAPI("aleatorio", "inimigo");
-            dispatch(setTimeInimigo(cardsGerados));
+        if (props.texto === "Gerar Inimigos"){
+            const cardsGerados = await gerarCardsAPI("aleatorio", "inimigo", undefined, timeJogador.length ? timeJogador : undefined);
+            if (cardsGerados) {
+                dispatch(setTimeInimigo(cardsGerados));
+            };           
             console.log(cardsGerados)
         }
         else{
-            const cardsGerados = await gerarCardsAPI(playerCardType, "aliado");
-            dispatch(setTimeJogador(cardsGerados));
+            const cardsGerados = await gerarCardsAPI(playerCardType, "aliado", undefined, timeInimigo.length ? timeInimigo : undefined);
+            if (cardsGerados) {
+                dispatch(setTimeJogador(cardsGerados));
+            };            
             console.log(cardsGerados)
         }
     })

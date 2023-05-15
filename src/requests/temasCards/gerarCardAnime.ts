@@ -5,7 +5,9 @@ import { CardStatusType, CardType } from "../../types/types";
 
 async function gerarCardAnime(nomesCardsRegistrados : Array<string>, tipoCard : string) {
     let cardGerado : CardType | undefined = undefined;
-    while(!cardGerado) {
+    let erroAPI : number = -1;
+    while(!cardGerado && erroAPI < 10) {
+        erroAPI += 1;
         const idAleatorio : number = Math.trunc(Math.random() * 99153);
         await fetch(`https://kitsu.io/api/edge/characters/${idAleatorio}`)
             .then((res) => res.json())

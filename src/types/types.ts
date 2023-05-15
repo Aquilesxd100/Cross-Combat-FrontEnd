@@ -42,3 +42,12 @@ export interface CombateInfosType {
 export interface PlayerCardType {
     playerCardType : 'disney' | 'herois' | 'animes' | 'aleatorio'
 };
+export interface SaveGameType {
+    playerCardType: 'disney' | 'herois' | 'animes' | 'aleatorio',
+    pontos: number,
+    cardsInimigos: Array<CardType>,
+    cardsJogador: Array<CardType>
+};
+export interface StateSaveGameType {
+    saveGame: undefined | SaveGameType
+};

@@ -2,24 +2,33 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import { useDispatch } from "react-redux";
 import storageSession from "redux-persist/lib/storage/session";
+import storage from "redux-persist/lib/storage";
 import setCardsReducer from "../slices/setCardsSlice";
 import setModoReducer from "../slices/setModoSlice";
 import infosCombateReducer from "../slices/infosCombateSlice";
 import playerCardTypeSliceReducer from "../slices/playerCardTypeSlice";
+import saveGameSliceReducer from "../slices/saveGameSlice";
 
 const playerCardTypeConfig = {
     key: 'playerCardType',
     storage : storageSession
 };
 
+const saveGameConfig = {
+    key: 'saveGame',
+    storage
+};
+
 const playerCardTypeReducer = persistReducer(playerCardTypeConfig, playerCardTypeSliceReducer);
+const saveGameReducer = persistReducer(saveGameConfig, saveGameSliceReducer);
 
 const store = configureStore({
     reducer:{
         setCards: setCardsReducer,
         setModo: setModoReducer,
         setInfosCombate: infosCombateReducer,
-        playerCardType: playerCardTypeReducer
+        playerCardType: playerCardTypeReducer,
+        saveGame: saveGameReducer
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({
