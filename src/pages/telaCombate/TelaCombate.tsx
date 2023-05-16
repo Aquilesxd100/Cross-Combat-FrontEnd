@@ -8,6 +8,7 @@ import { CardType } from "../../types/types";
 import { setModoNormal } from "../../redux/slices/setModoSlice";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
+import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function TelaCombate() {
     }, [timeJogador]);
     return (
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
+            <MenuOpcoes />
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards texto="Gerar Inimigos" />} 
                 {!!cardsInimigos.length && cardsInimigos.map((card) => 

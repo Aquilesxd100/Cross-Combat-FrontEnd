@@ -1,5 +1,3 @@
-import checkDisneyIMG from "../../helpers/checkDisneyIMG";
-import comprimirNome from "../../helpers/comprimirNome";
 import setAtributos from "../../helpers/setAtributos";
 import setTrunfo from "../../helpers/setTrunfo";
 import { CardStatusType, CardType } from "../../types/types";

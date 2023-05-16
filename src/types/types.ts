@@ -51,3 +51,7 @@ export interface SaveGameType {
 export interface StateSaveGameType {
     saveGame: undefined | SaveGameType
 };
+export interface ModalStateType {
+    modalMenuActive: boolean,
+    modalInfosActive: boolean
+};
