@@ -8,7 +8,7 @@ import botaoPadrao from "../../resources/images/botao-padrao.png";
 import IMGBotaoFechar from "../../resources/images/botao-fechar.png";
 import { setMenuModal } from "../../redux/slices/modalSlice"
 import { saveGame } from "../../redux/slices/saveGameSlice";
-import { StateSaveGameType } from "../../types/types";
+import { SaveGameType } from "../../types/types";
 
 function MenuOpcoes() {
     const { modalMenuActive } = useSelector((state : RootState) => state.modalStatus);
@@ -36,7 +36,7 @@ function MenuOpcoes() {
 
     const saveGameHandler = () => {
         if (timeInimigo.length && timeJogador.length) {
-            const newSaveGame : StateSaveGameType = {
+            const newSaveGame : SaveGameType = {
                 playerCardType: playerCardType,
                 pontos: pontosJogador,
                 cardsInimigos: timeInimigo,
@@ -51,7 +51,7 @@ function MenuOpcoes() {
             <div className="relative flex flex-col items-center justify-center w-[50vw] h-[29vw] bg-100%" style={{backgroundImage:`url(${IMGModalMenu})`}}>
                 <button onClick={(() => { dispatch(setMenuModal(false)) })} className="absolute right-[5.5vw] top-[4.4vw] h-8 w-8 bg-100%" style={{backgroundImage: `url(${IMGBotaoFechar})`, filter: 'drop-shadow(3px 0px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px -3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.3))'}} />
                 <button className="min-w-[30%] w-72 min-h-[25%] h-16 bg-100% bg-no-repeat my-2 text-[3vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { telaInicialHandler() })}><h3 className="gradiente-laranja">TELA INICIAL</h3></button>
-                <button className="min-w-[30%] w-72 min-h-[25%] h-16 bg-100% bg-no-repeat my-2 text-[3vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}}><h3 className="gradiente-laranja">SALVAR</h3></button>
+                <button className="min-w-[30%] w-72 min-h-[25%] h-16 bg-100% bg-no-repeat my-2 text-[3vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { saveGameHandler() })}><h3 className="gradiente-laranja">SALVAR</h3></button>
             </div>
         </div>
     );

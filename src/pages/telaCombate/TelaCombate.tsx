@@ -9,23 +9,23 @@ import { setModoNormal } from "../../redux/slices/setModoSlice";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
+import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
-    const { timeInimigo } = useSelector((state : RootState) => state.setCards);
-    const { timeJogador } = useSelector((state : RootState) => state.setCards);
+    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
     
     useEffect(() => {
-        if(saveGame && !timeJogador) {
+        if(saveGame && !timeJogador.length) {
             dispatch(setTimeJogador(saveGame.cardsJogador));
             dispatch(setTimeInimigo(saveGame.cardsInimigos));
             dispatch(setPlayerCardType(saveGame.playerCardType)); 
-            // insercao de pontuacao do save game do jogador
+            dispatch(setPontuacao(saveGame.pontos));
         };
     }, [saveGame]);
     useEffect(() => {
