@@ -9,6 +9,7 @@ import infosCombateReducer from "../slices/infosCombateSlice";
 import playerCardTypeSliceReducer from "../slices/playerCardTypeSlice";
 import saveGameSliceReducer from "../slices/saveGameSlice";
 import modalReducer from "../slices/modalSlice";
+import pontuacaoReducer from "../slices/pontuacaoSlice";
 
 const playerCardTypeConfig = {
     key: 'playerCardType',
@@ -30,7 +31,8 @@ const store = configureStore({
         setInfosCombate: infosCombateReducer,
         playerCardType: playerCardTypeReducer,
         saveGame: saveGameReducer,
-        modalStatus: modalReducer
+        modalStatus: modalReducer,
+        pontuacao: pontuacaoReducer
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({

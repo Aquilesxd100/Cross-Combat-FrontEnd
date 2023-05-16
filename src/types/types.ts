@@ -55,3 +55,6 @@ export interface ModalStateType {
     modalMenuActive: boolean,
     modalInfosActive: boolean
 };
+export interface PontuacaoStoreType {
+    pontosJogador: number
+};
