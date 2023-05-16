@@ -3,7 +3,7 @@ import IMGtituloMenu from "../../resources/images/titulo-fundo-maior.png";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
-import gerarCardDisney from "../../requests/temasCards/gerarCardDisney";
+import gerarCardDisney from "../../requests/temasCards/gerarCardsDisney";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import { RootState } from "../../redux/store/configureStore";
 
