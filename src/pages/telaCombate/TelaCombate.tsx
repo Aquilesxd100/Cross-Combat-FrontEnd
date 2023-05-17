@@ -9,12 +9,18 @@ import { setModoNormal } from "../../redux/slices/setModoSlice";
 import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
-import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
+import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import Pontuacao from "../../components/pontuacao/Pontuacao";
+import checkCardsMortos from "../../helpers/checkCardsMortos";
+import { useNavigate } from "react-router-dom";
+import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
+import gerarCardsAPI from "../../requests/gerarCardsAPI";
 
 function TelaCombate() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
+    const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
@@ -63,6 +69,43 @@ function TelaCombate() {
     useEffect(() => {
         setCardsJogador(timeJogador);
     }, [timeJogador]);
+
+    const completarTimes =
+    async (timeJogadorParam : Array<CardType>) => {
+        const cardsJogadorVivos : Array<CardType> =
+        timeJogadorParam.filter((card : CardType) => !card.morto);
+        if (cardsJogadorVivos.length < 3) {
+            const cardsJogadorGerados : Array<CardType> | undefined = await gerarCardsAPI(playerCardType, 'aliado', cardsJogadorVivos);
+            if (cardsJogadorGerados) {
+                const novosCardsJogador : Array<CardType> = timeJogadorParam.concat();
+                cardsJogadorGerados.forEach((novoCard : CardType) => {
+                    const indexCardMorto : number =
+                    novosCardsJogador.findIndex((card : CardType) => card.morto);
+                    novosCardsJogador[indexCardMorto] = novoCard;
+                });
+                dispatch(setTimeJogador(novosCardsJogador));
+            };
+        };
+        const cardsInimigosGerados : Array<CardType> | undefined = await gerarCardsAPI('aleatorio', 'inimigo', undefined, timeJogador);
+        dispatch(setTimeInimigo(cardsInimigosGerados));
+        dispatch(aumentarPontuacao());
+    };
+
+    useEffect(() => {
+        if(timeInimigo.length && timeJogador.length) {
+            const checkDerrota : boolean = checkCardsMortos(timeJogador);
+            if (checkDerrota){
+                dispatch(deleteSaveGame())
+                navigate('/tela-inicial');
+                return;
+            };
+            const checkVitoria : boolean = checkCardsMortos(timeInimigo);
+            if (checkVitoria) {
+                completarTimes(timeJogador);
+            };
+        };
+    }, [timeInimigo, timeJogador]);
+
     return (
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />

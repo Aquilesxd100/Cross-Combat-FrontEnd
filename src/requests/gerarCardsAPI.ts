@@ -5,12 +5,12 @@ import gerarCardsHerois from "./temasCards/gerarCardsHerois";
 
 async function gerarCardsAPI(temaGerado : string, tipoCard : string, cardsAtuais? : Array<CardType>, nomesAtuaisOposicao? : Array<CardType>) {
     const qntCardsAGerar : number = cardsAtuais ? 3 - cardsAtuais.length : 3;
-    let cardsGerados : Array<CardType> | [] = !cardsAtuais ? [] : cardsAtuais;
+    let cardsGerados : Array<CardType> = [];
     let nomesCards : Array<string> = !cardsAtuais ? [] : cardsAtuais.map((card) => card.nome);
     if(nomesAtuaisOposicao) {
         nomesCards = nomesCards.concat(nomesAtuaisOposicao.map(card => card.nome));
     };
-    while(cardsGerados.length !== 3) {
+    while(cardsGerados.length !== qntCardsAGerar) {
         switch(temaGerado) {
             case "disney":
                 const cardsGeradosDisney : Array<CardType> | undefined = await gerarCardsDisney(qntCardsAGerar, tipoCard, nomesCards);
