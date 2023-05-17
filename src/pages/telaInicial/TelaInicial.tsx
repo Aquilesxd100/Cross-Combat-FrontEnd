@@ -4,6 +4,8 @@ import IMGLogo from "../../resources/images/logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
+import { useEffect } from "react";
+
 function TelaInicial() {
     const navigate = useNavigate();
     const dispatch = useStoreDispatch();
@@ -15,6 +17,12 @@ function TelaInicial() {
             navigate(`/combate`);
         };
     };
+
+    useEffect(() => {
+        if (saveGame) {
+            
+        };
+    }, [saveGame])
 
     return (
         <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
