@@ -9,6 +9,7 @@ import IMGCardMisturado from "../../resources/images/misturado.png";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
+import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
@@ -18,6 +19,7 @@ function TelaSelecao() {
     };
 
     const selecaoHandler = (cardType : string) => {
+        dispatch(setPontuacao(0));
         dispatch(setTimeJogador([]));
         dispatch(setTimeInimigo([]));
         dispatch(setPlayerCardType(cardType));
