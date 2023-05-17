@@ -10,6 +10,7 @@ import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
 import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
+import Pontuacao from "../../components/pontuacao/Pontuacao";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function TelaCombate() {
     }, [timeJogador]);
     return (
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
+            <Pontuacao />
             <MenuOpcoes />
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards texto="Gerar Inimigos" />} 

@@ -4,11 +4,12 @@ import IMGLogo from "../../resources/images/logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function TelaInicial() {
     const navigate = useNavigate();
     const dispatch = useStoreDispatch();
+    const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame)
     const loadSaveGameHandler = () => {
         if (saveGame) {
@@ -19,8 +20,11 @@ function TelaInicial() {
     };
 
     useEffect(() => {
-        if (saveGame) {
-            
+        if (!saveGame) {
+            botaoContinuar.current.classList.add("pretoEBranco");
+            botaoContinuar.current.classList.add("cursor-padrao");
+            botaoContinuar.current.classList.remove("hover:brightness-110");
+            botaoContinuar.current.classList.remove("brightness-[0.85]");
         };
     }, [saveGame])
 
@@ -31,7 +35,7 @@ function TelaInicial() {
             </header>
             <main className="h-3/6 w-full flex justify-start items-center flex-col">
                 <button className="min-w-[35%] w-80 min-h-[27%] h-20 bg-100% bg-no-repeat my-2 text-[3.7vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { navigate(`/selecao`) })}><h3 className="gradiente-laranja">NOVO JOGO</h3></button>
-                <button className="min-w-[35%] w-80 min-h-[27%] h-20 bg-100% bg-no-repeat my-2 text-[3.7vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { loadSaveGameHandler() })}><h3 className="gradiente-laranja">CONTINUAR</h3></button>
+                <button className="min-w-[35%] w-80 min-h-[27%] h-20 bg-100% bg-no-repeat my-2 text-[3.7vw] font-bold brightness-[0.85] hover:brightness-110" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { loadSaveGameHandler() })} ref={botaoContinuar}><h3 className="gradiente-laranja">CONTINUAR</h3></button>
             </main>
         </div>
     );
