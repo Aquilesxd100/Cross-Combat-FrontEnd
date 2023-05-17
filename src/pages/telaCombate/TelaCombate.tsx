@@ -15,6 +15,7 @@ import checkCardsMortos from "../../helpers/checkCardsMortos";
 import { useNavigate } from "react-router-dom";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
+import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -110,6 +111,7 @@ function TelaCombate() {
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />
             <MenuOpcoes />
+            <MenuAjuda />
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards texto="Gerar Inimigos" />} 
                 {!!cardsInimigos.length && cardsInimigos.map((card) => 
