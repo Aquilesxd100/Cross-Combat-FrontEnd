@@ -3,7 +3,7 @@ import { setModoCombate, setModoNormal } from "../../redux/slices/setModoSlice";
 import fundoCard from "../../resources/images/card_fundo.png";
 import fundoCardTrunfo from "../../resources/images/card_fundo_trunfo.png";
 import cardEscondido from "../../resources/images/card_fundo_tras.png";
-import { CardPropsType, PropInfoCardCombateType } from "../../types/types";
+import { CardPropsType } from "../../types/types";
 import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
@@ -69,7 +69,7 @@ function Card(props: CardPropsType) {
             else {
                 dispatch(resolverConflito(infosConflito));
             }
-            dispatch(setModoNormal()); 
+            dispatch(setModoNormal());
         };
     };
     useEffect(() => {

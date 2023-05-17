@@ -73,6 +73,7 @@ function TelaCombate() {
 
     const completarTimes =
     async (timeJogadorParam : Array<CardType>) => {
+        setActiveTeamFiller(true);
         const cardsJogadorVivos : Array<CardType> =
         timeJogadorParam.filter((card : CardType) => !card.morto);
         if (cardsJogadorVivos.length < 3) {
@@ -89,11 +90,14 @@ function TelaCombate() {
         };
         const cardsInimigosGerados : Array<CardType> | undefined = await gerarCardsAPI('aleatorio', 'inimigo', undefined, timeJogador);
         dispatch(setTimeInimigo(cardsInimigosGerados));
+        console.log('teste')
         dispatch(aumentarPontuacao());
+        setActiveTeamFiller(false);
     };
 
+    const [activeTeamFiller, setActiveTeamFiller] = useState(false);
     useEffect(() => {
-        if(timeInimigo.length && timeJogador.length) {
+        if(timeInimigo.length && timeJogador.length && !activeTeamFiller) {
             const checkDerrota : boolean = checkCardsMortos(timeJogador);
             if (checkDerrota){
                 dispatch(deleteSaveGame())
