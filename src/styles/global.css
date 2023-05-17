@@ -15,7 +15,10 @@
     padding: 0;
 }
 .cursor-padrao {
-    cursor: auto;
+    cursor: url('../resources/cursors/defaultCursor.cur'), auto;
+}
+.cursor-pointer, button {
+    cursor: url('../resources/cursors/pointerCursor.cur'), auto;
 }
 body {
     min-height: 100vh;
@@ -23,6 +26,7 @@ body {
     background-image: url('../resources/images/fundo-app.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    cursor: url('../resources/cursors/defaultCursor.cur'), auto;
 }
 div#root {
     height: 100vh;
