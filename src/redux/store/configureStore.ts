@@ -10,6 +10,7 @@ import playerCardTypeSliceReducer from "../slices/playerCardTypeSlice";
 import saveGameSliceReducer from "../slices/saveGameSlice";
 import modalReducer from "../slices/modalSlice";
 import pontuacaoReducer from "../slices/pontuacaoSlice";
+import soundReducer from "../slices/soundSlice";
 
 const playerCardTypeConfig = {
     key: 'playerCardType',
@@ -32,7 +33,8 @@ const store = configureStore({
         playerCardType: playerCardTypeReducer,
         saveGame: saveGameReducer,
         modalStatus: modalReducer,
-        pontuacao: pontuacaoReducer
+        pontuacao: pontuacaoReducer,
+        sound: soundReducer
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({
