@@ -4,7 +4,7 @@ import IMGbotaoMusicaON from "../../resources/images/icone-som.png";
 import IMGbotaoMusicaOFF from "../../resources/images/icone-som-desligado.png";
 import { RootState } from "../../redux/store/configureStore";
 import MP3Selecao from "../../resources/sounds/hitting-hard.mp3";
-import MP3Combate from "../../resources/sounds/just-a-click-away.mp3";
+import MP3Combate from "../../resources/sounds/just-a-click-away-loop.mp3";
 
 function IconeSom() {
     const { musicType } = useSelector((state : RootState) => state.sound);
