@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useStoreDispatch } from "../../redux/store/configureStore";
+import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import IMGtituloMenu from "../../resources/images/titulo-fundo-maior.png";
 import IMGbotaoVoltar from "../../resources/images/botao-voltar.png";
 import IMGCardDisney from "../../resources/images/disney.png";
@@ -10,10 +10,14 @@ import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
+import { useEffect } from "react";
+import { changeMusic } from "../../redux/slices/soundSlice";
+import { useSelector } from "react-redux";
 
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
     const navigate = useNavigate();
+    const { musicType } = useSelector((state : RootState) => state.sound)
     const linkHandler = (link : string) => {
         navigate(link);
     };
@@ -26,6 +30,12 @@ function TelaSelecao() {
         dispatch(deleteSaveGame());
         linkHandler('/combate');
     };
+
+    useEffect(() => {
+        if (musicType !== 'selecao') {
+            dispatch(changeMusic('selecao'));
+        }
+    }, [musicType])
 
     return (
         <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">

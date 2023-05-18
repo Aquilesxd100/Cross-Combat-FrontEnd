@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
+import { changeMusic } from "../../redux/slices/soundSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -36,6 +37,11 @@ function TelaCombate() {
             dispatch(setPontuacao(saveGame.pontos));
         };
     }, [saveGame]);
+
+    useEffect(() => {
+        dispatch(changeMusic('combate'));
+    }, [])
+
     useEffect(() => {
         window.addEventListener("click", (event : any) => {
             const cardsInimigos = document.querySelectorAll(".cardInimigo, h5.cardJogador");

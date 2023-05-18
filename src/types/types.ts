@@ -59,6 +59,5 @@ export interface PontuacaoStoreType {
     pontosJogador: number
 };
 export interface SoundStorageType {
-    musicStatus: boolean,
     musicType: undefined | 'combate' | 'selecao'
 };

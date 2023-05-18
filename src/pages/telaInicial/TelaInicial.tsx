@@ -5,12 +5,14 @@ import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef } from "react";
+import { changeMusic } from "../../redux/slices/soundSlice";
 
 function TelaInicial() {
     const navigate = useNavigate();
     const dispatch = useStoreDispatch();
     const botaoContinuar : any = useRef();
-    const { saveGame } = useSelector((state : RootState) => state.saveGame)
+    const { saveGame } = useSelector((state : RootState) => state.saveGame);
+    const { musicType } = useSelector((state : RootState) => state.sound);
     const loadSaveGameHandler = () => {
         if (saveGame) {
             dispatch(setTimeJogador([]));
@@ -18,6 +20,12 @@ function TelaInicial() {
             navigate(`/combate`);
         };
     };
+
+    useEffect(() => {
+        if (musicType !== 'selecao') {
+            dispatch(changeMusic('selecao'));
+        }
+    }, [musicType])
 
     useEffect(() => {
         if (!saveGame) {

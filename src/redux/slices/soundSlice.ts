@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SoundStorageType } from "../../types/types";
 
 const initialState : SoundStorageType = {
-    musicStatus: true,
     musicType: undefined
 };
 
@@ -12,7 +11,7 @@ const soundSlice = createSlice({
     reducers: {
         changeMusic: (state, action) => {
             state.musicType = action.payload;
-        }
+        },
     }
 });
 
