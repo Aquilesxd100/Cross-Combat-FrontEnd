@@ -70,7 +70,7 @@ h3 {
 p {
     text-shadow: 2px 0px 1px rgba(0, 0, 0, 0.7), -2px 0px 1px rgba(0, 0, 0, 0.7), 0px 2px 1px rgba(0, 0, 0, 0.7), 0px -2px 1px rgba(0, 0, 0, 0.7);
     letter-spacing: 0.5px;
-    
+    white-space: nowrap;
 }
 h4 {
     position: absolute;
