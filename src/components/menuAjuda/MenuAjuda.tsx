@@ -37,7 +37,7 @@ function MenuAjuda() {
     return (
         <div ref={divModalMenu} className="fixed flex items-center justify-center top-0 left-0 h-full w-full bg-black/50 z-10 backdrop-blur-[1.5px]" style={modalDisplay}>
             <div className="relative p-14 w-[58vw] h-[58vw] bg-100%" style={{backgroundImage:`url(${IMGModalInfo})`}}>
-                <button onClick={(() => { setModalDisplay(modalDisplayDefault); dispatch(setInfosModal(false)) })} className="absolute right-[6.5vw] top-[5.4vw] h-8 w-8 bg-100%" style={{backgroundImage: `url(${IMGBotaoFechar})`, filter: 'drop-shadow(3px 0px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px -3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.3))'}} />
+                <button onClick={(() => { setModalDisplay(modalDisplayDefault); dispatch(setInfosModal(false)) })} className="absolute right-[6.5vw] top-[5.4vw] h-8 w-8 bg-100% botao-fechar" style={{backgroundImage: `url(${IMGBotaoFechar})`}} />
                 <div className="relative h-[47%] w-[90%]">
                     <img src={IMGPasso1} className="relative mr-1 float-left w-52 h-56 z-[2] drop-shadow-[-3px_-3px_2px_rgba(0,0,0,0.7)]" />
                     <p className="relative top-[5%] w-[90%] font-[hobostd] text-[1.9vw] text-[#FFA54C]"><span>1</span> Selecione um atributo de algum dos seus cards.</p>

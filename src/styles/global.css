@@ -55,6 +55,12 @@ h3 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.botao-fechar {
+    filter: drop-shadow(3px 0px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px -3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.3)) brightness(0.8);
+}
+.botao-fechar:hover {
+    filter: drop-shadow(3px 0px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px -3px 3px rgba(0, 0, 0, 0.3)) drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.3)) brightness(1.1);
+}
 .pretoEBranco {
     filter:grayscale(1);
 }
