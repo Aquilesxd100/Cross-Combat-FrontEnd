@@ -61,6 +61,10 @@ h3 {
 .hoverInimigo:hover {
     filter: drop-shadow(3.5px 3px 2px rgba(247, 43, 43, 0.8)) drop-shadow(-3.5px -3px 2px rgba(247, 43, 43, 0.8)); 
 }
+p {
+    text-shadow: 2px 0px 1px rgba(0, 0, 0, 0.7), -2px 0px 1px rgba(0, 0, 0, 0.7), 0px 2px 1px rgba(0, 0, 0, 0.7), 0px -2px 1px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.5px;
+}
 h4 {
     position: absolute;
     width: 100%;
