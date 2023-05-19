@@ -6,6 +6,7 @@ import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaInicial() {
     const navigate = useNavigate();
@@ -13,6 +14,11 @@ function TelaInicial() {
     const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
+
+    useEffect(() => {
+        dispatch(setLoadingState(false));
+    }, []);
+
     const loadSaveGameHandler = () => {
         if (saveGame) {
             dispatch(activateEffect('botaoPadrao'))

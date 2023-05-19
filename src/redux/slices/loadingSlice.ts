@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { LoadingStoreType } from "../../types/types";
 
 const initialState : LoadingStoreType = {
-    loadingState: false
+    loadingState: true
 };
 
 const loadingSlice = createSlice({

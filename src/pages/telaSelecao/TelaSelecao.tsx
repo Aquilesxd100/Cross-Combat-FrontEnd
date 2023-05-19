@@ -13,6 +13,7 @@ import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import { useEffect, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { useSelector } from "react-redux";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
@@ -25,6 +26,7 @@ function TelaSelecao() {
     };
 
     useEffect(() => {
+        dispatch(setLoadingState(false));
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
     }, []);
 

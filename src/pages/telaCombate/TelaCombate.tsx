@@ -17,6 +17,7 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { changeMusic } from "../../redux/slices/soundSlice";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function TelaCombate() {
     }, [saveGame]);
 
     useEffect(() => {
+        dispatch(setLoadingState(false));
         dispatch(changeMusic('combate'));
     }, [])
 
