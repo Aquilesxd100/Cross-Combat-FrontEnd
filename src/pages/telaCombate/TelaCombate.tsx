@@ -29,6 +29,22 @@ function TelaCombate() {
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
+
+    useEffect(() => {
+        dispatch(setLoadingState(true));
+        dispatch(changeMusic('combate'));
+    }, [])
+
+    const checkLoading = setTimeout((() => {
+        console.log('carregando')
+        if (document.readyState === 'complete') {
+            console.log('carregou')
+            dispatch(setLoadingState(false));
+        } else {
+            setLoadingStateCheck(checkLoading);
+        }
+    }), 50);
+    const [loadingStateCheck, setLoadingStateCheck] = useState(checkLoading);
     
     useEffect(() => {
         if(saveGame && !timeJogador.length) {
@@ -38,11 +54,6 @@ function TelaCombate() {
             dispatch(setPontuacao(saveGame.pontos));
         };
     }, [saveGame]);
-
-    useEffect(() => {
-        dispatch(setLoadingState(false));
-        dispatch(changeMusic('combate'));
-    }, [])
 
     useEffect(() => {
         window.addEventListener("click", (event : any) => {

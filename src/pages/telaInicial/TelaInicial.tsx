@@ -4,7 +4,7 @@ import IMGLogo from "../../resources/images/logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { setLoadingState } from "../../redux/slices/loadingSlice";
 
@@ -15,8 +15,19 @@ function TelaInicial() {
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
 
+    const checkLoading = setTimeout((() => {
+        console.log('carregando')
+        if (document.readyState === 'complete') {
+            console.log('carregou')
+            dispatch(setLoadingState(false));
+        } else {
+            setLoadingStateCheck(checkLoading);
+        }
+    }), 50);
+    const [loadingStateCheck, setLoadingStateCheck] = useState(checkLoading);
+
     useEffect(() => {
-        dispatch(setLoadingState(false));
+        dispatch(setLoadingState(true));
     }, []);
 
     const loadSaveGameHandler = () => {
