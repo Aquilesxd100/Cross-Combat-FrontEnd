@@ -7,6 +7,7 @@ import IMGBotaoFechar from "../../resources/images/botao-fechar.png";
 import IMGPasso1 from "../../resources/images/foto-passo1.png";
 import IMGPasso2 from "../../resources/images/foto-passo2.png";
 import { setInfosModal } from "../../redux/slices/modalSlice"
+import { activateEffect } from "../../redux/slices/soundSlice";
 
 function MenuAjuda() {
     const { modalInfosActive } = useSelector((state : RootState) => state.modalStatus);
@@ -37,7 +38,7 @@ function MenuAjuda() {
     return (
         <div ref={divModalMenu} className="fixed flex items-center justify-center top-0 left-0 h-full w-full bg-black/50 z-10 backdrop-blur-[1.5px]" style={modalDisplay}>
             <div className="relative p-14 w-[58vw] h-[90vh] bg-100%" style={{backgroundImage:`url(${IMGModalInfo})`}}>
-                <button onClick={(() => { setModalDisplay(modalDisplayDefault); dispatch(setInfosModal(false)) })} className="absolute right-[6.5vw] top-[5.4vw] h-[calc(3vw+5px)] w-[calc(3vw+5px)] bg-100% botao-fechar z-[1]" style={{backgroundImage: `url(${IMGBotaoFechar})`}} />
+                <button onClick={(() => { setModalDisplay(modalDisplayDefault); dispatch(setInfosModal(false)); dispatch(activateEffect('botaoPadrao')); })} className="absolute right-[6.5vw] top-[5.4vw] h-[calc(3vw+5px)] w-[calc(3vw+5px)] bg-100% botao-fechar z-[1]" style={{backgroundImage: `url(${IMGBotaoFechar})`}} />
                 <div className="relative h-[47%] w-[88%] float-left right-[calc(-3vw+18px)]">
                     <img src={IMGPasso1} className="relative mr-2 float-left w-[48%] h-[100%] z-[2] drop-shadow-[-3px_-3px_2px_rgba(0,0,0,0.7)]" />
                     <p className="relative top-[5%] w-[90%] font-[hobostd] text-[1.75vw] text-[#FFA54C]"><span>1</span> Selecione um<br/>atributo de algum<br/>dos seus cards.</p>
