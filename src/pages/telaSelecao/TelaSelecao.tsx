@@ -11,7 +11,7 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import { useEffect } from "react";
-import { changeMusic } from "../../redux/slices/soundSlice";
+import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { useSelector } from "react-redux";
 
 function TelaSelecao() {
@@ -43,19 +43,19 @@ function TelaSelecao() {
                 <div className="px-[14vw] py-[3vw] bg-100%" style={{ backgroundImage : `url(${IMGtituloMenu})`}}>
                     <h3 className="font-light text-[calc(2vw+16px)] text-[#FFA64D]">De qual universo<br />será o seu time?</h3>
                 </div>
-                <button onClick={(() => { linkHandler('/telainicial') })} className="h-[10vw] w-[10vw] bg-100% mr-[15vw] ml-[2vw] brightness-[0.85] hover:brightness-105" style={{backgroundImage: `url(${IMGbotaoVoltar})`}}></button>
+                <button onClick={(() => { linkHandler('/telainicial'); dispatch(activateEffect('botaoPadrao')) })} className="h-[10vw] w-[10vw] bg-100% mr-[15vw] ml-[2vw] brightness-[0.85] hover:brightness-105" style={{backgroundImage: `url(${IMGbotaoVoltar})`}}></button>
             </header>
             <main className="h-[65%] w-full flex justify-center items-center">
-                <div onClick={(() => { selecaoHandler('disney') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardDisney})`}}>
+                <div onClick={(() => { selecaoHandler('disney') })} onMouseEnter={(() => { dispatch(activateEffect('selecaoHover')) })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardDisney})`}}>
                     <h4 className="text-[#99B2FF] text-cardsSEL">Disney</h4>
                 </div>
-                <div onClick={(() => { selecaoHandler('animes') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardAnimes})`}}>
+                <div onClick={(() => { selecaoHandler('animes') })} onMouseEnter={(() => { dispatch(activateEffect('selecaoHover')) })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardAnimes})`}}>
                     <h4 className="text-cardsSEL text-[#FFFFFF]">Animes</h4>
                 </div>
-                <div onClick={(() => { selecaoHandler('herois') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardHerois})`}}>
+                <div onClick={(() => { selecaoHandler('herois') })} onMouseEnter={(() => { dispatch(activateEffect('selecaoHover')) })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardHerois})`}}>
                     <h4 className="text-cardsSEL heroi-gradiente">Heróis</h4>
                 </div>
-                <div onClick={(() => { selecaoHandler('aleatorio') })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardMisturado})`}}>
+                <div onClick={(() => { selecaoHandler('aleatorio') })} onMouseEnter={(() => { dispatch(activateEffect('selecaoHover')) })} className="w-[23vw] min-h-[60vh] h-[56vh] mx-1.5 bg-100% relative brightness-[0.7] hover:brightness-[1] hover:scale-[1.02] cursor-pointer" style={{backgroundImage: `url(${IMGCardMisturado})`}}>
                     <h4 className="text-cardsSEL text-[#D6A96B]">Misturado</h4>
                 </div>
             </main>
