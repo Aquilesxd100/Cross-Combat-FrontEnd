@@ -5,6 +5,7 @@ import IconeSom from './components/iconeSom/IconeSom';
 import Rotas from './components/rotas/Rotas';
 import "./styles/global.css";
 import store from './redux/store/configureStore';
+import SoundController from './components/soundController/SoundController';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -12,6 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
+            <SoundController />
             <IconeSom />
             <Rotas />
         </Provider>
