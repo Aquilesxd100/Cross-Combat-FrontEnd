@@ -44,6 +44,9 @@ function SoundsController() {
                     temporaryAudio.play();
                     setTimeout(() => {temporaryAudio.remove()}, 450);
                 break;
+                case 'botaoSelecaoUniverso':
+                    efeitoSelecaoUniverso.current.play();
+                break;
             }
             dispatch(resetEffect());
         }
