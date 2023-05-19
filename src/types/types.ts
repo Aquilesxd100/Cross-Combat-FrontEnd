@@ -65,3 +65,6 @@ export interface SoundStorageType {
         effectActive: boolean
     }
 };
+export interface LoadingStoreType {
+    loadingState: boolean
+}

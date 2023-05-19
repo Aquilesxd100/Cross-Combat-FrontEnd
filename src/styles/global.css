@@ -112,3 +112,17 @@ p span {
     background-color: rgba(255, 165, 76, 0.7);
     backdrop-filter: blur(1px);
 }
+
+.carregamento {
+    animation-name: carregamento-anim;
+    animation-duration: 0.85s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes carregamento-anim {
+    0% { transform: rotate(0deg) }
+    60% { transform: rotate(275deg) }
+    75% { transform: rotate(315deg) }
+    100% { transform: rotate(360deg) }
+}

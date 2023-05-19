@@ -7,6 +7,7 @@ import "./styles/global.css";
 import IconeSom from './components/iconeSom/IconeSom';
 import PreLoadResources from './components/preLoadResources/PreLoadResources';
 import SoundsController from './components/soundController/SoundsController';
+import LoadingScreen from './components/loadingScreen/LoadingScreen';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -14,6 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
+            <LoadingScreen />
             <PreLoadResources />
             <SoundsController />
             <IconeSom />
