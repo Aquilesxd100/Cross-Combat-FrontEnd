@@ -12,7 +12,7 @@ function TelaInicial() {
     const dispatch = useStoreDispatch();
     const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
-    const { musicType } = useSelector((state : RootState) => state.sound);
+    const { musicType } = useSelector((state : RootState) => state.sounds);
     const loadSaveGameHandler = () => {
         if (saveGame) {
             dispatch(setTimeJogador([]));

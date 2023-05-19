@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
     const navigate = useNavigate();
-    const { musicType } = useSelector((state : RootState) => state.sound)
+    const { musicType } = useSelector((state : RootState) => state.sounds)
     const linkHandler = (link : string) => {
         navigate(link);
     };

@@ -7,7 +7,7 @@ import MP3Selecao from "../../resources/sounds/hitting-hard.mp3";
 import MP3Combate from "../../resources/sounds/just-a-click-away-edited.mp3";
 
 function IconeSom() {
-    const { musicType } = useSelector((state : RootState) => state.sound);
+    const { musicType } = useSelector((state : RootState) => state.sounds);
     const [musicStatus, setMusicStatus] = useState(false);
     const musicaSelecao : any = useRef();
     const musicaCombate : any = useRef();

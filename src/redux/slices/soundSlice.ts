@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SoundStorageType } from "../../types/types";
 
 const initialState : SoundStorageType = {
-    musicType: undefined
+    musicType: undefined,
+    soundEffect: {
+        effectType: undefined,
+        effectActive: false
+    }
 };
 
 const soundSlice = createSlice({
@@ -12,8 +16,16 @@ const soundSlice = createSlice({
         changeMusic: (state, action) => {
             state.musicType = action.payload;
         },
+        activateEffect: (state, action) => {
+            state.soundEffect.effectType = action.payload;
+            state.soundEffect.effectActive = true;
+        },
+        resetEffect: (state) => {
+            state.soundEffect.effectType = undefined;
+            state.soundEffect.effectActive = false;
+        }
     }
 });
 
-export const { changeMusic } = soundSlice.actions;
+export const { changeMusic, activateEffect, resetEffect } = soundSlice.actions;
 export default soundSlice.reducer;
