@@ -22,8 +22,6 @@ function TelaSelecao() {
     const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
 
-    
-    const [loadedImages, setLoadedImages] = useState(0);
     const removeLoadingScreen = () => {
         console.log('carregado!')
         dispatch(setLoadingState(false)); 
@@ -31,6 +29,9 @@ function TelaSelecao() {
     };
 
     useEffect(() => {
+        dispatch(setLoadingState(true));
+        setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
+
         const onPageLoad = () => {
             removeLoadingScreen();
         };
@@ -44,14 +45,6 @@ function TelaSelecao() {
           return () => window.removeEventListener('load', onPageLoad);
         }
     }, []);
-
-
-    useEffect(() => {
-        if (!pagesLoaded.telaSelecao) {
-            dispatch(setLoadingState(true));
-        };
-        setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
-    }, [])
 
     const linkHandler = (link : string) => {
         navigate(link);
