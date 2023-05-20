@@ -15,15 +15,11 @@ function TelaInicial() {
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
 
-    const removeLoadingScreen = () => {
-        dispatch(setLoadingState(false)); 
-    };
-
     useEffect(() => {
         dispatch(setLoadingState(true));
 
         const onPageLoad = () => {
-            removeLoadingScreen();
+            dispatch(setLoadingState(false));
         };
     
         // Check if the page has already loaded
@@ -63,7 +59,7 @@ function TelaInicial() {
     }, [saveGame])
 
     return (
-        <div onLoad={(() => { removeLoadingScreen() })} className="h-full w-full px-2.5 pb-2.5 flex flex-col">
+        <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
             <header className="h-3/6 w-full flex justify-center relative">
                 <img src={IMGLogo} className="h-6/7 -top-4 relative" alt="logo-cross-combat"/>
             </header>

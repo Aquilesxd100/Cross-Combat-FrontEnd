@@ -6,21 +6,22 @@ import { RootState } from "../../redux/store/configureStore";
 
 function LoadingScreen() {
     const { loadingState } = useSelector((state : RootState) => state.loadingScreen);
-    const loadindScreen : any = useRef();
+    const loadingScreen : any = useRef();
     const imgCarregamento : any = useRef();
 
     useEffect(() => {
+        console.log('mudou')
         if (loadingState) {
-            loadindScreen.current.classList.remove('hidden');
+            loadingScreen.current.classList.remove('hidden');
             imgCarregamento.current.classList.add('carregamento');
         } else {
-            loadindScreen.current.classList.add('hidden');
+            loadingScreen.current.classList.add('hidden');
             imgCarregamento.current.classList.remove('carregamento');
         }
-    }, [loadingState])
+    }, [loadingState]);
 
     return(
-        <main ref={loadindScreen} className="fixed w-full h-full z-30" style={{ background: `url(${IMGFundo})`, backgroundSize: '100% 100%' }}>
+        <main ref={loadingScreen} className="fixed w-full h-full z-30" style={{ background: `url(${IMGFundo})`, backgroundSize: '100% 100%' }}>
             <div className="flex items-center justify-center bg-[rgba(255,255,255,0.25)] w-full h-full backdrop-blur-[1.5px]">
                 <img ref={imgCarregamento} className="w-[20vw] max-w-[250px]" src={IMGLoading} />
             </div>

@@ -30,15 +30,10 @@ function TelaCombate() {
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
 
-    const removeLoadingScreen = () => {
-        dispatch(setLoadingState(false)); 
-    };
-
     useEffect(() => {
         dispatch(setLoadingState(true));
-
         const onPageLoad = () => {
-            removeLoadingScreen();
+            dispatch(setLoadingState(false));
         };
     
         // Check if the page has already loaded
@@ -140,7 +135,7 @@ function TelaCombate() {
     }, [timeInimigo, timeJogador]);
 
     return (
-        <div onLoad={(() => { removeLoadingScreen() })} className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
+        <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />
             <MenuOpcoes />
             <MenuAjuda />

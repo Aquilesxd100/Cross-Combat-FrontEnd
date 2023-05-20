@@ -20,28 +20,22 @@ function TelaSelecao() {
     const navigate = useNavigate();
     const { musicType } = useSelector((state : RootState) => state.sounds)
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
-
-    const removeLoadingScreen = () => {
-        dispatch(setLoadingState(false)); 
-    };
+    const [loadCheck, setLoadCheck] = useState(0);
 
     useEffect(() => {
         dispatch(setLoadingState(true));
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
+    }, [])
 
-        const onPageLoad = () => {
-            removeLoadingScreen();
-        };
-    
-        // Check if the page has already loaded
+    useEffect(() => {
+        console.log('tentei')
         if (document.readyState === 'complete') {
-          onPageLoad();
+            console.log('consegui!')
+            dispatch(setLoadingState(false));
         } else {
-          window.addEventListener('load', onPageLoad);
-          // Remove the event listener when component unmounts
-          return () => window.removeEventListener('load', onPageLoad);
+            setTimeout(() => {setLoadCheck(loadCheck + 1)}, 50);
         }
-    }, []);
+    }, [loadCheck]);
 
     const linkHandler = (link : string) => {
         navigate(link);
