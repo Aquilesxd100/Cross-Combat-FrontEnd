@@ -14,6 +14,10 @@
     display: border-box;
     padding: 0;
 }
+#imagens-pre-load img {
+    height: 1px;
+    width: 1px;
+}
 .cursor-padrao {
     cursor: url('../resources/cursors/defaultCursor.cur'), auto;
 }
