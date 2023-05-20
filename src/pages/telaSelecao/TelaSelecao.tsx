@@ -13,19 +13,16 @@ import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import { useEffect, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { useSelector } from "react-redux";
-import { setLoadingState, telaSelecaoCarregada } from "../../redux/slices/loadingSlice";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
     const navigate = useNavigate();
     const { musicType } = useSelector((state : RootState) => state.sounds)
-    const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
 
     const removeLoadingScreen = () => {
-        console.log('carregado!')
         dispatch(setLoadingState(false)); 
-        dispatch(telaSelecaoCarregada());
     };
 
     useEffect(() => {

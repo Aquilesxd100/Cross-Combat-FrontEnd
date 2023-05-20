@@ -6,7 +6,7 @@ import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
-import { setLoadingState, telaInicialCarregada } from "../../redux/slices/loadingSlice";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaInicial() {
     const navigate = useNavigate();
@@ -14,18 +14,27 @@ function TelaInicial() {
     const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
-    const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
 
     const removeLoadingScreen = () => {
         dispatch(setLoadingState(false)); 
-        dispatch(telaInicialCarregada());
     };
 
     useEffect(() => {
-        if (!pagesLoaded.telaInicial) {
-            dispatch(setLoadingState(true));
+        dispatch(setLoadingState(true));
+
+        const onPageLoad = () => {
+            removeLoadingScreen();
         };
-    }, [])
+    
+        // Check if the page has already loaded
+        if (document.readyState === 'complete') {
+          onPageLoad();
+        } else {
+          window.addEventListener('load', onPageLoad);
+          // Remove the event listener when component unmounts
+          return () => window.removeEventListener('load', onPageLoad);
+        }
+    }, []);
 
     const loadSaveGameHandler = () => {
         if (saveGame) {

@@ -17,7 +17,7 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { changeMusic } from "../../redux/slices/soundSlice";
-import { setLoadingState, telaCombateCarregada } from "../../redux/slices/loadingSlice";
+import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -26,20 +26,32 @@ function TelaCombate() {
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
-    const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
 
     const removeLoadingScreen = () => {
         dispatch(setLoadingState(false)); 
-        dispatch(telaCombateCarregada());
     };
 
     useEffect(() => {
-        if (!pagesLoaded.telaCombate) {
-            dispatch(setLoadingState(true));
+        dispatch(setLoadingState(true));
+
+        const onPageLoad = () => {
+            removeLoadingScreen();
         };
+    
+        // Check if the page has already loaded
+        if (document.readyState === 'complete') {
+          onPageLoad();
+        } else {
+          window.addEventListener('load', onPageLoad);
+          // Remove the event listener when component unmounts
+          return () => window.removeEventListener('load', onPageLoad);
+        }
+    }, []);
+
+    useEffect(() => {
         dispatch(changeMusic('combate'));
     }, [])
     
