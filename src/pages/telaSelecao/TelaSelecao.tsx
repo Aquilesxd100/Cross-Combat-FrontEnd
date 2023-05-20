@@ -13,29 +13,16 @@ import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import { useEffect, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { useSelector } from "react-redux";
-import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaSelecao() {
     const dispatch = useStoreDispatch();
     const navigate = useNavigate();
     const { musicType } = useSelector((state : RootState) => state.sounds)
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
-    const [loadCheck, setLoadCheck] = useState(0);
 
     useEffect(() => {
-        dispatch(setLoadingState(true));
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
     }, [])
-
-    useEffect(() => {
-        console.log('tentei')
-        if (document.readyState === 'complete') {
-            console.log('consegui!')
-            dispatch(setLoadingState(false));
-        } else {
-            setTimeout(() => {setLoadCheck(loadCheck + 1)}, 50);
-        }
-    }, [loadCheck]);
 
     const linkHandler = (link : string) => {
         navigate(link);

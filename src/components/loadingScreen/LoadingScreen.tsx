@@ -10,7 +10,6 @@ function LoadingScreen() {
     const imgCarregamento : any = useRef();
 
     useEffect(() => {
-        console.log('mudou')
         if (loadingState) {
             loadingScreen.current.classList.remove('hidden');
             imgCarregamento.current.classList.add('carregamento');

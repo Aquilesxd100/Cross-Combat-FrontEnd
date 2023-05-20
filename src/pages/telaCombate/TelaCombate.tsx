@@ -17,7 +17,6 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { changeMusic } from "../../redux/slices/soundSlice";
-import { setLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -29,22 +28,6 @@ function TelaCombate() {
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
-
-    useEffect(() => {
-        dispatch(setLoadingState(true));
-        const onPageLoad = () => {
-            dispatch(setLoadingState(false));
-        };
-    
-        // Check if the page has already loaded
-        if (document.readyState === 'complete') {
-          onPageLoad();
-        } else {
-          window.addEventListener('load', onPageLoad);
-          // Remove the event listener when component unmounts
-          return () => window.removeEventListener('load', onPageLoad);
-        }
-    }, []);
 
     useEffect(() => {
         dispatch(changeMusic('combate'));
