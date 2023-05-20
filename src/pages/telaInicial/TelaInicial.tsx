@@ -6,7 +6,7 @@ import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
-import { setLoadingState } from "../../redux/slices/loadingSlice";
+import { setLoadingState, telaInicialCarregada } from "../../redux/slices/loadingSlice";
 
 function TelaInicial() {
     const navigate = useNavigate();
@@ -14,17 +14,21 @@ function TelaInicial() {
     const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
+    const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
 
     const [loadStateCheck, setLoadStateCheck] = useState(false);
     useEffect(() => {
-        if(loadStateCheck) {
-            dispatch(setLoadingState(false)); 
-        }
+        if (loadStateCheck) {
+            dispatch(setLoadingState(false));
+            dispatch(telaInicialCarregada());
+        };
     }, [loadStateCheck]);
 
     useEffect(() => {
-        dispatch(setLoadingState(true));
-        setLoadStateCheck(true)
+        if (!pagesLoaded.telaInicial) {
+            dispatch(setLoadingState(true));
+            setLoadStateCheck(true)
+        };
     }, []);
 
     const loadSaveGameHandler = () => {

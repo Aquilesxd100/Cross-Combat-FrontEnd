@@ -66,5 +66,10 @@ export interface SoundStorageType {
     }
 };
 export interface LoadingStoreType {
-    loadingState: boolean
+    loadingState: boolean,
+    pagesLoaded: {
+        telaInicial: boolean,
+        telaSelecao: boolean,
+        telaCombate: boolean
+    }
 }

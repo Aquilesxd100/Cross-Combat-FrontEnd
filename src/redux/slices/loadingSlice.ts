@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { LoadingStoreType } from "../../types/types";
 
 const initialState : LoadingStoreType = {
-    loadingState: true
+    loadingState: true,
+    pagesLoaded: {
+        telaInicial: false,
+        telaSelecao: false,
+        telaCombate: false
+    }
 };
 
 const loadingSlice = createSlice({
@@ -11,9 +16,18 @@ const loadingSlice = createSlice({
     reducers: {
         setLoadingState: (state, action) => {
             state.loadingState = action.payload;
+        },
+        telaInicialCarregada: (state) => {
+            state.pagesLoaded.telaInicial = true;
+        },
+        telaSelecaoCarregada: (state) => {
+            state.pagesLoaded.telaSelecao = true;
+        },
+        telaCombateCarregada: (state) => {
+            state.pagesLoaded.telaCombate = true;
         }
     }
 });
 
-export const { setLoadingState } = loadingSlice.actions;
+export const { setLoadingState, telaInicialCarregada, telaSelecaoCarregada, telaCombateCarregada } = loadingSlice.actions;
 export default loadingSlice.reducer;
