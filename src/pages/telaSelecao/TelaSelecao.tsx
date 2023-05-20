@@ -26,17 +26,6 @@ function TelaSelecao() {
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
     }, []);
 
-    const checkLoading = setTimeout((() => {
-        console.log('carregando')
-        if (document.readyState === 'complete') {
-            console.log('carregou')
-            dispatch(setLoadingState(false));
-        } else {
-            setLoadingStateCheck(checkLoading);
-        }
-    }), 50);
-    const [loadingStateCheck, setLoadingStateCheck] = useState(checkLoading);
-
     const linkHandler = (link : string) => {
         navigate(link);
     };

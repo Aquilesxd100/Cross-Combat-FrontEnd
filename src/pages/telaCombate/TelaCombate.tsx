@@ -30,21 +30,18 @@ function TelaCombate() {
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
 
+    const [teste, setTeste] = useState(false);
+    useEffect(() => {
+        if(teste) {
+            dispatch(setLoadingState(false)); 
+        }
+    }, [teste])
+
     useEffect(() => {
         dispatch(setLoadingState(true));
         dispatch(changeMusic('combate'));
+        setTeste(true);
     }, [])
-
-    const checkLoading = setTimeout((() => {
-        console.log('carregando')
-        if (document.readyState === 'complete') {
-            console.log('carregou')
-            dispatch(setLoadingState(false));
-        } else {
-            setLoadingStateCheck(checkLoading);
-        }
-    }), 50);
-    const [loadingStateCheck, setLoadingStateCheck] = useState(checkLoading);
     
     useEffect(() => {
         if(saveGame && !timeJogador.length) {
