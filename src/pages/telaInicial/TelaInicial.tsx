@@ -16,20 +16,16 @@ function TelaInicial() {
     const { musicType } = useSelector((state : RootState) => state.sounds);
     const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
 
-    const [loadStateCheck, setLoadStateCheck] = useState(false);
-    useEffect(() => {
-        if (loadStateCheck) {
-            dispatch(setLoadingState(false));
-            dispatch(telaInicialCarregada());
-        };
-    }, [loadStateCheck]);
+    const removeLoadingScreen = () => {
+        dispatch(setLoadingState(false)); 
+        dispatch(telaInicialCarregada());
+    };
 
     useEffect(() => {
         if (!pagesLoaded.telaInicial) {
             dispatch(setLoadingState(true));
-            setLoadStateCheck(true)
         };
-    }, []);
+    }, [])
 
     const loadSaveGameHandler = () => {
         if (saveGame) {
@@ -58,7 +54,7 @@ function TelaInicial() {
     }, [saveGame])
 
     return (
-        <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
+        <div onLoad={(() => { removeLoadingScreen() })} className="h-full w-full px-2.5 pb-2.5 flex flex-col">
             <header className="h-3/6 w-full flex justify-center relative">
                 <img src={IMGLogo} className="h-6/7 -top-4 relative" alt="logo-cross-combat"/>
             </header>

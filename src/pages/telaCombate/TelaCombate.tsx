@@ -31,18 +31,14 @@ function TelaCombate() {
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
 
-    const [loadStateCheck, setLoadStateCheck] = useState(false);
-    useEffect(() => {
-        if(loadStateCheck) {
-            dispatch(setLoadingState(false)); 
-            dispatch(telaCombateCarregada());
-        }
-    }, [loadStateCheck]);
+    const removeLoadingScreen = () => {
+        dispatch(setLoadingState(false)); 
+        dispatch(telaCombateCarregada());
+    };
 
     useEffect(() => {
         if (!pagesLoaded.telaCombate) {
             dispatch(setLoadingState(true));
-            setLoadStateCheck(true);
         };
         dispatch(changeMusic('combate'));
     }, [])
@@ -132,7 +128,7 @@ function TelaCombate() {
     }, [timeInimigo, timeJogador]);
 
     return (
-        <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
+        <div onLoad={(() => { removeLoadingScreen() })} className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />
             <MenuOpcoes />
             <MenuAjuda />
