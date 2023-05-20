@@ -22,10 +22,29 @@ function TelaSelecao() {
     const { pagesLoaded } = useSelector((state : RootState) => state.loadingScreen);
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
 
+    
+    const [loadedImages, setLoadedImages] = useState(0);
     const removeLoadingScreen = () => {
+        console.log('carregado!')
         dispatch(setLoadingState(false)); 
         dispatch(telaSelecaoCarregada());
     };
+
+    useEffect(() => {
+        const onPageLoad = () => {
+            removeLoadingScreen();
+        };
+    
+        // Check if the page has already loaded
+        if (document.readyState === 'complete') {
+          onPageLoad();
+        } else {
+          window.addEventListener('load', onPageLoad);
+          // Remove the event listener when component unmounts
+          return () => window.removeEventListener('load', onPageLoad);
+        }
+    }, []);
+
 
     useEffect(() => {
         if (!pagesLoaded.telaSelecao) {
@@ -61,8 +80,7 @@ function TelaSelecao() {
     }, [musicType])
 
     return (
-        <div onLoad={(() => { removeLoadingScreen(); })} className="h-full w-full px-2.5 pb-2.5 flex flex-col">
-            <img src={IMGtituloMenu} className="hidden" />
+        <div className="h-full w-full px-2.5 pb-2.5 flex flex-col">
             <header className="h-[35%] w-full flex justify-end items-center relative">
                 <div className="px-[14vw] py-[3vw] bg-100%" style={{ backgroundImage : `url(${IMGtituloMenu})`}}>
                     <h3 className="font-light text-[calc(2vw+16px)] text-[#FFA64D]">De qual universo<br />será o seu time?</h3>
