@@ -15,8 +15,16 @@ function TelaInicial() {
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
 
+    const [loadStateCheck, setLoadStateCheck] = useState(false);
+    useEffect(() => {
+        if(loadStateCheck) {
+            dispatch(setLoadingState(false)); 
+        }
+    }, [loadStateCheck]);
+
     useEffect(() => {
         dispatch(setLoadingState(true));
+        setLoadStateCheck(true)
     }, []);
 
     const loadSaveGameHandler = () => {

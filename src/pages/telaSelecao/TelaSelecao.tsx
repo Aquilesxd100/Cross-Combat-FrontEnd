@@ -21,10 +21,18 @@ function TelaSelecao() {
     const { musicType } = useSelector((state : RootState) => state.sounds)
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
 
+    const [loadStateCheck, setLoadStateCheck] = useState(false);
+    useEffect(() => {
+        if(loadStateCheck) {
+            dispatch(setLoadingState(false)); 
+        }
+    }, [loadStateCheck]);
+
     useEffect(() => {
         dispatch(setLoadingState(true));
+        setLoadStateCheck(true);
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
-    }, []);
+    }, [])
 
     const linkHandler = (link : string) => {
         navigate(link);

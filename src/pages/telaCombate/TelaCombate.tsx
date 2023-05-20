@@ -30,17 +30,17 @@ function TelaCombate() {
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const telaCorpo : any = useRef();
 
-    const [teste, setTeste] = useState(false);
+    const [loadStateCheck, setLoadStateCheck] = useState(false);
     useEffect(() => {
-        if(teste) {
+        if(loadStateCheck) {
             dispatch(setLoadingState(false)); 
         }
-    }, [teste])
+    }, [loadStateCheck]);
 
     useEffect(() => {
         dispatch(setLoadingState(true));
         dispatch(changeMusic('combate'));
-        setTeste(true);
+        setLoadStateCheck(true);
     }, [])
     
     useEffect(() => {
