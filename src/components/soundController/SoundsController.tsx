@@ -17,11 +17,9 @@ import MP3Derrota from "../../resources/sounds/derrota.mp3";
 function SoundsController() {
     const { soundEffect } = useSelector((state : RootState) => state.sounds)
     const dispatch = useStoreDispatch();
-    const efeitoBotao2 : any = useRef();
     const efeitoBotaoPadrao : any = useRef();
     const efeitoBotaoNegativo : any = useRef();
     const efeitoBotaoGerarCards : any = useRef();
-    const efeitoAtaqueEspada : any = useRef();
     const efeitoSelecaoUniverso : any = useRef();
     const efeitoVirarCard : any = useRef();
     const efeitoHitDano : any = useRef();
@@ -38,13 +36,19 @@ function SoundsController() {
                     efeitoBotaoNegativo.current.play();
                 break;
                 case 'selecaoHover':
-                    const temporaryAudio = document.createElement("audio");
-                    temporaryAudio.setAttribute("src", MP3SelecaoHover);
-                    temporaryAudio.play();
-                    setTimeout(() => {temporaryAudio.remove()}, 450);
+                    const temporaryAudioSelecao = document.createElement("audio");
+                    temporaryAudioSelecao.setAttribute("src", MP3SelecaoHover);
+                    temporaryAudioSelecao.play();
+                    setTimeout(() => {temporaryAudioSelecao.remove()}, 450);
                 break;
                 case 'botaoSelecaoUniverso':
                     efeitoSelecaoUniverso.current.play();
+                break;
+                case 'modoCombate':
+                    const temporaryAudioCombate = document.createElement("audio");
+                    temporaryAudioCombate.setAttribute("src", MP3AtaqueEspada);
+                    temporaryAudioCombate.play();
+                    setTimeout(() => {temporaryAudioCombate.remove()}, 450);
                 break;
             }
             dispatch(resetEffect());
@@ -54,9 +58,10 @@ function SoundsController() {
     return(
         <>
             <audio ref={efeitoBotaoPadrao} src={MP3BotaoPadrao} />
+            <audio src={MP3SelecaoHover} />
+            <audio src={MP3AtaqueEspada} />
             <audio ref={efeitoBotaoNegativo} src={MP3BotaoNegativo} />
             <audio ref={efeitoBotaoGerarCards} src={MP3BotaoGerarCards} />
-            <audio ref={efeitoAtaqueEspada} src={MP3AtaqueEspada} />
             <audio ref={efeitoSelecaoUniverso} src={MP3SelecaoUniverso} />
             <audio ref={efeitoVirarCard} src={MP3VirarCard} />
             <audio ref={efeitoHitDano} src={MP3HitDano} />

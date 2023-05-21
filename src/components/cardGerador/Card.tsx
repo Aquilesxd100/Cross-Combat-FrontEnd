@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
+import { activateEffect } from "../../redux/slices/soundSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -15,7 +16,6 @@ function Card(props: CardPropsType) {
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const [checkMorte, setCheckMorte] = useState(0);
-    const [checkModo, setCheckModo] = useState(0);
     const cardRef : any = useRef();
     const atributoForca : any = useRef();
     const atributoDestreza : any = useRef();
@@ -29,6 +29,7 @@ function Card(props: CardPropsType) {
     }
     const entrarModoCombate = (atributo : "forca" | "inteligencia" | "destreza", valorAtributo : number) => {
         if(props.tipo === "Aliado" && !props.cardInfos.morto) {
+            dispatch(activateEffect('modoCombate'));
             const infosCombate = {
                 idCard: props.cardInfos.id,
                 atributo: atributo,
@@ -96,16 +97,13 @@ function Card(props: CardPropsType) {
         }
     }, [checkMorte]);
     useEffect(() => {
-        setTimeout((() => {setCheckModo(checkModo + 1)}), 10);
-    }, [modoAtual])
-    useEffect(() => {
         if(modoAtual === "combate" && !props.cardInfos.morto && props.tipo === "Inimigo") {
             cardRef.current.classList.add("hoverInimigo");
         }
         else {
             cardRef.current.classList.remove("hoverInimigo");
         }
-    }, [checkModo])
+    }, [modoAtual])
     return(
         <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5">
             <div className="absolute w-full h-full z-[1] text-center">

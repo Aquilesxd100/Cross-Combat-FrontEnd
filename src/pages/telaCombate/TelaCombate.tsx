@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
-import { changeMusic } from "../../redux/slices/soundSlice";
+import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -42,6 +42,14 @@ function TelaCombate() {
         };
     }, [saveGame]);
 
+    const [checkModoCombate, setCheckModoCombate] = useState(0);
+    useEffect(() => {
+        if (modoAtual === 'combate') {
+            dispatch(setModoNormal());
+            dispatch(activateEffect('botaoNegativo'));
+        };
+    }, [checkModoCombate]);
+
     useEffect(() => {
         window.addEventListener("click", (event : any) => {
             const cardsInimigos = document.querySelectorAll(".cardInimigo, h5.cardJogador");
@@ -53,10 +61,11 @@ function TelaCombate() {
                 };
             }
             if(clickFora === cardsInimigos.length) {
-                dispatch(setModoNormal());   
-            }
+                setCheckModoCombate(Math.random());
+            };
         });
     }, [])
+
     useEffect(() => {
         const elementosCursor = document.querySelectorAll("h5, button");
         if(modoAtual === "combate") {
@@ -67,7 +76,6 @@ function TelaCombate() {
             telaCorpo.current.classList.remove("cursorCombate");  
             elementosCursor.forEach((elemento) => elemento.classList.remove("cursorCombate"));  
         };
-        
     }, [modoAtual]);
     useEffect(() => {
         setCardsInimigos(timeInimigo);
@@ -96,7 +104,6 @@ function TelaCombate() {
         };
         const cardsInimigosGerados : Array<CardType> | undefined = await gerarCardsAPI('aleatorio', 'inimigo', undefined, timeJogador);
         dispatch(setTimeInimigo(cardsInimigosGerados));
-        console.log('teste')
         dispatch(aumentarPontuacao());
         setActiveTeamFiller(false);
     };
