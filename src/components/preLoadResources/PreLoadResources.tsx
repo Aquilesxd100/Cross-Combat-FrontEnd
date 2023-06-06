@@ -22,7 +22,7 @@ import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import { useEffect, useState } from "react";
 import { useStoreDispatch } from "../../redux/store/configureStore";
-import { setLoadingState } from "../../redux/slices/loadingSlice";
+import { setResourcesLoadingState } from "../../redux/slices/loadingSlice";
 
 function PreLoadResources() {
     const dispatch = useStoreDispatch();
@@ -31,7 +31,7 @@ function PreLoadResources() {
         const div : any = document.getElementById('imagens-pre-load');
         let imagens = Array.from(div.querySelectorAll('img'));
         if (!imagens.some((img : any) => !img.complete)) {
-            dispatch(setLoadingState(false));
+            dispatch(setResourcesLoadingState(false));
         } else {
             setTimeout(() => { setCheckLoadedIMGs(checkLoadedIMGs + 1) }, 50);
         }

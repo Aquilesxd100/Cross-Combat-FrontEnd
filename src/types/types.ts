@@ -66,5 +66,6 @@ export interface SoundStorageType {
     }
 };
 export interface LoadingStoreType {
-    loadingState: boolean
+    resourcesLoadingState: boolean,
+    serverLoadingState: boolean
 }

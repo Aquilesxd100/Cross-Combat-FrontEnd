@@ -1,19 +1,48 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { LoadingStoreType } from "../../types/types";
 
+export const connectionTest = createAsyncThunk(
+    "connectionTest",
+    async () => {
+        const response = await fetch('https://cross-combat-api.onrender.com/testarConexao',
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+        })
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((error) => console.log(error))
+
+        return response;
+    }
+);
+
 const initialState : LoadingStoreType = {
-    loadingState: true,
+    resourcesLoadingState: true,
+    serverLoadingState: true
 };
 
 const loadingSlice = createSlice({
     name: "loadingScreen",
     initialState,
     reducers: {
-        setLoadingState: (state, action) => {
-            state.loadingState = action.payload;
-        }
+        setResourcesLoadingState: (state, action) => {
+            state.resourcesLoadingState = action.payload;
+        },
+        setServerLoadingState: (state, action) => {
+            state.serverLoadingState = action.payload;
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(connectionTest.fulfilled, (state : any, action : any) => {
+            if (action.payload.message === "Conectado!") {
+                state.serverLoadingState = false;
+            };
+        })
     }
 });
 
-export const { setLoadingState } = loadingSlice.actions;
+export const { setResourcesLoadingState, setServerLoadingState } = loadingSlice.actions;
 export default loadingSlice.reducer;
