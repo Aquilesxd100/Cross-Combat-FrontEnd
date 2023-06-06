@@ -145,7 +145,6 @@ async function completarTimesAPI(temaJogador : string, timeJogador : Array<CardT
         if (!cardsAleatorios.length) {
             cardsAleatorios = cardsAnime.concat(cardsDisney, cardsHeroi);
         };
-        console.log(cardsAleatorios)
         for (let c = 1; c <= 3; c++) {
             const posicaoAleatoria2 = Math.floor(Math.random() * cardsAleatorios.length);
 
