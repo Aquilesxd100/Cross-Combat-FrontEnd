@@ -28,11 +28,29 @@ function TelaCombate() {
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
+    const [gerarCardsIniciaisState, setGerarCardsIniciaisState] = useState(false);
     const telaCorpo : any = useRef();
+
+    const gerarCardsIniciais = async () => {
+        const cardsGerados = await completarTimesAPI(playerCardType, []);
+        dispatch(setTimeJogador(cardsGerados.timeJogadorFill));
+        dispatch(setTimeInimigo(cardsGerados.timeInimigo));
+    };
 
     useEffect(() => {
         dispatch(changeMusic('combate'));
+
+        if (!timeInimigo.length && !timeJogador.length && !saveGame) {
+            setGerarCardsIniciaisState(true);
+        };
+
     }, [])
+
+    useEffect(() => {
+        if(gerarCardsIniciaisState) {
+            gerarCardsIniciais(); 
+        };
+    }, [gerarCardsIniciaisState])
     
     useEffect(() => {
         if(saveGame && !timeJogador.length) {
@@ -137,7 +155,7 @@ function TelaCombate() {
             <MenuOpcoes />
             <MenuAjuda />
             <div className="h-[50%] flex items-end justify-center pb-1">
-                {!cardsInimigos.length && <BotaoGerarCards texto="Gerar Inimigos" />} 
+                {!cardsInimigos.length && <BotaoGerarCards />} 
                 {!!cardsInimigos.length && cardsInimigos.map((card) => 
                     <Card tipo="Inimigo" cardInfos={card} key={card.id} />
                 )}               
@@ -145,7 +163,7 @@ function TelaCombate() {
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
             <PainelCombate />
             <div className="h-[50%] flex items-start justify-center">
-                {!cardsJogador.length && <BotaoGerarCards texto="Gerar Time" />} 
+                {!cardsJogador.length && <BotaoGerarCards />} 
                 {!!cardsJogador.length && cardsJogador.map((card) => 
                     <Card tipo="Aliado" cardInfos={card} key={card.id} />
                 )}               

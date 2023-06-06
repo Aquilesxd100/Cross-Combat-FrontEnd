@@ -47,7 +47,6 @@ async function completarTimesAPI(temaJogador : string, timeJogador : Array<CardT
 
     if (!respostaAPI.message) {
         const cardsAProcessar : APIResponseFillCards = respostaAPI as APIResponseFillCards;
-        console.log(cardsAProcessar)
         let cardsAnime : Array<CardType> = [];
         let cardsHeroi : Array<CardType> = [];
         let cardsDisney : Array<CardType> = [];
