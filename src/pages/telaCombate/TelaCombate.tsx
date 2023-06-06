@@ -17,6 +17,7 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
+import completarTimesAPI from "../../requests/completarTimes";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -86,31 +87,37 @@ function TelaCombate() {
     }, [timeJogador]);
 
     const completarTimes =
-    async (timeJogadorParam : Array<CardType>) => {
-        setActiveTeamFiller(true);
-        const cardsJogadorVivos : Array<CardType> =
-        timeJogadorParam.filter((card : CardType) => !card.morto);
-        if (cardsJogadorVivos.length < 3) {
-            const cardsJogadorGerados : Array<CardType> | undefined = await gerarCardsAPI(playerCardType, 'aliado', cardsJogadorVivos);
-            if (cardsJogadorGerados) {
-                const novosCardsJogador : Array<CardType> = timeJogadorParam.concat();
-                cardsJogadorGerados.forEach((novoCard : CardType) => {
-                    const indexCardMorto : number =
-                    novosCardsJogador.findIndex((card : CardType) => card.morto);
-                    novosCardsJogador[indexCardMorto] = novoCard;
-                });
-                dispatch(setTimeJogador(novosCardsJogador));
+        async (timeJogadorParam : Array<CardType>) => {
+            setActiveTeamFiller(true);
+            const cardsJogadorVivos : Array<CardType> =
+            timeJogadorParam.filter((card : CardType) => !card.morto);
+
+            const cardsSubs = await completarTimesAPI(playerCardType, cardsJogadorVivos);
+
+            if (cardsJogadorVivos.length < 3) {
+                if (cardsSubs.timeJogadorFill.length) {
+                    let novoTimeJogador : Array<CardType> = timeJogadorParam.concat();
+                    let indexCardSubst = -1;
+                    novoTimeJogador = novoTimeJogador.map((card) => {
+                        if (card.morto) {
+                            indexCardSubst += 1;
+                            return cardsSubs.timeJogadorFill[indexCardSubst]; 
+                        };
+                        return card;
+                    });
+                    dispatch(setTimeJogador(novoTimeJogador));
+                };
             };
+            if(cardsSubs.timeInimigo.length) {
+                dispatch(setTimeInimigo(cardsSubs.timeInimigo));
+                dispatch(aumentarPontuacao());
+            };
+            setActiveTeamFiller(false);
         };
-        const cardsInimigosGerados : Array<CardType> | undefined = await gerarCardsAPI('aleatorio', 'inimigo', undefined, timeJogador);
-        dispatch(setTimeInimigo(cardsInimigosGerados));
-        dispatch(aumentarPontuacao());
-        setActiveTeamFiller(false);
-    };
 
     const [activeTeamFiller, setActiveTeamFiller] = useState(false);
     useEffect(() => {
-        if(timeInimigo.length && timeJogador.length && !activeTeamFiller) {
+        if (timeInimigo.length && timeJogador.length && !activeTeamFiller) {
             const checkDerrota : boolean = checkCardsMortos(timeJogador);
             if (checkDerrota){
                 dispatch(deleteSaveGame())
