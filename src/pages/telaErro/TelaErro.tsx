@@ -7,16 +7,23 @@ function TelaErro() {
     const navigate = useNavigate();
     const [checkUserResolution, setCheckUserResolution] = useState(0);
 
-    window.addEventListener("resize", () => {
-        setCheckUserResolution(Math.random());
-    });
-
     useEffect(() => {
         const larguraUsuario : number = window.innerWidth;
         const alturaUsuario : number = window.innerHeight;
-        if (alturaUsuario > 619 && larguraUsuario > 810) {
+
+        if (alturaUsuario * 1.23 < larguraUsuario) {
             navigate('/tela-inicial');
         };
+
+        const handleResize = () => {
+            setCheckUserResolution(Math.random());
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
 
     }, [checkUserResolution]);
 
