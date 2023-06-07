@@ -14,7 +14,6 @@ import Pontuacao from "../../components/pontuacao/Pontuacao";
 import checkCardsMortos from "../../helpers/checkCardsMortos";
 import { useNavigate } from "react-router-dom";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
-import gerarCardsAPI from "../../requests/gerarCardsAPI";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
@@ -29,7 +28,21 @@ function TelaCombate() {
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const [gerarCardsIniciaisState, setGerarCardsIniciaisState] = useState(false);
+    const [checkUserResolution, setCheckUserResolution] = useState(0);
     const telaCorpo : any = useRef();
+
+    window.addEventListener("resize", () => {
+        setCheckUserResolution(Math.random());
+    });
+
+    useEffect(() => {
+        const larguraUsuario : number = window.innerWidth;
+        const alturaUsuario : number = window.innerHeight;
+        if (alturaUsuario < 619 || larguraUsuario < 810) {
+            navigate('/erro');
+        };
+
+    }, [checkUserResolution]);
 
     const gerarCardsIniciais = async () => {
         const cardsGerados = await completarTimesAPI(playerCardType, []);

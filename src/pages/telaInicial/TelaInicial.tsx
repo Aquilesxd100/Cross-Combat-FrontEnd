@@ -13,6 +13,20 @@ function TelaInicial() {
     const botaoContinuar : any = useRef();
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
+    const [checkUserResolution, setCheckUserResolution] = useState(0);
+
+    window.addEventListener("resize", () => {
+        setCheckUserResolution(Math.random());
+    });
+
+    useEffect(() => {
+        const larguraUsuario : number = window.innerWidth;
+        const alturaUsuario : number = window.innerHeight;
+        if (alturaUsuario < 619 || larguraUsuario < 810) {
+            navigate('/erro');
+        };
+
+    }, [checkUserResolution]);
 
     const loadSaveGameHandler = () => {
         if (saveGame) {

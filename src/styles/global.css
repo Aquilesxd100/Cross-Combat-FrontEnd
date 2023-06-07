@@ -57,6 +57,18 @@ h3 {
     -webkit-text-fill-color: transparent;
     text-align: center;
 }
+.mensagem-aviso {
+    max-width: 700px;
+    background: -webkit-linear-gradient(#F3BA43, #F0AA17);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-size: calc(1.7vw + 1.7vh + 15px);
+    font-weight: lighter;  
+    letter-spacing: 1px;
+    margin: 0 15px;
+}
+
 .mensagem-carregamento-suporte {
     font-size: clamp(12px, 3.2vw, 47px);
     font-weight: lighter;  

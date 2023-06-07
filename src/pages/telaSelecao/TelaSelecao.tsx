@@ -19,6 +19,20 @@ function TelaSelecao() {
     const navigate = useNavigate();
     const { musicType } = useSelector((state : RootState) => state.sounds)
     const [hoverSoundEffectsON, setHoverSoundEffectsON] = useState(false);
+    const [checkUserResolution, setCheckUserResolution] = useState(0);
+
+    window.addEventListener("resize", () => {
+        setCheckUserResolution(Math.random());
+    });
+
+    useEffect(() => {
+        const larguraUsuario : number = window.innerWidth;
+        const alturaUsuario : number = window.innerHeight;
+        if (alturaUsuario < 619 || larguraUsuario < 810) {
+            navigate('/erro');
+        };
+
+    }, [checkUserResolution]);
 
     useEffect(() => {
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
