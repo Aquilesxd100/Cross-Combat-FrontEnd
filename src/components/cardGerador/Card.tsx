@@ -16,6 +16,7 @@ function Card(props: CardPropsType) {
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const [checkMorte, setCheckMorte] = useState(0);
+    const [mortoState, setMortoState] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<SelectedStatusType>({
         selectedStatus: false,
         element: undefined,
@@ -116,13 +117,15 @@ function Card(props: CardPropsType) {
         setTimeout((() => {setCheckMorte(checkMorte + 1)}), 10);
     }, [timeInimigo, timeJogador])
     useEffect(() => {
-        if(props.cardInfos.morto) {
+        if(props.cardInfos.morto && !mortoState) {
             retirarHovers();
+            console.log("morreu")
+            setMortoState(true);
             dispatch(activateEffect("hit"));
             cardRef.current.classList.add("animacao-ataque");
             cardRef.current.classList.add("pretoEBranco");
         }
-        else {
+        else if (!props.cardInfos.morto) {
             cardRef.current.classList.remove("pretoEBranco");
         }
     }, [checkMorte]);
