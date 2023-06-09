@@ -119,7 +119,6 @@ function Card(props: CardPropsType) {
     useEffect(() => {
         if(props.cardInfos.morto && !mortoState) {
             retirarHovers();
-            console.log("morreu")
             setMortoState(true);
             dispatch(activateEffect("hit"));
             cardRef.current.classList.add("animacao-ataque");
