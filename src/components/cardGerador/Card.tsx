@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
-import { activateEffect } from "../../redux/slices/soundSlice";
+import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -90,6 +90,8 @@ function Card(props: CardPropsType) {
     useEffect(() => {
         if(props.cardInfos.morto) {
             retirarHovers();
+            dispatch(activateEffect("hit"));
+            cardRef.current.classList.add("animacao-ataque");
             cardRef.current.classList.add("pretoEBranco");
         }
         else {

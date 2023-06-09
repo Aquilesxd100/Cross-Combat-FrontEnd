@@ -50,6 +50,13 @@ function SoundsController() {
                     temporaryAudioCombate.play();
                     setTimeout(() => {temporaryAudioCombate.remove()}, 450);
                 break;
+                case 'hit':
+                    const temporaryAudioHit = document.createElement("audio");
+                    temporaryAudioHit.setAttribute("src", MP3HitDano);
+                    temporaryAudioHit.play();
+                    setTimeout(() => {temporaryAudioHit.remove()}, 150);
+                    dispatch(resetEffect());
+                break;
             }
             dispatch(resetEffect());
         }

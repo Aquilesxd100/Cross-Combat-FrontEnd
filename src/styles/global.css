@@ -31,6 +31,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     cursor: url('../resources/cursors/defaultCursor.cur'), auto;
+    overflow: hidden;
 }
 div#root {
     height: 100vh;
@@ -143,6 +144,10 @@ p span {
     backdrop-filter: blur(1px);
 }
 
+.animacao-ataque {
+    animation: ataque 0.5s;
+}
+
 .carregamento {
     animation-name: carregamento-anim;
     animation-duration: 0.85s;
@@ -155,4 +160,15 @@ p span {
     60% { transform: rotate(275deg) }
     75% { transform: rotate(315deg) }
     100% { transform: rotate(360deg) }
+}
+
+@keyframes ataque {
+    0% { transform: translate(3.5px, 3.5px) rotate(0.5deg); }
+    20% { transform: translate(-3.5px, -3.5px) rotate(-0.5deg); }
+    40% { transform: translate(5.5px, 5.5px) rotate(0.5deg); }
+    60% { transform: translate(1.3px, 1.3px) rotate(-0.5deg); }
+  
+    70% { transform: translate(2px, 2px) rotate(0.5deg); }
+    90% { transform: translate(2px, -2px) rotate(-0.5deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
 }
