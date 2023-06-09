@@ -180,7 +180,7 @@ function TelaCombate() {
             </div>
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
             <PainelCombate />
-            <div className="h-[50%] flex items-start justify-center">
+            <div className="h-[50%] flex items-start justify-center overflow-hidden">
                 {!cardsJogador.length && <BotaoGerarCards />} 
                 {!!cardsJogador.length && cardsJogador.map((card) => 
                     <Card tipo="Aliado" cardInfos={card} key={card.id} />

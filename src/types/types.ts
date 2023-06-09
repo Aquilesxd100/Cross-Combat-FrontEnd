@@ -82,3 +82,9 @@ export interface  APIResponseFillCards {
 	cardsHeroi: Array<any>,
 	cardsAnime: Array<any>
 };
+
+export interface SelectedStatusType {
+    selectedStatus: boolean,
+    element: any,
+    elementId: string | undefined
+};
