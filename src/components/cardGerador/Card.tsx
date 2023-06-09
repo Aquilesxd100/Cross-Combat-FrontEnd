@@ -36,6 +36,9 @@ function Card(props: CardPropsType) {
     const entrarModoCombate = (atributo : "forca" | "inteligencia" | "destreza", valorAtributo : number, elementoRef : any) => {
         if(props.tipo === "Aliado" && !props.cardInfos.morto) {
             dispatch(activateEffect('modoCombate'));
+            if (selectedStatus.element) {
+                removeSelectedAttribute();
+            };
             setSelectedStatus({
                 selectedStatus: true,
                 element: elementoRef,
@@ -51,20 +54,28 @@ function Card(props: CardPropsType) {
             dispatch(setInfosCombate(infosCombate));
         }
     };
+
+    const setSelectedAttribute = () => {
+        selectedStatus.element.current.classList.remove("hover:brightness-110");
+        selectedStatus.element.current.classList.remove("brightness-[0.8]");
+        selectedStatus.element.current.classList.add("brightness-110");
+    };
+    const removeSelectedAttribute = () => {
+        selectedStatus.element.current.classList.remove("brightness-110");
+        selectedStatus.element.current.classList.add("hover:brightness-110");
+        selectedStatus.element.current.classList.add("brightness-[0.8]");
+        setSelectedStatus({
+            selectedStatus: false,
+            element: undefined,
+            elementId: undefined}
+        );
+    };
+
     useEffect(() => {
         if (selectedStatus.selectedStatus && selectedStatus.elementId === props.cardInfos.id && modoAtual === "combate") {
-            selectedStatus.element.current.classList.remove("hover:brightness-110");
-            selectedStatus.element.current.classList.remove("brightness-[0.8]");
-            selectedStatus.element.current.classList.add("brightness-110");
+            setSelectedAttribute();
         } else if (selectedStatus.elementId === props.cardInfos.id) {
-            selectedStatus.element.current.classList.remove("brightness-110");
-            selectedStatus.element.current.classList.add("hover:brightness-110");
-            selectedStatus.element.current.classList.add("brightness-[0.8]");
-            setSelectedStatus({
-                selectedStatus: false,
-                element: undefined,
-                elementId: undefined}
-            );
+            removeSelectedAttribute();
         };
     }, [selectedStatus, modoAtual])
 
