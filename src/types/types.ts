@@ -25,7 +25,8 @@ export interface SetCardsStateType {
 };
 export interface CardPropsType {
     tipo : string,
-    cardInfos : CardType
+    cardInfos : CardType,
+    indice : number
 };
 export interface PropInfoCardCombateType {
     idCard: string | undefined,

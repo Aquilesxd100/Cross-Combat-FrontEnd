@@ -54,7 +54,7 @@ function Card(props: CardPropsType) {
             };
             dispatch(setModoCombate());
             dispatch(setInfosCombate(infosCombate));
-        }
+        };
     };
 
     const setSelectedAttribute = () => {
@@ -72,6 +72,12 @@ function Card(props: CardPropsType) {
             elementId: undefined}
         );
     };
+
+    useEffect(() => {
+        const cardHidePosition : string = props.tipo === "Aliado" 
+        ? "card-jogador-hide" : "card-inimigo-hide";
+        cardRef.current.classList.add(cardHidePosition);
+    }, []);
 
     useEffect(() => {
         if (selectedStatus.selectedStatus && selectedStatus.elementId === props.cardInfos.id && modoAtual === "combate") {
@@ -152,16 +158,42 @@ function Card(props: CardPropsType) {
 
     useEffect(() => {
         if (cardsLoadingState === false) {
-            if (props.tipo === "Aliado") {
-                
-            } else {
-
-            };
+            const cardHidePosition : string = props.tipo === "Aliado" 
+            ? "card-jogador-hide" : "card-inimigo-hide";
+            switch(props.indice) {
+                case 0:
+                    setTimeout(() => {
+                        if(props.tipo === "Aliado") {
+                            setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 100)
+                        }
+                        cardRef.current.classList.add("card-transition");
+                        cardRef.current.classList.remove(cardHidePosition);
+                    }, 100)
+                break;
+                case 1:
+                    setTimeout(() => {
+                        if(props.tipo === "Aliado") {
+                            setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 300)
+                        }
+                        cardRef.current.classList.add("card-transition");
+                        cardRef.current.classList.remove(cardHidePosition);
+                    }, 240)
+                break;
+                case 2:
+                    setTimeout(() => {
+                        if(props.tipo === "Aliado") {
+                            setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 470)
+                        }
+                        cardRef.current.classList.add("card-transition");
+                        cardRef.current.classList.remove(cardHidePosition);
+                    }, 380)
+                break;
+            }
         };
     }, [cardsLoadingState]);
 
     return(
-        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5" style={cardStyle}>
+        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card" style={cardStyle}>
             <div className="absolute w-full h-full z-[1] text-center">
                 <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431]">{props.cardInfos.nome}</h1>
                 <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866]">ATRIBUTOS</h3>

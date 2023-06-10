@@ -185,16 +185,16 @@ function TelaCombate() {
             <MenuAjuda />
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards />} 
-                {!!cardsInimigos.length && cardsInimigos.map((card) => 
-                    <Card tipo="Inimigo" cardInfos={card} key={card.id} />
+                {!!cardsInimigos.length && cardsInimigos.map((card, indice) => 
+                    <Card tipo="Inimigo" cardInfos={card} indice={indice} key={card.id} />
                 )}               
             </div>
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
             <PainelCombate />
             <div className="h-[50%] flex items-start justify-center overflow-hidden">
                 {!cardsJogador.length && <BotaoGerarCards />} 
-                {!!cardsJogador.length && cardsJogador.map((card) => 
-                    <Card tipo="Aliado" cardInfos={card} key={card.id} />
+                {!!cardsJogador.length && cardsJogador.map((card, indice) => 
+                    <Card tipo="Aliado" cardInfos={card} indice={indice} key={card.id} />
                 )}               
             </div>
         </div>  

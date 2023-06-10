@@ -57,6 +57,13 @@ function SoundsController() {
                     setTimeout(() => {temporaryAudioHit.remove()}, 150);
                     dispatch(resetEffect());
                 break;
+                case 'cardSend':
+                    const temporaryAudioCardSend = document.createElement("audio");
+                    temporaryAudioCardSend.setAttribute("src", MP3VirarCard);
+                    temporaryAudioCardSend.play();
+                    setTimeout(() => {temporaryAudioHit.remove()}, 150);
+                    dispatch(resetEffect());
+                break;
             }
             dispatch(resetEffect());
         }
