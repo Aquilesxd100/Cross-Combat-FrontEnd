@@ -15,8 +15,10 @@ function Card(props: CardPropsType) {
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
+    const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
+    const [cardStyle, setCardStyle] = useState({});
     const [selectedStatus, setSelectedStatus] = useState<SelectedStatusType>({
         selectedStatus: false,
         element: undefined,
@@ -147,8 +149,19 @@ function Card(props: CardPropsType) {
             cardRef.current.classList.remove("hoverInimigo");
         }
     }, [modoAtual])
+
+    useEffect(() => {
+        if (cardsLoadingState === false) {
+            if (props.tipo === "Aliado") {
+                
+            } else {
+
+            };
+        };
+    }, [cardsLoadingState]);
+
     return(
-        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5">
+        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5" style={cardStyle}>
             <div className="absolute w-full h-full z-[1] text-center">
                 <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431]">{props.cardInfos.nome}</h1>
                 <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866]">ATRIBUTOS</h3>

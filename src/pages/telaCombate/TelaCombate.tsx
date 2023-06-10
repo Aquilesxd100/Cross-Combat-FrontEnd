@@ -17,6 +17,7 @@ import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
+import { setCardsLoadingState } from "../../redux/slices/loadingSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function TelaCombate() {
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
+    const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const [gerarCardsIniciaisState, setGerarCardsIniciaisState] = useState(false);
@@ -57,6 +59,7 @@ function TelaCombate() {
 
     useEffect(() => {
         dispatch(changeMusic('combate'));
+        dispatch(setCardsLoadingState(true));
 
         if (!timeInimigo.length && !timeJogador.length && !saveGame) {
             setGerarCardsIniciaisState(true);
@@ -115,12 +118,20 @@ function TelaCombate() {
         };
     }, [modoAtual]);
     useEffect(() => {
-        setCardsInimigos(timeInimigo);
-    }, [timeInimigo]);
+        if (cardsInimigos.length) {
+            setCardsInimigos(timeInimigo);
+        } else if (cardsLoadingState === false) {
+            setCardsInimigos(timeInimigo);
+        };
+    }, [timeInimigo, cardsLoadingState]);
 
     useEffect(() => {
-        setCardsJogador(timeJogador);
-    }, [timeJogador]);
+        if (cardsJogador.length) {
+            setCardsJogador(timeJogador);
+        } else if (cardsLoadingState === false) {
+            setCardsJogador(timeJogador); 
+        };
+    }, [timeJogador, cardsLoadingState]);
 
     const completarTimes =
         async (timeJogadorParam : Array<CardType>) => {

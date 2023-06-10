@@ -21,14 +21,18 @@ import IMGCardAnimes from "../../resources/images/animes.png";
 import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import { useEffect, useState } from "react";
-import { useStoreDispatch } from "../../redux/store/configureStore";
-import { setResourcesLoadingState } from "../../redux/slices/loadingSlice";
+import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
+import { setCardsLoadingState, setResourcesLoadingState } from "../../redux/slices/loadingSlice";
+import { useSelector } from "react-redux";
 
 function PreLoadResources() {
     const dispatch = useStoreDispatch();
+    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const [checkLoadedIMGs, setCheckLoadedIMGs] = useState(0);
+    const [checkLoadedCardsIMGs, setCheckLoadedCardsIMGs] = useState(0);
+
     useEffect(() => {
-        const div : any = document.getElementById('imagens-pre-load');
+        const div : any = document.getElementById('base-imagens-pre-load');
         let imagens = Array.from(div.querySelectorAll('img'));
         if (!imagens.some((img : any) => !img.complete)) {
             dispatch(setResourcesLoadingState(false));
@@ -37,31 +41,47 @@ function PreLoadResources() {
         }
     }, [checkLoadedIMGs]);
 
+    useEffect(() => {
+        const div : any = document.getElementById('cards-imagens-pre-load');
+        let imagens = Array.from(div.querySelectorAll('img'));
+        if (imagens.length && !imagens.some((img : any) => !img.complete)) {
+            dispatch(setCardsLoadingState(false));
+        } else {
+            setTimeout(() => { setCheckLoadedCardsIMGs(checkLoadedCardsIMGs + 1) }, 150);
+        };
+    }, [timeInimigo, timeJogador, checkLoadedCardsIMGs]);
+
     return(
-        <div id="imagens-pre-load" className="hidden">
-            <img src={IMGbotaoMusicaON} />
-            <img src={IMGbotaoMusicaOFF} />
-            <img src={IMGPontuacao} />
-            <img src={IMGPainel} />
-            <img src={IMGBotaoMenu} />
-            <img src={IMGBotaoInfo} />
-            <img src={IMGModalMenu} />
-            <img src={botaoPadrao} />
-            <img src={IMGBotaoFechar} />
-            <img src={IMGPasso1} />
-            <img src={IMGPasso2} />
-            <img src={IMGModalInfo} />
-            <img src={cardEscondido} />
-            <img src={fundoCard} />
-            <img src={fundoCardTrunfo} />
-            <img src={IMGLogo} />
-            <img src={IMGtituloMenu} />
-            <img src={IMGbotaoVoltar} />
-            <img src={IMGCardDisney} />
-            <img src={IMGCardAnimes} />
-            <img src={IMGCardHerois} />
-            <img src={IMGCardMisturado} />
-        </div>
+        <>
+            <div id="base-imagens-pre-load" className="hidden">
+                <img src={IMGbotaoMusicaON} />
+                <img src={IMGbotaoMusicaOFF} />
+                <img src={IMGPontuacao} />
+                <img src={IMGPainel} />
+                <img src={IMGBotaoMenu} />
+                <img src={IMGBotaoInfo} />
+                <img src={IMGModalMenu} />
+                <img src={botaoPadrao} />
+                <img src={IMGBotaoFechar} />
+                <img src={IMGPasso1} />
+                <img src={IMGPasso2} />
+                <img src={IMGModalInfo} />
+                <img src={cardEscondido} />
+                <img src={fundoCard} />
+                <img src={fundoCardTrunfo} />
+                <img src={IMGLogo} />
+                <img src={IMGtituloMenu} />
+                <img src={IMGbotaoVoltar} />
+                <img src={IMGCardDisney} />
+                <img src={IMGCardAnimes} />
+                <img src={IMGCardHerois} />
+                <img src={IMGCardMisturado} />
+            </div>
+            <div id="cards-imagens-pre-load" className="hidden">
+                {timeJogador.map((card) => <img src={card.imagem} key={card.id}/>)}
+                {timeInimigo.map((card) => <img src={card.imagem} key={card.id}/>)}
+            </div>
+        </>
     );
 };
 

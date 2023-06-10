@@ -21,7 +21,8 @@ export const connectionTest = createAsyncThunk(
 
 const initialState : LoadingStoreType = {
     resourcesLoadingState: true,
-    serverLoadingState: true
+    serverLoadingState: true,
+    cardsLoadingState: true
 };
 
 const loadingSlice = createSlice({
@@ -34,6 +35,9 @@ const loadingSlice = createSlice({
         setServerLoadingState: (state, action) => {
             state.serverLoadingState = action.payload;
         },
+        setCardsLoadingState: (state, action) => {
+            state.cardsLoadingState = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(connectionTest.fulfilled, (state : any, action : any) => {
@@ -44,5 +48,5 @@ const loadingSlice = createSlice({
     }
 });
 
-export const { setResourcesLoadingState, setServerLoadingState } = loadingSlice.actions;
+export const { setResourcesLoadingState, setServerLoadingState, setCardsLoadingState } = loadingSlice.actions;
 export default loadingSlice.reducer;
