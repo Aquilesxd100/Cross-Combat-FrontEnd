@@ -201,7 +201,7 @@ function Card(props: CardPropsType) {
             }
             if (props.tipo === "Aliado") {
                 setTimeout(() => {
-                    dispatch(activateEffect("virarCard"));
+                    setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
                     virarCardParaCima();
                 }, 1300);
             };
