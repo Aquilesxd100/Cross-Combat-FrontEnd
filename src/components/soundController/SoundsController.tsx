@@ -10,6 +10,7 @@ import MP3BotaoGerarCards from "../../resources/sounds/botao-gerar-cards.mp3";
 import MP3AtaqueEspada from "../../resources/sounds/espada.mp3";
 import MP3SelecaoUniverso from "../../resources/sounds/selecao-universo.mp3";
 import MP3VirarCard from "../../resources/sounds/virar-card.mp3";
+import MP3VirarCard2 from "../../resources/sounds/virar-card2.mp3";
 import MP3HitDano from "../../resources/sounds/som-hit.mp3";
 import MP3Vitoria from "../../resources/sounds/vitoria.mp3";
 import MP3Derrota from "../../resources/sounds/derrota.mp3";
@@ -22,6 +23,7 @@ function SoundsController() {
     const efeitoBotaoGerarCards : any = useRef();
     const efeitoSelecaoUniverso : any = useRef();
     const efeitoVirarCard : any = useRef();
+    const efeitoVirarCard2 : any = useRef();
     const efeitoHitDano : any = useRef();
     const efeitoVitoria : any = useRef();
     const efeitoDerrota : any = useRef();
@@ -61,7 +63,14 @@ function SoundsController() {
                     const temporaryAudioCardSend = document.createElement("audio");
                     temporaryAudioCardSend.setAttribute("src", MP3VirarCard);
                     temporaryAudioCardSend.play();
-                    setTimeout(() => {temporaryAudioHit.remove()}, 150);
+                    setTimeout(() => {temporaryAudioCardSend.remove()}, 150);
+                    dispatch(resetEffect());
+                break;
+                case 'virarCard':
+                    const temporaryAudioCardFlip = document.createElement("audio");
+                    temporaryAudioCardFlip.setAttribute("src", MP3VirarCard2);
+                    temporaryAudioCardFlip.play();
+                    setTimeout(() => {temporaryAudioCardFlip.remove()}, 150);
                     dispatch(resetEffect());
                 break;
             }
@@ -78,6 +87,7 @@ function SoundsController() {
             <audio ref={efeitoBotaoGerarCards} src={MP3BotaoGerarCards} />
             <audio ref={efeitoSelecaoUniverso} src={MP3SelecaoUniverso} />
             <audio ref={efeitoVirarCard} src={MP3VirarCard} />
+            <audio ref={efeitoVirarCard2} src={MP3VirarCard2} />
             <audio ref={efeitoHitDano} src={MP3HitDano} />
             <audio ref={efeitoVitoria} src={MP3Vitoria} />
             <audio ref={efeitoDerrota} src={MP3Derrota} />

@@ -155,9 +155,56 @@ p span {
 }
 
 .card {
-    transform: translateY(0vh);
+    transform-style: preserve-3d;
     opacity: 0;
 }
+
+.card-fundo-atras {
+    z-index: -1;
+}
+
+.card-hidden-cover {
+    /* height: 101.056%; */
+}
+
+/* Virando Cima > Baixo */
+
+/* .card:hover {
+    transform: rotateY(.5turn);
+} */
+
+/* .card-front {
+    backface-visibility: hidden;
+} */
+
+/* --------------------- */
+/* Virando Baixo > Cima */
+
+/* .card:hover .card-front {
+    transform: rotateY(.5turn);
+}
+
+.card-hidden-cover {
+    backface-visibility: hidden;
+}
+
+.card-front {
+    transform: rotateY(.5turn);
+} */
+
+/* --------------------- */
+
+.backface-escondida {
+    backface-visibility: hidden;  
+}
+
+body .card-virada {
+    transform: rotateY(.5turn);
+}
+
+
+
+/* --------------------- */
 
 body .card-transition {
     opacity: 1;

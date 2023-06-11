@@ -18,13 +18,17 @@ function Card(props: CardPropsType) {
     const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
-    const [cardStyle, setCardStyle] = useState({});
+    const [starterAnimation, setStarterAnimation] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<SelectedStatusType>({
         selectedStatus: false,
         element: undefined,
         elementId: undefined
     });
     const cardRef : any = useRef();
+    const coberturaCard : any = useRef();
+    const cardInfos : any = useRef();
+    const cardPersoImagem : any = useRef();
+    const cardBase : any = useRef();
     const atributoForca : any = useRef();
     const atributoDestreza : any = useRef();
     const atributoInteligencia : any = useRef();
@@ -111,7 +115,7 @@ function Card(props: CardPropsType) {
                     valorAtributo: valorAtributoDefensor
                 }
             }
-            if(props.cardInfos.escondido) {
+            if (props.cardInfos.escondido) {
                 dispatch(revelarInimigo(props.cardInfos.id));
                 setTimeout((() => { dispatch(resolverConflito(infosConflito))}), 500)
             }
@@ -158,6 +162,12 @@ function Card(props: CardPropsType) {
 
     useEffect(() => {
         if (cardsLoadingState === false) {
+            setStarterAnimation(true);
+        };
+    }, [cardsLoadingState]);
+
+    useEffect(() => {
+        if (starterAnimation) {
             const cardHidePosition : string = props.tipo === "Aliado" 
             ? "card-jogador-hide" : "card-inimigo-hide";
             switch(props.indice) {
@@ -189,12 +199,38 @@ function Card(props: CardPropsType) {
                     }, 380)
                 break;
             }
-        };
-    }, [cardsLoadingState]);
+            if (props.tipo === "Aliado") {
+                setTimeout(() => {
+                    dispatch(activateEffect("virarCard"));
+                    virarCardParaCima();
+                }, 1300);
+            };
+        }
+    }, [starterAnimation]);
+
+    const virarCardParaCima = () => {
+        const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase];
+        elemsToChangeClass.forEach((elem) => {
+            elem.current.classList.remove("backface-escondida");
+            elem.current.classList.add("card-virada");
+        });
+        coberturaCard.current.classList.add("backface-escondida")
+        cardRef.current.classList.add("card-virada");
+    };
+
+    const virarCardParaBaixo = () => {
+        const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase];
+        coberturaCard.current.classList.remove("backface-escondida");
+        elemsToChangeClass.forEach((elem) => {
+            elem.current.classList.add("backface-escondida");
+            elem.current.classList.remove("card-virada");
+        });
+        cardRef.current.classList.remove("card-virada");
+    };
 
     return(
-        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card" style={cardStyle}>
-            <div className="absolute w-full h-full z-[1] text-center">
+        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card">
+            <div ref={cardInfos} className="absolute w-full h-full z-[1] text-center backface-escondida">
                 <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431]">{props.cardInfos.nome}</h1>
                 <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866]">ATRIBUTOS</h3>
                 <div className="relative top-[calc(61.5%+1.2vh)] font-[hobostd] text-[#DBB866] drop-shadow text-[calc(0.6vw+1vh)] flex flex-col items-center font-normal">
@@ -204,11 +240,11 @@ function Card(props: CardPropsType) {
                 </div>
                 <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">{props.cardInfos.universo}</h6>
             </div>
-            <img src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C]" />
-            {props.cardInfos.escondido && <img className="absolute w-full h-full z-[2]" src={cardEscondido} />}
+            <img ref={cardPersoImagem} src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C] backface-escondida" />
+            <img className="absolute w-full h-full z-[2] backface-escondida" ref={coberturaCard} src={cardEscondido} />
             {props.cardInfos.trunfo
-                ? <img className="absolute w-full h-full" src={fundoCardTrunfo} />
-                : <img className="absolute w-full h-full" src={fundoCard} />}
+                ? <img ref={cardBase} className="absolute w-full h-full backface-escondida" src={fundoCardTrunfo} />
+                : <img ref={cardBase} className="absolute w-full h-full backface-escondida" src={fundoCard} />}
         </div>
     );
 };
