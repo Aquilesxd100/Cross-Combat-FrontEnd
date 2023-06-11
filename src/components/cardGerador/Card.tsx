@@ -92,7 +92,7 @@ function Card(props: CardPropsType) {
     }, [selectedStatus, modoAtual])
 
     const realizarAtaque = () => {
-        if(modoAtual === "combate" && props.tipo === "Inimigo" && !props.cardInfos.morto) {
+        if (modoAtual === "combate" && props.tipo === "Inimigo" && !props.cardInfos.morto) {
             let valorAtributoDefensor = 0;
             switch(infosAtacante.atributo){
                 case "forca":
@@ -117,7 +117,9 @@ function Card(props: CardPropsType) {
             }
             if (props.cardInfos.escondido) {
                 dispatch(revelarInimigo(props.cardInfos.id));
-                setTimeout((() => { dispatch(resolverConflito(infosConflito))}), 500)
+                virarCardParaCima();
+                setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
+                setTimeout((() => { dispatch(resolverConflito(infosConflito))}), 1000)
             }
             else {
                 dispatch(resolverConflito(infosConflito));
@@ -145,6 +147,8 @@ function Card(props: CardPropsType) {
             setMortoState(true);
             dispatch(activateEffect("hit"));
             cardRef.current.classList.add("animacao-ataque");
+            coberturaCard.current.classList.add("z-[-2]");
+            coberturaCard.current.classList.add("pointer-events-none");
             cardRef.current.classList.add("pretoEBranco");
         }
         else if (!props.cardInfos.morto) {
