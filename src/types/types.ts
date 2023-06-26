@@ -50,7 +50,9 @@ export interface SaveGameType {
     cardsJogador: Array<CardType>
 };
 export interface StateSaveGameType {
-    saveGame: undefined | SaveGameType
+    saveGame: undefined | SaveGameType,
+    saveGameRequest: boolean,
+    loadedGameType: boolean
 };
 export interface ModalStateType {
     modalMenuActive: boolean,

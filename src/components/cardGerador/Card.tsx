@@ -9,6 +9,7 @@ import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
 import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
+import { setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Card(props: CardPropsType) {
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
+    const { saveGame, loadedGameType } = useSelector((state : RootState) => state.saveGame);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
     const [starterAnimation, setStarterAnimation] = useState(false);
@@ -142,7 +144,8 @@ function Card(props: CardPropsType) {
         setTimeout((() => {setCheckMorte(checkMorte + 1)}), 10);
     }, [timeInimigo, timeJogador])
     useEffect(() => {
-        if(props.cardInfos.morto && !mortoState) {
+        if (props.cardInfos.morto && !mortoState) {
+            dispatch(setSaveGameRequest(true));
             retirarHovers();
             setMortoState(true);
             dispatch(activateEffect("hit"));
@@ -171,9 +174,9 @@ function Card(props: CardPropsType) {
     }, [cardsLoadingState]);
 
     useEffect(() => {
+        const cardHidePosition : string = props.tipo === "Aliado" 
+        ? "card-jogador-hide" : "card-inimigo-hide";
         if (starterAnimation) {
-            const cardHidePosition : string = props.tipo === "Aliado" 
-            ? "card-jogador-hide" : "card-inimigo-hide";
             switch(props.indice) {
                 case 0:
                     setTimeout(() => {
@@ -209,7 +212,7 @@ function Card(props: CardPropsType) {
                     virarCardParaCima();
                 }, 1300);
             };
-        }
+        };
     }, [starterAnimation]);
 
     const virarCardParaCima = () => {

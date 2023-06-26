@@ -7,7 +7,7 @@ import IMGModalMenu from "../../resources/images/menu_opcoes.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import IMGBotaoFechar from "../../resources/images/botao-fechar.png";
 import { setMenuModal } from "../../redux/slices/modalSlice"
-import { saveGame } from "../../redux/slices/saveGameSlice";
+import { saveGame, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import { SaveGameType } from "../../types/types";
 import { activateEffect } from "../../redux/slices/soundSlice";
 
@@ -16,6 +16,7 @@ function MenuOpcoes() {
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const { pontosJogador } = useSelector((state : RootState) => state.pontuacao);
+    const { saveGameRequest } = useSelector((state : RootState) => state.saveGame);
     const divModalMenu : any = useRef();
     const botaoSalvar : any = useRef();
     const navigate = useNavigate();
@@ -24,6 +25,19 @@ function MenuOpcoes() {
     const telaInicialHandler = () => {
         navigate('/tela-inicial');
     };
+
+    useEffect(() => {
+        if (saveGameRequest) {
+            const newSaveGame : SaveGameType = {
+                playerCardType: playerCardType,
+                pontos: pontosJogador,
+                cardsInimigos: timeInimigo,
+                cardsJogador: timeJogador
+            };
+            dispatch(saveGame(newSaveGame));  
+            dispatch(setSaveGameRequest(false))         
+        };
+    }, [saveGameRequest]);
 
     const saveGameHandler = () => {
         if (timeInimigo.length && timeJogador.length) {
