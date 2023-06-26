@@ -24,6 +24,11 @@
 .cursor-pointer, button {
     cursor: url('../resources/cursors/pointerCursor.cur'), auto;
 }
+.escondido {
+    display: none;
+    pointer-events: none;
+}
+
 body {
     min-height: 100vh;
     width: 100%;

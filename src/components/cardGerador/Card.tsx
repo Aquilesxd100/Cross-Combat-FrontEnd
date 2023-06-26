@@ -146,9 +146,9 @@ function Card(props: CardPropsType) {
             retirarHovers();
             setMortoState(true);
             dispatch(activateEffect("hit"));
+            coberturaCard.current.classList.add("escondido");
             cardRef.current.classList.add("animacao-ataque");
             coberturaCard.current.classList.add("z-[-2]");
-            coberturaCard.current.classList.add("pointer-events-none");
             cardRef.current.classList.add("pretoEBranco");
         }
         else if (!props.cardInfos.morto) {
@@ -220,6 +220,7 @@ function Card(props: CardPropsType) {
         });
         coberturaCard.current.classList.add("backface-escondida")
         cardRef.current.classList.add("card-virada");
+        setTimeout(() => {coberturaCard.current.classList.add("escondido");}, 900);
     };
 
     const virarCardParaBaixo = () => {
