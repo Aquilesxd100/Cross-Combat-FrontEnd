@@ -18,7 +18,7 @@ function TelaInicial() {
     useEffect(() => {
         const larguraUsuario : number = window.innerWidth;
         const alturaUsuario : number = window.innerHeight;
-        if (alturaUsuario * 1.23 > larguraUsuario) {
+        if (alturaUsuario * 1.23 > larguraUsuario || larguraUsuario < 700) {
             navigate('/erro');
         };
 
