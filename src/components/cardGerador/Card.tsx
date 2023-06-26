@@ -146,7 +146,9 @@ function Card(props: CardPropsType) {
     useEffect(() => {
         if (props.cardInfos.morto && !mortoState) {
             if (!loadedGameType) {
-                dispatch(setSaveGameRequest(true));
+                if (timeInimigo.some((inimigo) => !inimigo.morto)) {
+                    dispatch(setSaveGameRequest(true));
+                };
                 dispatch(activateEffect("hit"));
                 cardRef.current.classList.add("animacao-ataque");
                 coberturaCard.current.classList.add("escondido");

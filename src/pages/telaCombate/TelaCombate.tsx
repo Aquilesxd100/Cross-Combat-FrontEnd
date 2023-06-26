@@ -13,7 +13,7 @@ import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSli
 import Pontuacao from "../../components/pontuacao/Pontuacao";
 import checkCardsMortos from "../../helpers/checkCardsMortos";
 import { useNavigate } from "react-router-dom";
-import { deleteSaveGame, setLoadedGameType } from "../../redux/slices/saveGameSlice";
+import { deleteSaveGame, setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
@@ -161,8 +161,8 @@ function TelaCombate() {
                 dispatch(aumentarPontuacao());
             };
             setActiveTeamFiller(false);
+            dispatch(setSaveGameRequest(true))
         };
-
     const [activeTeamFiller, setActiveTeamFiller] = useState(false);
     useEffect(() => {
         if (timeInimigo.length && timeJogador.length && !activeTeamFiller) {
