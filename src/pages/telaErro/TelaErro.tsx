@@ -14,6 +14,7 @@ function TelaErro() {
         if (alturaUsuario * 1.23 < larguraUsuario && larguraUsuario > 700) {
             navigate('/tela-inicial');
         };
+        alert(larguraUsuario)
 
         const handleResize = () => {
             setCheckUserResolution(Math.random());
