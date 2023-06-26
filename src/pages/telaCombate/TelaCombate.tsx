@@ -18,6 +18,7 @@ import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState } from "../../redux/slices/loadingSlice";
+import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -172,6 +173,7 @@ function TelaCombate() {
             const checkDerrota : boolean = checkCardsMortos(timeJogador);
             if (checkDerrota){
                 dispatch(deleteSaveGame())
+                dispatch(setPendingStartAnimation(true));
                 navigate('/tela-inicial');
                 return;
             };
