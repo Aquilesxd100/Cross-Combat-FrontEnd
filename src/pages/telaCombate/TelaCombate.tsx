@@ -161,7 +161,9 @@ function TelaCombate() {
                 dispatch(aumentarPontuacao());
             };
             setActiveTeamFiller(false);
-            dispatch(setSaveGameRequest(true))
+            if (cardsSubs.timeJogadorFill.length || cardsSubs.timeInimigo.length) {
+                dispatch(setSaveGameRequest(true));
+            };
         };
     const [activeTeamFiller, setActiveTeamFiller] = useState(false);
     useEffect(() => {
