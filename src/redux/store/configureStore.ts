@@ -12,6 +12,7 @@ import modalReducer from "../slices/modalSlice";
 import pontuacaoReducer from "../slices/pontuacaoSlice";
 import soundsReducer from "../slices/soundSlice";
 import loadingReducer from "../slices/loadingSlice";
+import extraAnimationsReducer from "../slices/extraAnimationsSlice";
 
 const playerCardTypeConfig = {
     key: 'playerCardType',
@@ -36,7 +37,8 @@ const store = configureStore({
         modalStatus: modalReducer,
         pontuacao: pontuacaoReducer,
         sounds: soundsReducer,
-        loadingScreen: loadingReducer
+        loadingScreen: loadingReducer,
+        extraAnimations: extraAnimationsReducer
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({

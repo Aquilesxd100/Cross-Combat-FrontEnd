@@ -10,6 +10,7 @@ import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
 import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
 import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
+import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -17,7 +18,8 @@ function Card(props: CardPropsType) {
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
-    const { saveGame, loadedGameType } = useSelector((state : RootState) => state.saveGame);
+    const { loadedGameType } = useSelector((state : RootState) => state.saveGame);
+    const { pendingStartAnimation } = useSelector((state : RootState) => state.extraAnimations);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
     const [starterAnimation, setStarterAnimation] = useState(false);
@@ -172,7 +174,7 @@ function Card(props: CardPropsType) {
     }, [modoAtual])
 
     useEffect(() => {
-        if (cardsLoadingState === false) {
+        if (cardsLoadingState === false && pendingStartAnimation) {
             setStarterAnimation(true);
         };
     }, [cardsLoadingState]);
@@ -222,6 +224,7 @@ function Card(props: CardPropsType) {
                 }, 1300);
             };
             dispatch(setLoadedGameType(false));
+            dispatch(setPendingStartAnimation(false));
         };
     }, [starterAnimation]);
 

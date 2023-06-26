@@ -92,3 +92,7 @@ export interface SelectedStatusType {
     element: any,
     elementId: string | undefined
 };
+
+export interface ExtraAnimationsType {
+    pendingStartAnimation: boolean
+};
