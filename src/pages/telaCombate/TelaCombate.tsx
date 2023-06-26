@@ -136,6 +136,7 @@ function TelaCombate() {
 
     const completarTimes =
         async (timeJogadorParam : Array<CardType>) => {
+            dispatch(setCardsLoadingState(true));
             setActiveTeamFiller(true);
             const cardsJogadorVivos : Array<CardType> =
             timeJogadorParam.filter((card : CardType) => !card.morto);
