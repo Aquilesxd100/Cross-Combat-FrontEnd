@@ -79,7 +79,7 @@ function TelaCombate() {
             dispatch(setTimeInimigo(saveGame.cardsInimigos));
             dispatch(setPlayerCardType(saveGame.playerCardType)); 
             dispatch(setPontuacao(saveGame.pontos));
-            dispatch(setLoadedGameType());
+            dispatch(setLoadedGameType(true));
         };
     }, [saveGame]);
 

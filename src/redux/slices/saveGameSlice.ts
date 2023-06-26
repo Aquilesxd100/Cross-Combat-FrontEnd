@@ -13,8 +13,8 @@ export const saveGameSlice = createSlice({
         setSaveGameRequest: (state, action) => {
             state.saveGameRequest = action.payload;
         },
-        setLoadedGameType: (state) => {
-            state.loadedGameType = true
+        setLoadedGameType: (state, action) => {
+            state.loadedGameType = action.payload;
         },
         saveGame: (state, action) => {
             state.saveGame = action.payload;

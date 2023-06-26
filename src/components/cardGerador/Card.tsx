@@ -9,7 +9,7 @@ import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
 import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
-import { setSaveGameRequest } from "../../redux/slices/saveGameSlice";
+import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -145,14 +145,16 @@ function Card(props: CardPropsType) {
     }, [timeInimigo, timeJogador])
     useEffect(() => {
         if (props.cardInfos.morto && !mortoState) {
-            dispatch(setSaveGameRequest(true));
+            if (!loadedGameType) {
+                dispatch(setSaveGameRequest(true));
+                dispatch(activateEffect("hit"));
+                cardRef.current.classList.add("animacao-ataque");
+                coberturaCard.current.classList.add("escondido");
+                coberturaCard.current.classList.add("z-[-2]");
+                cardRef.current.classList.add("pretoEBranco");
+            };
             retirarHovers();
             setMortoState(true);
-            dispatch(activateEffect("hit"));
-            coberturaCard.current.classList.add("escondido");
-            cardRef.current.classList.add("animacao-ataque");
-            coberturaCard.current.classList.add("z-[-2]");
-            cardRef.current.classList.add("pretoEBranco");
         }
         else if (!props.cardInfos.morto) {
             cardRef.current.classList.remove("pretoEBranco");
@@ -211,7 +213,13 @@ function Card(props: CardPropsType) {
                     setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
                     virarCardParaCima();
                 }, 1300);
+            } else if (loadedGameType && !props.cardInfos.escondido) {
+                setTimeout(() => {
+                    setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
+                    virarCardParaCima();
+                }, 1300);
             };
+            dispatch(setLoadedGameType(false));
         };
     }, [starterAnimation]);
 
@@ -223,7 +231,12 @@ function Card(props: CardPropsType) {
         });
         coberturaCard.current.classList.add("backface-escondida")
         cardRef.current.classList.add("card-virada");
-        setTimeout(() => {coberturaCard.current.classList.add("escondido");}, 900);
+        setTimeout(() => {
+            coberturaCard.current.classList.add("escondido");
+            if (props.cardInfos.morto) {
+                cardRef.current.classList.add("pretoEBranco");
+            };
+        }, 900);
     };
 
     const virarCardParaBaixo = () => {
