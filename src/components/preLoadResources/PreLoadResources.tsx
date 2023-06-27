@@ -78,8 +78,8 @@ function PreLoadResources() {
                 <img src={IMGCardMisturado} />
             </div>
             <div id="cards-imagens-pre-load" className="hidden">
-                {timeJogador.map((card) => <img src={card.imagem} key={card.id}/>)}
-                {timeInimigo.map((card) => <img src={card.imagem} key={card.id}/>)}
+                {timeJogador.map((card : any) => <img src={card.imagem} key={card.id}/>)}
+                {timeInimigo.map((card : any) => <img src={card.imagem} key={card.id}/>)}
             </div>
         </>
     );
