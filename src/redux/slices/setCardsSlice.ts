@@ -5,6 +5,7 @@ const initialState : SetCardsStateType = {
     timeJogador: [],
     preLoadtimeInimigo: [],
     preLoadtimeJogador: [],
+    userReadyState: false
 }
 export const setCardsSlice = createSlice({
     name: "setCards",
@@ -42,6 +43,9 @@ export const setCardsSlice = createSlice({
         },
         setPreLoadTimeInimigo: (state, action) => {
             state.preLoadtimeInimigo = action.payload;
+        },
+        setUserReadyState: (state, action) => {
+            state.userReadyState = action.payload;
         },
     }
 });

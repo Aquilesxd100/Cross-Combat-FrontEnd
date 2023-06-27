@@ -24,6 +24,7 @@ export interface SetCardsStateType {
     timeJogador: Array<CardType>,
     preLoadtimeInimigo: Array<CardType>,
     preLoadtimeJogador: Array<CardType>,
+    userReadyState: boolean
 };
 export interface CardPropsType {
     tipo : string,
