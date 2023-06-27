@@ -22,6 +22,8 @@ export interface BotaoGerarCardsPropsType {
 export interface SetCardsStateType {
     timeInimigo: Array<CardType>,
     timeJogador: Array<CardType>,
+    preLoadtimeInimigo: Array<CardType>,
+    preLoadtimeJogador: Array<CardType>,
 };
 export interface CardPropsType {
     tipo : string,
