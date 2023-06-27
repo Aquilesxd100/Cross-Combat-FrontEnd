@@ -19,6 +19,7 @@ import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slices/loadingSlice";
 import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -204,6 +205,7 @@ function TelaCombate() {
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />
             <MenuOpcoes />
+            <MenuVitoriaDerrota />
             <MenuAjuda />
             <div className="h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards />} 
