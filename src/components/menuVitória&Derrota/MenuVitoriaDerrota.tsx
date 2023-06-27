@@ -26,7 +26,6 @@ function MenuVitoriaDerrota() {
         if (modalVitoriaActive && !cardsPreLoadingState) {
             dispatch(setVitoriaModal(false));
             dispatch(activateEffect('botaoPadrao'));
-            setTimeout(() => {dispatch(activateEffect("desativarVitoria"));}, 50);
             dispatch(setUserReadyState(true))
 
         } else if (modalDerrotaActive) {
