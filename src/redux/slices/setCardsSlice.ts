@@ -49,5 +49,5 @@ export const setCardsSlice = createSlice({
         },
     }
 });
-export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo } = setCardsSlice.actions;
+export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo, setUserReadyState } = setCardsSlice.actions;
 export default setCardsSlice.reducer;
