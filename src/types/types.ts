@@ -59,7 +59,9 @@ export interface StateSaveGameType {
 };
 export interface ModalStateType {
     modalMenuActive: boolean,
-    modalInfosActive: boolean
+    modalInfosActive: boolean,
+    modalVitoriaActive: false,
+    modalDerrotaActive: false
 };
 export interface PontuacaoStoreType {
     pontosJogador: number

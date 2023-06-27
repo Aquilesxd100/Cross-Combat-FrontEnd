@@ -3,7 +3,9 @@ import { ModalStateType } from '../../types/types';
 
 const initialState : ModalStateType = {
     modalMenuActive: false,
-    modalInfosActive: false
+    modalInfosActive: false,
+    modalVitoriaActive: false,
+    modalDerrotaActive: false
 };
 
 export const modalSlice = createSlice({
@@ -15,9 +17,15 @@ export const modalSlice = createSlice({
         },
         setInfosModal: (state, action) => {
             state.modalInfosActive = action.payload;
+        },
+        setVitoriaModal: (state, action) => {
+            state.modalVitoriaActive = action.payload;
+        },
+        setDerrotaModal: (state, action) => {
+            state.modalDerrotaActive = action.payload;
         }
     }
 });
 
-export const { setMenuModal, setInfosModal } = modalSlice.actions;
+export const { setMenuModal, setInfosModal, setVitoriaModal, setDerrotaModal } = modalSlice.actions;
 export default modalSlice.reducer;
