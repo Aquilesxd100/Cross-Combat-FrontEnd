@@ -23,9 +23,15 @@ export const modalSlice = createSlice({
         },
         setDerrotaModal: (state, action) => {
             state.modalDerrotaActive = action.payload;
+        },
+        clearAllModalStates: (state) => {
+            state.modalMenuActive = false;
+            state.modalInfosActive = false;
+            state.modalVitoriaActive = false;
+            state.modalDerrotaActive = false;
         }
     }
 });
 
-export const { setMenuModal, setInfosModal, setVitoriaModal, setDerrotaModal } = modalSlice.actions;
+export const { setMenuModal, setInfosModal, setVitoriaModal, setDerrotaModal, clearAllModalStates } = modalSlice.actions;
 export default modalSlice.reducer;
