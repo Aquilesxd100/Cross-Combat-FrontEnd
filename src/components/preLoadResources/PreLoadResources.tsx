@@ -22,14 +22,15 @@ import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import { useEffect, useState } from "react";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
-import { setCardsLoadingState, setResourcesLoadingState } from "../../redux/slices/loadingSlice";
+import { setCardsLoadingState, setCardsPreLoadingState, setResourcesLoadingState } from "../../redux/slices/loadingSlice";
 import { useSelector } from "react-redux";
 
 function PreLoadResources() {
     const dispatch = useStoreDispatch();
-    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
+    const { timeInimigo, timeJogador, preLoadtimeInimigo, preLoadtimeJogador } = useSelector((state : RootState) => state.setCards);
     const [checkLoadedIMGs, setCheckLoadedIMGs] = useState(0);
     const [checkLoadedCardsIMGs, setCheckLoadedCardsIMGs] = useState(0);
+    const [checkPreLoadedCardsIMGs, setCheckPreLoadedCardsIMGs] = useState(0);
 
     useEffect(() => {
         const div : any = document.getElementById('base-imagens-pre-load');
@@ -50,6 +51,16 @@ function PreLoadResources() {
             setTimeout(() => { setCheckLoadedCardsIMGs(checkLoadedCardsIMGs + 1) }, 150);
         };
     }, [timeInimigo, timeJogador, checkLoadedCardsIMGs]);
+
+    useEffect(() => {
+        const div : any = document.getElementById('cards-imagens-pre-pre-load');
+        let imagens = Array.from(div.querySelectorAll('img'));
+        if (imagens.length && !imagens.some((img : any) => !img.complete)) {
+            dispatch(setCardsPreLoadingState(false));
+        } else {
+            setTimeout(() => { setCheckPreLoadedCardsIMGs(checkPreLoadedCardsIMGs + 1) }, 150);
+        };
+    }, [preLoadtimeInimigo, preLoadtimeJogador, checkPreLoadedCardsIMGs]);
 
     return(
         <>
@@ -80,6 +91,10 @@ function PreLoadResources() {
             <div id="cards-imagens-pre-load" className="hidden">
                 {timeJogador.map((card : any) => <img src={card.imagem} key={card.id}/>)}
                 {timeInimigo.map((card : any) => <img src={card.imagem} key={card.id}/>)}
+            </div>
+            <div id="cards-imagens-pre-pre-load" className="hidden">
+                {preLoadtimeJogador.map((card : any) => <img src={card.imagem} key={card.id}/>)}
+                {preLoadtimeInimigo.map((card : any) => <img src={card.imagem} key={card.id}/>)}
             </div>
         </>
     );

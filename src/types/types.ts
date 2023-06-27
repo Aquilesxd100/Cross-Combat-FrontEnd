@@ -73,7 +73,8 @@ export interface SoundStorageType {
 export interface LoadingStoreType {
     resourcesLoadingState: boolean,
     serverLoadingState: boolean,
-    cardsLoadingState: boolean
+    cardsLoadingState: boolean,
+    cardsPreLoadingState: boolean
 };
 
 export interface APIRequestFillCards {
