@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import IMGFundo from "../../resources/images/fundo-app.jpg";
 import IMGAviso from "../../resources/images/iconeErro.png";
 import { useNavigate } from "react-router-dom";
+import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { useStoreDispatch } from "../../redux/store/configureStore";
 
 function TelaErro() {
     const navigate = useNavigate();
+    const dispatch = useStoreDispatch();
     const [checkUserResolution, setCheckUserResolution] = useState(0);
 
     useEffect(() => {
@@ -12,6 +15,7 @@ function TelaErro() {
         const alturaUsuario : number = window.innerHeight;
 
         if (alturaUsuario * 1.23 < larguraUsuario && alturaUsuario > 450) {
+            dispatch(setPendingStartAnimation(true));
             navigate('/tela-inicial');
         };
 
