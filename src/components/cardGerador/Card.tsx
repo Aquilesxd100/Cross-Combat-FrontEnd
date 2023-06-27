@@ -155,13 +155,13 @@ function Card(props: CardPropsType) {
                 cardRef.current.classList.add("animacao-ataque");
                 coberturaCard.current.classList.add("escondido");
                 coberturaCard.current.classList.add("z-[-2]");
-                cardRef.current.classList.add("pretoEBranco");
+                cardRef.current.classList.add("morto");
             };
             retirarHovers();
             setMortoState(true);
         }
         else if (!props.cardInfos.morto) {
-            cardRef.current.classList.remove("pretoEBranco");
+            cardRef.current.classList.remove("morto");
         }
     }, [checkMorte]);
     useEffect(() => {
@@ -176,10 +176,19 @@ function Card(props: CardPropsType) {
     useEffect(() => {
         if (cardsLoadingState === false && pendingStartAnimation) {
             setStarterAnimation(true);
-        } else if (cardsLoadingState === false && pendingResetDefeatedCards) {
-
         };
     }, [cardsLoadingState]);
+
+    useEffect(() => {
+        if (pendingResetDefeatedCards) {
+            if (props.cardInfos.morto) {
+                coberturaCard.current.classList.remove("escondido");
+                setTimeout(() => {
+                    virarCardParaBaixo();
+                }, 50)
+            };
+        }
+    }, [pendingResetDefeatedCards])
 
     useEffect(() => {
         const cardHidePosition : string = props.tipo === "Aliado" 
@@ -232,6 +241,9 @@ function Card(props: CardPropsType) {
 
     const virarCardParaCima = () => {
         const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase];
+        if (props.cardInfos.morto) {
+            cardRef.current.classList.add("morto");
+        };
         elemsToChangeClass.forEach((elem) => {
             elem.current.classList.remove("backface-escondida");
             elem.current.classList.add("card-virada");
@@ -240,25 +252,22 @@ function Card(props: CardPropsType) {
         cardRef.current.classList.add("card-virada");
         setTimeout(() => {
             coberturaCard.current.classList.add("escondido");
-            if (props.cardInfos.morto) {
-                cardRef.current.classList.add("pretoEBranco");
-            };
         }, 900);
     };
 
     const virarCardParaBaixo = () => {
-        const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase];
-        coberturaCard.current.classList.remove("backface-escondida");
+/*         const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase]; */
+        cardRef.current.classList.remove("card-virada");
+/*         coberturaCard.current.classList.remove("backface-escondida");
         elemsToChangeClass.forEach((elem) => {
             elem.current.classList.add("backface-escondida");
             elem.current.classList.remove("card-virada");
-        });
-        cardRef.current.classList.remove("card-virada");
+        }); */
     };
 
     return(
         <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card">
-            <div ref={cardInfos} className="absolute w-full h-full z-[1] text-center backface-escondida">
+            <div ref={cardInfos} className="absolute w-full h-full z-[1] text-center backface-escondida cardInfos">
                 <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431]">{props.cardInfos.nome}</h1>
                 <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866]">ATRIBUTOS</h3>
                 <div className="relative top-[calc(61.5%+1.2vh)] font-[hobostd] text-[#DBB866] drop-shadow text-[calc(0.6vw+1vh)] flex flex-col items-center font-normal">
@@ -268,11 +277,11 @@ function Card(props: CardPropsType) {
                 </div>
                 <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">{props.cardInfos.universo}</h6>
             </div>
-            <img ref={cardPersoImagem} src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C] backface-escondida" />
+            <img ref={cardPersoImagem} src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C] backface-escondida cardInfos" />
             <img className="absolute w-full h-full z-[2] backface-escondida" ref={coberturaCard} src={cardEscondido} />
             {props.cardInfos.trunfo
-                ? <img ref={cardBase} className="absolute w-full h-full backface-escondida" src={fundoCardTrunfo} />
-                : <img ref={cardBase} className="absolute w-full h-full backface-escondida" src={fundoCard} />}
+                ? <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos" src={fundoCardTrunfo} />
+                : <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos" src={fundoCard} />}
         </div>
     );
 };

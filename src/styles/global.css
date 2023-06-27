@@ -29,6 +29,10 @@
     pointer-events: none;
 }
 
+.morto .cardInfos {
+    filter:grayscale(1);
+}
+
 body {
     min-height: 100vh;
     width: 100%;

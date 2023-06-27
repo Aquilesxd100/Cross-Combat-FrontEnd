@@ -18,7 +18,7 @@ import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState } from "../../redux/slices/loadingSlice";
-import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -179,7 +179,10 @@ function TelaCombate() {
             };
             const checkVitoria : boolean = checkCardsMortos(timeInimigo);
             if (checkVitoria) {
-                completarTimes(timeJogador);
+                setTimeout(() => {
+                    dispatch(setPendingResetDefeatedCards(true));
+                    /* completarTimes(timeJogador); */
+                }, 850)
             };
         };
     }, [timeInimigo, timeJogador]);
