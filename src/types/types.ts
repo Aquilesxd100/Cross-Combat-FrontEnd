@@ -94,5 +94,6 @@ export interface SelectedStatusType {
 };
 
 export interface ExtraAnimationsType {
-    pendingStartAnimation: boolean
+    pendingStartAnimation: boolean,
+    pendingResetDefeatedCards: boolean
 };

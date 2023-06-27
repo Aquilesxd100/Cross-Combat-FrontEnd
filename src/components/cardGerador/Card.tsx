@@ -19,7 +19,7 @@ function Card(props: CardPropsType) {
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const { loadedGameType } = useSelector((state : RootState) => state.saveGame);
-    const { pendingStartAnimation } = useSelector((state : RootState) => state.extraAnimations);
+    const { pendingStartAnimation, pendingResetDefeatedCards } = useSelector((state : RootState) => state.extraAnimations);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
     const [starterAnimation, setStarterAnimation] = useState(false);
@@ -176,6 +176,8 @@ function Card(props: CardPropsType) {
     useEffect(() => {
         if (cardsLoadingState === false && pendingStartAnimation) {
             setStarterAnimation(true);
+        } else if (cardsLoadingState === false && pendingResetDefeatedCards) {
+
         };
     }, [cardsLoadingState]);
 

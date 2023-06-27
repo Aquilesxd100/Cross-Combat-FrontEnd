@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ExtraAnimationsType } from "../../types/types";
 
 const initialState : ExtraAnimationsType = {
-    pendingStartAnimation: true
+    pendingStartAnimation: true,
+    pendingResetDefeatedCards: false
 };
 
 const extraAnimationsSlice = createSlice({
@@ -12,8 +13,11 @@ const extraAnimationsSlice = createSlice({
         setPendingStartAnimation: (state, action) => {
             state.pendingStartAnimation = action.payload;
         },
+        setPendingResetDefeatedCards: (state, action) => {
+            state.pendingResetDefeatedCards = action.payload;
+        },
     }
 });
 
-export const { setPendingStartAnimation } = extraAnimationsSlice.actions;
+export const { setPendingStartAnimation, setPendingResetDefeatedCards } = extraAnimationsSlice.actions;
 export default extraAnimationsSlice.reducer;
