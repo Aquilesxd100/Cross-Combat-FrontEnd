@@ -20,6 +20,9 @@ import IMGCardDisney from "../../resources/images/disney.png";
 import IMGCardAnimes from "../../resources/images/animes.png";
 import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
+import IMGLogoVitoria from "../../resources/images/vitoria_logo.png";
+import IMGLogoDerrota from "../../resources/images/derrota_logo.png";
+
 import { useEffect, useState } from "react";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { setCardsLoadingState, setCardsPreLoadingState, setResourcesLoadingState } from "../../redux/slices/loadingSlice";
@@ -87,6 +90,8 @@ function PreLoadResources() {
                 <img src={IMGCardAnimes} />
                 <img src={IMGCardHerois} />
                 <img src={IMGCardMisturado} />
+                <img src={IMGLogoVitoria} />
+                <img src={IMGLogoDerrota} />
             </div>
             <div id="cards-imagens-pre-load" className="hidden">
                 {timeJogador.map((card : any) => <img src={card.imagem} key={card.id}/>)}
