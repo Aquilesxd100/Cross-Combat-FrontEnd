@@ -90,7 +90,7 @@ function MenuVitoriaDerrota() {
 
     return (
         <div className="fixed flex items-center justify-center top-0 left-0 h-full w-full bg-black/50 z-10 backdrop-blur-[1.5px]" style={modalDisplay}>
-            <div className="relative flex flex-col items-center justify-center w-[calc(31vw+100px)] h-[calc(26vw+100px)] bg-100%" style={{backgroundImage:`url(${IMGModalMenuMaior})`}}>
+            <div className="relative flex flex-col items-center justify-center w-[calc(30vw+140px)] h-[calc(24.6vw+140px)] bg-100% top-[8%]" style={{backgroundImage:`url(${IMGModalMenuMaior})`}}>
                 <img src={modalLogo} className="absolute w-[75%] h-[85%] top-[-31%] sombra-padrao-img" />
                 <button ref={botaoConfirmar} className="min-w-[28%] w-[59%] h-[21%] bg-100% bg-no-repeat my-2 text-[3vw] font-bold brightness-[0.85] hover:brightness-110 top-[60%] absolute" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { confirmButtonHandler(); })}><h3 className="gradiente-laranja" ref={textoConfirmar}>TELA INICIAL</h3></button>
             </div>
