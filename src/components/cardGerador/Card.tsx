@@ -10,7 +10,7 @@ import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
 import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
 import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
-import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -185,8 +185,10 @@ function Card(props: CardPropsType) {
                 coberturaCard.current.classList.remove("escondido");
                 setTimeout(() => {
                     virarCardParaBaixo();
+                    setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
                 }, 50)
             };
+            dispatch(setPendingResetDefeatedCards(false));
         }
     }, [pendingResetDefeatedCards])
 
