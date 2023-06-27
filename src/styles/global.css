@@ -24,6 +24,9 @@
 .cursor-pointer, button {
     cursor: url('../resources/cursors/pointerCursor.cur'), auto;
 }
+.cursor-loading {
+    cursor: wait !important;
+}
 .escondido {
     display: none;
     pointer-events: none;
