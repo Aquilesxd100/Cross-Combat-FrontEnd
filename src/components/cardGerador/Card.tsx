@@ -7,17 +7,17 @@ import { CardPropsType, SelectedStatusType } from "../../types/types";
 import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
-import { resolverConflito, revelarInimigo } from "../../redux/slices/setCardsSlice";
+import { resolverConflito, revelarInimigo, setUserReadyState } from "../../redux/slices/setCardsSlice";
 import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
 import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
-    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
+    const { timeInimigo, timeJogador, userReadyState } = useSelector((state : RootState) => state.setCards);
     const { infosAtacante } = useSelector((state : RootState) => state.setInfosCombate);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
-    const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
+    const { cardsLoadingState, cardsPreLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const { loadedGameType } = useSelector((state : RootState) => state.saveGame);
     const { pendingStartAnimation, pendingResetDefeatedCards } = useSelector((state : RootState) => state.extraAnimations);
     const [checkMorte, setCheckMorte] = useState(0);
@@ -82,9 +82,22 @@ function Card(props: CardPropsType) {
     };
 
     useEffect(() => {
-        const cardHidePosition : string = props.tipo === "Aliado" 
-        ? "card-jogador-hide" : "card-inimigo-hide";
-        cardRef.current.classList.add(cardHidePosition);
+        if (starterAnimation) {
+            const cardHidePosition : string = props.tipo === "Aliado" 
+            ? "card-jogador-hide" : "card-inimigo-hide";
+            cardRef.current.classList.add(cardHidePosition);
+        };
+    }, [starterAnimation]);
+
+    useEffect(() => {
+        if (!cardsPreLoadingState && userReadyState) {
+            cardRef.current.classList.add("card-transition");
+            if (!props.cardInfos.escondido) {
+                dispatch(setUserReadyState(false));
+                virarCardParaCima();
+                setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
+            };
+        }; 
     }, []);
 
     useEffect(() => {

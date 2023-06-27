@@ -6,7 +6,7 @@ import PainelCombate from "../../components/painelCombate/PainelCombate";
 import { RootState } from "../../redux/store/configureStore";
 import { CardType } from "../../types/types";
 import { setModoNormal } from "../../redux/slices/setModoSlice";
-import { setTimeJogador, setTimeInimigo } from "../../redux/slices/setCardsSlice";
+import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
 import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSlice";
@@ -17,7 +17,7 @@ import { deleteSaveGame, setLoadedGameType, setSaveGameRequest } from "../../red
 import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
-import { setCardsLoadingState } from "../../redux/slices/loadingSlice";
+import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slices/loadingSlice";
 import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
 function TelaCombate() {
@@ -26,8 +26,8 @@ function TelaCombate() {
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
-    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
-    const { cardsLoadingState } = useSelector((state : RootState) => state.loadingScreen);
+    const { timeInimigo, timeJogador, preLoadTimeInimigo, preLoadTimeJogador, userReadyState } = useSelector((state : RootState) => state.setCards);
+    const { cardsLoadingState, cardsPreLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const [cardsInimigos, setCardsInimigos] = useState<Array<CardType>>([]);
     const [cardsJogador, setCardsJogador] = useState<Array<CardType>>([]);
     const [gerarCardsIniciaisState, setGerarCardsIniciaisState] = useState(false);
@@ -137,7 +137,7 @@ function TelaCombate() {
 
     const completarTimes =
         async (timeJogadorParam : Array<CardType>) => {
-            dispatch(setCardsLoadingState(true));
+            dispatch(setCardsPreLoadingState(true))
             setActiveTeamFiller(true);
             const cardsJogadorVivos : Array<CardType> =
             timeJogadorParam.filter((card : CardType) => !card.morto);
@@ -155,17 +155,15 @@ function TelaCombate() {
                         };
                         return card;
                     });
-                    dispatch(setTimeJogador(novoTimeJogador));
+                    if (novoTimeJogador.length) {
+                        dispatch(setPreLoadTimeJogador(novoTimeJogador));
+                    };
                 };
             };
             if(cardsSubs.timeInimigo.length) {
-                dispatch(setTimeInimigo(cardsSubs.timeInimigo));
-                dispatch(aumentarPontuacao());
+                dispatch(setPreLoadTimeInimigo(cardsSubs.timeInimigo));
             };
             setActiveTeamFiller(false);
-            if (cardsSubs.timeJogadorFill.length || cardsSubs.timeInimigo.length) {
-                dispatch(setSaveGameRequest(true));
-            };
         };
     const [activeTeamFiller, setActiveTeamFiller] = useState(false);
     useEffect(() => {
@@ -188,6 +186,19 @@ function TelaCombate() {
             };
         };
     }, [timeInimigo, timeJogador]);
+
+    useEffect(() => {
+        if (userReadyState && !cardsPreLoadingState && preLoadTimeInimigo.length && preLoadTimeJogador.length) {
+            setTimeout(() => {
+                dispatch(setTimeInimigo(preLoadTimeInimigo));
+                dispatch(setTimeJogador(preLoadTimeJogador));
+                dispatch(setPreLoadTimeInimigo([]));
+                dispatch(setPreLoadTimeJogador([]));
+                dispatch(setSaveGameRequest(true));
+                dispatch(aumentarPontuacao());
+            }, 450);
+        };
+    }, [cardsPreLoadingState, userReadyState]);
 
     return (
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>

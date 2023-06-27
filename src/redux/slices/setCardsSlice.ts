@@ -3,8 +3,8 @@ import { PropInfoCardCombateType, SetCardsStateType } from "../../types/types";
 const initialState : SetCardsStateType = {
     timeInimigo: [],
     timeJogador: [],
-    preLoadtimeInimigo: [],
-    preLoadtimeJogador: [],
+    preLoadTimeInimigo: [],
+    preLoadTimeJogador: [],
     userReadyState: false
 }
 export const setCardsSlice = createSlice({
@@ -39,10 +39,10 @@ export const setCardsSlice = createSlice({
             }
         },
         setPreLoadTimeJogador: (state, action) => {
-            state.preLoadtimeJogador = action.payload;
+            state.preLoadTimeJogador = action.payload;
         },
         setPreLoadTimeInimigo: (state, action) => {
-            state.preLoadtimeInimigo = action.payload;
+            state.preLoadTimeInimigo = action.payload;
         },
         setUserReadyState: (state, action) => {
             state.userReadyState = action.payload;
