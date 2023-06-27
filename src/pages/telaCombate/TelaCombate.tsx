@@ -181,7 +181,9 @@ function TelaCombate() {
             if (checkVitoria) {
                 setTimeout(() => {
                     dispatch(setPendingResetDefeatedCards(true));
-                    /* completarTimes(timeJogador); */
+                    setTimeout(() => {
+                        completarTimes(timeJogador);
+                    }, 500);
                 }, 850)
             };
         };
