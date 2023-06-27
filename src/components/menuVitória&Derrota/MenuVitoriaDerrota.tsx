@@ -30,7 +30,6 @@ function MenuVitoriaDerrota() {
 
         } else if (modalDerrotaActive) {
             dispatch(setDerrotaModal(false));
-            dispatch(setPendingStartAnimation(true));
             dispatch(activateEffect('botaoPadrao'));
             setTimeout(() => {dispatch(activateEffect("desativarDerrota"));}, 50);
             navigate('/tela-inicial');

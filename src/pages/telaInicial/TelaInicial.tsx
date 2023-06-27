@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import IMGLogo from "../../resources/images/logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
-import { setTimeInimigo, setTimeJogador } from "../../redux/slices/setCardsSlice";
+import { setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
+import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { clearAllModalStates } from "../../redux/slices/modalSlice";
 
 function TelaInicial() {
     const navigate = useNavigate();
@@ -14,6 +16,14 @@ function TelaInicial() {
     const { saveGame } = useSelector((state : RootState) => state.saveGame);
     const { musicType } = useSelector((state : RootState) => state.sounds);
     const [checkUserResolution, setCheckUserResolution] = useState(0);
+
+    useEffect(() => {
+        dispatch(setPendingStartAnimation(true));
+        dispatch(setUserReadyState(false));
+        dispatch(clearAllModalStates());
+        dispatch(setTimeJogador([]));
+        dispatch(setTimeInimigo([]));
+    }, []);
 
     useEffect(() => {
         const larguraUsuario : number = window.innerWidth;
