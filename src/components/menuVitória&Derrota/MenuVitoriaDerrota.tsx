@@ -18,12 +18,12 @@ function MenuVitoriaDerrota() {
     const [modalLogo, setModalLogo] = useState(IMGLogoDerrota);
     const textoConfirmar : any = useRef();
     const botaoConfirmar : any = useRef();
+    const fundoTela : any = useRef();
     const navigate = useNavigate();
     const dispatch = useStoreDispatch();
 
     const confirmButtonHandler = () => {
         if (modalVitoriaActive && !cardsPreLoadingState) {
-
             dispatch(setVitoriaModal(false));
             dispatch(activateEffect('botaoPadrao'));
             dispatch(setUserReadyState(true))
@@ -42,11 +42,15 @@ function MenuVitoriaDerrota() {
     useEffect(() => {
         if (cardsPreLoadingState && modalVitoriaActive) 
         {
+            fundoTela.current.classList.add("cursor-loading");
+            botaoConfirmar.current.classList.add("cursor-loading");
             botaoConfirmar.current.classList.add("pretoEBranco");
             botaoConfirmar.current.classList.add("cursor-padrao");
             botaoConfirmar.current.classList.remove("hover:brightness-110");
             botaoConfirmar.current.classList.remove("brightness-[0.85]");
         } else {
+            fundoTela.current.classList.remove("cursor-loading");
+            botaoConfirmar.current.classList.remove("cursor-loading");
             botaoConfirmar.current.classList.remove("pretoEBranco");
             botaoConfirmar.current.classList.remove("cursor-padrao");
             botaoConfirmar.current.classList.add("hover:brightness-110");
@@ -89,7 +93,7 @@ function MenuVitoriaDerrota() {
     }, [modalVitoriaActive, modalDerrotaActive]);
 
     return (
-        <div className="fixed flex items-center justify-center top-0 left-0 h-full w-full bg-black/50 z-10 backdrop-blur-[1.5px]" style={modalDisplay}>
+        <div ref={fundoTela} className="fixed flex items-center justify-center top-0 left-0 h-full w-full bg-black/50 z-10 backdrop-blur-[1.5px]" style={modalDisplay}>
             <div className="relative flex flex-col items-center justify-center w-[calc(30vw+140px)] h-[calc(24.6vw+140px)] bg-100% top-[5%]" style={{backgroundImage:`url(${IMGModalMenuMaior})`}}>
                 <img src={modalLogo} className="absolute w-[75%] h-[85%] top-[-31%] sombra-padrao-img" />
                 <button ref={botaoConfirmar} className="min-w-[28%] w-[59%] h-[21%] bg-100% bg-no-repeat my-2 text-[3vw] font-bold brightness-[0.85] hover:brightness-110 top-[60%] absolute" style={{backgroundImage: `url(${botaoPadrao})`}} onClick={(() => { confirmButtonHandler(); })}><h3 className="gradiente-laranja" ref={textoConfirmar}>TELA INICIAL</h3></button>
