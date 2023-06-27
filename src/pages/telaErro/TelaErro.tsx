@@ -4,6 +4,7 @@ import IMGAviso from "../../resources/images/iconeErro.png";
 import { useNavigate } from "react-router-dom";
 import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 import { useStoreDispatch } from "../../redux/store/configureStore";
+import { clearAllModalStates } from "../../redux/slices/modalSlice";
 
 function TelaErro() {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ function TelaErro() {
 
         if (alturaUsuario * 1.23 < larguraUsuario && alturaUsuario > 450) {
             dispatch(setPendingStartAnimation(true));
+            dispatch(clearAllModalStates());
             navigate('/tela-inicial');
         };
 
