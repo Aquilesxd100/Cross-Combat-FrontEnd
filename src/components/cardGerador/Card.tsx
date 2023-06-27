@@ -94,7 +94,6 @@ function Card(props: CardPropsType) {
         if (!cardsPreLoadingState && userReadyState) {
             cardRef.current.classList.add("card-transition");
             if (!props.cardInfos.escondido) {
-                dispatch(setUserReadyState(false));
                 virarCardParaCima();
                 setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
             };
@@ -111,6 +110,9 @@ function Card(props: CardPropsType) {
 
     const realizarAtaque = () => {
         if (modoAtual === "combate" && props.tipo === "Inimigo" && !props.cardInfos.morto) {
+            if (userReadyState) {
+                dispatch(setUserReadyState(false));
+            };
             let valorAtributoDefensor = 0;
             switch(infosAtacante.atributo){
                 case "forca":

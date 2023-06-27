@@ -6,7 +6,7 @@ import PainelCombate from "../../components/painelCombate/PainelCombate";
 import { RootState } from "../../redux/store/configureStore";
 import { CardType } from "../../types/types";
 import { setModoNormal } from "../../redux/slices/setModoSlice";
-import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
 import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSlice";

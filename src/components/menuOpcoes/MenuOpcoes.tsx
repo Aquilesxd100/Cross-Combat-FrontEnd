@@ -11,6 +11,7 @@ import { saveGame, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import { SaveGameType } from "../../types/types";
 import { activateEffect } from "../../redux/slices/soundSlice";
 import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { setUserReadyState } from "../../redux/slices/setCardsSlice";
 
 function MenuOpcoes() {
     const { modalMenuActive } = useSelector((state : RootState) => state.modalStatus);
@@ -25,6 +26,7 @@ function MenuOpcoes() {
 
     const telaInicialHandler = () => {
         dispatch(setPendingStartAnimation(true));
+        dispatch(setUserReadyState(false));
         navigate('/tela-inicial');
     };
 
