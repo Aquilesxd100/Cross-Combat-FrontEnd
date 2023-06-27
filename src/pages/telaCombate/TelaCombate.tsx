@@ -18,8 +18,9 @@ import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slices/loadingSlice";
-import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
+import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -171,16 +172,20 @@ function TelaCombate() {
         if (timeInimigo.length && timeJogador.length && !activeTeamFiller) {
             const checkDerrota : boolean = checkCardsMortos(timeJogador);
             if (checkDerrota){
-                dispatch(deleteSaveGame())
-                dispatch(setPendingStartAnimation(true));
-                navigate('/tela-inicial');
+                dispatch(setDerrotaModal(true));
+                setTimeout(() => {
+                    dispatch(activateEffect("derrota"));
+                    dispatch(deleteSaveGame());
+                }, 300);
                 return;
             };
             const checkVitoria : boolean = checkCardsMortos(timeInimigo);
             if (checkVitoria) {
                 setTimeout(() => {
                     dispatch(setPendingResetDefeatedCards(true));
+                    dispatch(setVitoriaModal(true));
                     setTimeout(() => {
+                        setTimeout(() => {dispatch(activateEffect("vitoria"));}, 200);
                         completarTimes(timeJogador);
                     }, 500);
                 }, 850)
@@ -189,10 +194,12 @@ function TelaCombate() {
     }, [timeInimigo, timeJogador]);
 
     useEffect(() => {
-        if (userReadyState && !cardsPreLoadingState && preLoadTimeInimigo.length && preLoadTimeJogador.length) {
+        if (userReadyState && !cardsPreLoadingState && preLoadTimeInimigo.length) {
             setTimeout(() => {
                 dispatch(setTimeInimigo(preLoadTimeInimigo));
-                dispatch(setTimeJogador(preLoadTimeJogador));
+                if (preLoadTimeJogador.length) {
+                    dispatch(setTimeJogador(preLoadTimeJogador));
+                };
                 dispatch(setPreLoadTimeInimigo([]));
                 dispatch(setPreLoadTimeJogador([]));
                 dispatch(setSaveGameRequest(true));
