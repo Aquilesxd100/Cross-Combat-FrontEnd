@@ -26,12 +26,14 @@ function MenuVitoriaDerrota() {
         if (modalVitoriaActive && !cardsPreLoadingState) {
             dispatch(setVitoriaModal(false));
             dispatch(activateEffect('botaoPadrao'));
+            setTimeout(() => {dispatch(activateEffect("desativarVitoria"));}, 50);
             dispatch(setUserReadyState(true))
 
         } else if (modalDerrotaActive) {
             dispatch(setDerrotaModal(false));
             dispatch(setPendingStartAnimation(true));
             dispatch(activateEffect('botaoPadrao'));
+            setTimeout(() => {dispatch(activateEffect("desativarDerrota"));}, 50);
             navigate('/tela-inicial');
             
         } else if (cardsPreLoadingState) {

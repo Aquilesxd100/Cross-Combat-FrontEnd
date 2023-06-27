@@ -76,8 +76,16 @@ function SoundsController() {
                 case 'vitoria':
                     efeitoVitoria.current.play();
                 break;
+                case 'desativarVitoria':
+                    efeitoVitoria.current.pause();
+                    efeitoVitoria.current.currentTime = 0;
+                break;
                 case 'derrota':
                     efeitoDerrota.current.play();
+                break;
+                case 'desativarDerrota':
+                    efeitoDerrota.current.pause();
+                    efeitoDerrota.current.currentTime = 0;
                 break;
             }
             dispatch(resetEffect());
