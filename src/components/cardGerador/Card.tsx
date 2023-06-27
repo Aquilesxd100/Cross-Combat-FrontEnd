@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
 import { resolverConflito, revelarInimigo, setUserReadyState } from "../../redux/slices/setCardsSlice";
-import { activateEffect, resetEffect } from "../../redux/slices/soundSlice";
+import { activateEffect } from "../../redux/slices/soundSlice";
 import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 
@@ -19,6 +19,7 @@ function Card(props: CardPropsType) {
     const { modoAtual } = useSelector((state : RootState) => state.setModo);
     const { cardsLoadingState, cardsPreLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const { loadedGameType } = useSelector((state : RootState) => state.saveGame);
+    const { serverLoadingState } = useSelector((state : RootState) => state.loadingScreen);
     const { pendingStartAnimation, pendingResetDefeatedCards } = useSelector((state : RootState) => state.extraAnimations);
     const [checkMorte, setCheckMorte] = useState(0);
     const [mortoState, setMortoState] = useState(false);
@@ -212,7 +213,7 @@ function Card(props: CardPropsType) {
             switch(props.indice) {
                 case 0:
                     setTimeout(() => {
-                        if(props.tipo === "Aliado") {
+                        if(props.tipo === "Aliado" && serverLoadingState === false) {
                             setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 100)
                         }
                         cardRef.current.classList.add("card-transition");
@@ -221,7 +222,7 @@ function Card(props: CardPropsType) {
                 break;
                 case 1:
                     setTimeout(() => {
-                        if(props.tipo === "Aliado") {
+                        if(props.tipo === "Aliado" && serverLoadingState === false) {
                             setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 300)
                         }
                         cardRef.current.classList.add("card-transition");
@@ -230,7 +231,7 @@ function Card(props: CardPropsType) {
                 break;
                 case 2:
                     setTimeout(() => {
-                        if(props.tipo === "Aliado") {
+                        if(props.tipo === "Aliado" && serverLoadingState === false) {
                             setTimeout(() =>{dispatch(activateEffect("cardSend"))}, 470)
                         }
                         cardRef.current.classList.add("card-transition");
