@@ -73,6 +73,12 @@ function SoundsController() {
                     setTimeout(() => {temporaryAudioCardFlip.remove()}, 150);
                     dispatch(resetEffect());
                 break;
+                case 'vitoria':
+                    efeitoVitoria.current.play();
+                break;
+                case 'derrota':
+                    efeitoDerrota.current.play();
+                break;
             }
             dispatch(resetEffect());
         }
