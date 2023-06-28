@@ -6,7 +6,6 @@ import CardFake from "./CardFake";
 
 function CardsFake(props: CardsFakePropsType) {
     const { fakeCardsActive } = useSelector((state : RootState) => state.setCards);
-    const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards); 
     const divPrincipal : any = useRef();
     const [cards, setCards] = useState<any>([]);
 
@@ -22,20 +21,15 @@ function CardsFake(props: CardsFakePropsType) {
     useEffect(() => {
         if (fakeCardsActive) {
             divPrincipal.current.classList.remove("pointer-events-none");
-        } else {
+            if (props.cards.length) {
+                setCards(props.cards);
+            };  
+        } else if (fakeCardsActive === false) {
             divPrincipal.current.classList.add("pointer-events-none");
         };
 
-    }, [fakeCardsActive]);
-
-    useEffect(() => {
-        if (props.tipo === "Aliado" && timeJogador.length) {
-            setCards(timeJogador);
-        } else if (timeInimigo.length) {
-            setCards(timeInimigo);
-        };    
-    }, [timeInimigo, timeJogador]);
-
+    }, [fakeCardsActive, props.cards]);
+ 
     return(
         <div ref={divPrincipal} className="absolute w-[100%] h-[100%] flex items-start justify-center overflow-hidden top-[0]">
             {!!cards.length && cards.map((card : any, indice : any) => 

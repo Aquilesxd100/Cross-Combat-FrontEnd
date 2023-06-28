@@ -6,7 +6,7 @@ import PainelCombate from "../../components/painelCombate/PainelCombate";
 import { RootState } from "../../redux/store/configureStore";
 import { CardType } from "../../types/types";
 import { setModoNormal } from "../../redux/slices/setModoSlice";
-import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador } from "../../redux/slices/setCardsSlice";
+import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador, setFakeCardsState } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
 import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSlice";
@@ -186,6 +186,7 @@ function TelaCombate() {
                 setTimeout(() => {
                     dispatch(setPendingResetDefeatedCards(true));
                     dispatch(setVitoriaModal(true));
+                    setTimeout(() => { dispatch(setFakeCardsState(true)); }, 1200);
                     setTimeout(() => {
                         setTimeout(() => {dispatch(activateEffect("vitoria"));}, 200);
                         completarTimes(timeJogador);
@@ -221,7 +222,7 @@ function TelaCombate() {
                 {!!cardsInimigos.length && cardsInimigos.map((card, indice) => 
                     <Card tipo="Inimigo" cardInfos={card} indice={indice} key={card.id} />
                 )}
-                <CardsFake tipo={"Inimigo"} />               
+                <CardsFake cards={cardsInimigos} tipo={"Inimigo"} />               
             </div>
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
             <PainelCombate />
@@ -230,7 +231,7 @@ function TelaCombate() {
                 {!!cardsJogador.length && cardsJogador.map((card, indice) => 
                     <Card tipo="Aliado" cardInfos={card} indice={indice} key={card.id} />
                 )}  
-                <CardsFake tipo={"Aliado"} />              
+                <CardsFake cards={cardsJogador} tipo={"Aliado"} />              
             </div>
         </div>  
     )

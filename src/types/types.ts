@@ -34,7 +34,8 @@ export interface CardPropsType {
 };
 
 export interface CardsFakePropsType {
-    tipo: string
+    tipo: string,
+    cards: Array<CardType>
 };
 export interface FakeCardPropsType {
     morto: boolean,

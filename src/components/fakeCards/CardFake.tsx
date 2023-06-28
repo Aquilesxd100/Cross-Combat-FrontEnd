@@ -16,18 +16,17 @@ function CardFake(props: FakeCardPropsType) {
         const updatedProps = {
             opacity: "0"
         };
-        
         if (props.morto && fakeCardsActive) {
             updatedProps.opacity = "1";
-        } else {
-            
+            setFakeCardStyle(updatedProps);
+        } else if (fakeCardsActive === false) {
+            setTimeout(() => {setFakeCardStyle(updatedProps);}, 700)   
         };
-        setFakeCardStyle(updatedProps);
 
-    }, [fakeCardsActive]);
+    }, [props]);
 
     return(
-        <div ref={cardRef} className="relative pretoEBranco w-[24%] max-w-[40vh] h-[98%] m-1.5 z-[3]" style={fakeCardStyle}>
+        <div ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 z-[3]" style={fakeCardStyle}>
             <img className="absolute w-full h-full z-[2]" ref={coberturaCard} src={cardEscondido} />
         </div>
     );

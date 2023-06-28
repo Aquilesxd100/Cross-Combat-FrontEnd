@@ -94,8 +94,10 @@ function Card(props: CardPropsType) {
         if (!cardsPreLoadingState && userReadyState) {
             cardRef.current.classList.add("card-transition");
             if (!props.cardInfos.escondido) {
-                virarCardParaCima();
-                setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
+                setTimeout(() => {
+                    virarCardParaCima();
+                    setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
+                }, 1050);
             };
         }; 
     }, []);
@@ -202,7 +204,7 @@ function Card(props: CardPropsType) {
                 setTimeout(() => {
                     virarCardParaBaixo();
                     setTimeout(() => {dispatch(activateEffect("virarCard"));}, 140);
-                }, 50)
+                }, 50);
             };
             dispatch(setPendingResetDefeatedCards(false));
         }

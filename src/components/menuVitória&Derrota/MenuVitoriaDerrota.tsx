@@ -10,7 +10,7 @@ import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice"
 import { activateEffect } from "../../redux/slices/soundSlice";
 import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
-import { setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { setFakeCardsState, setUserReadyState } from "../../redux/slices/setCardsSlice";
 
 function MenuVitoriaDerrota() {
     const { modalVitoriaActive, modalDerrotaActive } = useSelector((state : RootState) => state.modalStatus);
@@ -27,6 +27,7 @@ function MenuVitoriaDerrota() {
             dispatch(setVitoriaModal(false));
             dispatch(activateEffect('botaoPadrao'));
             dispatch(setUserReadyState(true))
+            setTimeout(() => { dispatch(setFakeCardsState(false)); }, 200);
 
         } else if (modalDerrotaActive) {
             dispatch(setDerrotaModal(false));
