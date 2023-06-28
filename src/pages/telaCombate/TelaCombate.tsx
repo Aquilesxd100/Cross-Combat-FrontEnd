@@ -21,6 +21,8 @@ import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slice
 import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
 import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice";
+import CardFake from "../../components/fakeCards/CardFake";
+import CardsFake from "../../components/fakeCards/CardsFake";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -214,19 +216,21 @@ function TelaCombate() {
             <MenuOpcoes />
             <MenuVitoriaDerrota />
             <MenuAjuda />
-            <div className="h-[50%] flex items-end justify-center pb-1">
+            <div className="relative h-[50%] flex items-end justify-center pb-1">
                 {!cardsInimigos.length && <BotaoGerarCards />} 
                 {!!cardsInimigos.length && cardsInimigos.map((card, indice) => 
                     <Card tipo="Inimigo" cardInfos={card} indice={indice} key={card.id} />
-                )}               
+                )}
+                <CardsFake tipo={"Inimigo"} />               
             </div>
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
             <PainelCombate />
-            <div className="h-[50%] flex items-start justify-center overflow-hidden">
+            <div className="relative h-[50%] flex items-start justify-center overflow-hidden">
                 {!cardsJogador.length && <BotaoGerarCards />} 
                 {!!cardsJogador.length && cardsJogador.map((card, indice) => 
                     <Card tipo="Aliado" cardInfos={card} indice={indice} key={card.id} />
-                )}               
+                )}  
+                <CardsFake tipo={"Aliado"} />              
             </div>
         </div>  
     )

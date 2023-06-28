@@ -24,11 +24,20 @@ export interface SetCardsStateType {
     timeJogador: Array<CardType>,
     preLoadTimeInimigo: Array<CardType>,
     preLoadTimeJogador: Array<CardType>,
-    userReadyState: boolean
+    userReadyState: boolean,
+    fakeCardsActive: boolean
 };
 export interface CardPropsType {
     tipo : string,
     cardInfos : CardType,
+    indice : number
+};
+
+export interface CardsFakePropsType {
+    tipo: string
+};
+export interface FakeCardPropsType {
+    morto: boolean,
     indice : number
 };
 export interface PropInfoCardCombateType {

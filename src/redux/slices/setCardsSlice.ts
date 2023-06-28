@@ -5,7 +5,8 @@ const initialState : SetCardsStateType = {
     timeJogador: [],
     preLoadTimeInimigo: [],
     preLoadTimeJogador: [],
-    userReadyState: false
+    userReadyState: false,
+    fakeCardsActive: false
 }
 export const setCardsSlice = createSlice({
     name: "setCards",
@@ -47,7 +48,10 @@ export const setCardsSlice = createSlice({
         setUserReadyState: (state, action) => {
             state.userReadyState = action.payload;
         },
+        setFakeCardsState: (state, action) => {
+            state.fakeCardsActive = action.payload;
+        }
     }
 });
-export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo, setUserReadyState } = setCardsSlice.actions;
+export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo, setUserReadyState, setFakeCardsState } = setCardsSlice.actions;
 export default setCardsSlice.reducer;
