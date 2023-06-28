@@ -225,7 +225,6 @@ function TelaCombate() {
                 <CardsFake cards={cardsInimigos} tipo={"Inimigo"} />               
             </div>
             <hr className="absolute left-0 top-[49%] h-[1.3vh] w-[100%] bg-[#FFA64D] border-0" />
-            <PainelCombate />
             <div className="relative h-[50%] flex items-start justify-center overflow-hidden">
                 {!cardsJogador.length && <BotaoGerarCards />} 
                 {!!cardsJogador.length && cardsJogador.map((card, indice) => 
@@ -233,6 +232,7 @@ function TelaCombate() {
                 )}  
                 <CardsFake cards={cardsJogador} tipo={"Aliado"} />              
             </div>
+            <PainelCombate />
         </div>  
     )
 };
