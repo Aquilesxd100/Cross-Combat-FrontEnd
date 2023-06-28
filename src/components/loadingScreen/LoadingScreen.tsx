@@ -38,9 +38,9 @@ function LoadingScreen() {
         <main ref={loadingScreen} className="fixed w-full h-full z-30" style={{ background: `url(${IMGFundo})`, backgroundSize: '100% 100%' }}>
             <div className="flex items-center justify-center bg-[rgba(255,255,255,0.25)] w-full h-full backdrop-blur-[1.5px]">
                 <div className="flex items-center justify-center flex-col">
-                    <img ref={imgCarregamento} className="w-[17vw] max-w-[240px] mb-1" src={IMGLoading} />      
-                    <h3 className="mensagem-carregamento" ref={loadingMSG}>Carregando recursos...</h3>
-                    <h3 style={{ display: "none" }} className="mensagem-carregamento-suporte" ref={loadingMSG2}>
+                    <img ref={imgCarregamento} className="w-[17vw] max-w-[240px] mb-1 off-user-selection" src={IMGLoading} />      
+                    <h3 className="mensagem-carregamento off-user-selection" ref={loadingMSG}>Carregando recursos...</h3>
+                    <h3 style={{ display: "none" }} className="mensagem-carregamento-suporte off-user-selection" ref={loadingMSG2}>
                         {"[Estimativa: 2min]"}</h3>
                 </div>
             </div>

@@ -5,7 +5,7 @@ function BotaoGerarCards() {
     return (
         <div className="w-full h-full flex items-center justify-center">
             <button className="min-w-[35vw] py-[1.8vw] bg-100% flex justify-center " style={{ backgroundImage : `url(${IMGtituloMenu})`}}>
-                <h3 className="font-light text-[calc(2vw+22px)] text-[#FFA64D] px-[20px]">Carregando...</h3>
+                <h3 className="font-light text-[calc(2vw+22px)] text-[#FFA64D] px-[20px] off-user-selection">Carregando...</h3>
             </button>
         </div>
     )

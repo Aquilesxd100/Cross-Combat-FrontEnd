@@ -282,20 +282,20 @@ function Card(props: CardPropsType) {
     return(
         <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card">
             <div ref={cardInfos} className="absolute w-full h-full z-[1] text-center backface-escondida cardInfos">
-                <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431]">{props.cardInfos.nome}</h1>
-                <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866]">ATRIBUTOS</h3>
+                <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431] off-user-selection">{props.cardInfos.nome}</h1>
+                <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866] off-user-selection">ATRIBUTOS</h3>
                 <div className="relative top-[calc(61.5%+1.2vh)] font-[hobostd] text-[#DBB866] drop-shadow text-[calc(0.6vw+1vh)] flex flex-col items-center font-normal">
                     <h5 ref={atributoForca} onClick={(() => { entrarModoCombate("forca", props.cardInfos.forca, atributoForca) })} className="p-[1.5px] sombra-padrao w-[75%] brightness-[0.8] hover:brightness-110 cursor-pointer">FORÇA: <span>{props.cardInfos.forca}</span></h5>
                     <h5 ref={atributoDestreza} onClick={(() => { entrarModoCombate("destreza", props.cardInfos.destreza, atributoDestreza) })} className="p-[1.5px] sombra-padrao relative w-[75%] -top-[3px] brightness-[0.8] hover:brightness-110 cursor-pointer">DESTREZA: <span>{props.cardInfos.destreza}</span></h5>
                     <h5 ref={atributoInteligencia} onClick={(() => { entrarModoCombate("inteligencia", props.cardInfos.inteligencia, atributoInteligencia) })} className="p-[1.5px] sombra-padrao relative w-[75%] -top-[6px] brightness-[0.8] hover:brightness-110 cursor-pointer">INTELIGÊNCIA: <span>{props.cardInfos.inteligencia}</span></h5>
                 </div>
-                <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C]">{props.cardInfos.universo}</h6>
+                <h6 className="bottom-[0.8%] text-center w-full sombra-padrao absolute italic font-[hobostd] text-[1.3vw] text-[#7A657C] off-user-selection">{props.cardInfos.universo}</h6>
             </div>
-            <img ref={cardPersoImagem} src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C] backface-escondida cardInfos" />
-            <img className="absolute w-full h-full z-[2] backface-escondida" ref={coberturaCard} src={cardEscondido} />
+            <img ref={cardPersoImagem} src={props.cardInfos.imagem} className="absolute w-[92%] h-[60%] top-[6.5%] right-[4%]  bg-[#10212C] backface-escondida cardInfos off-user-selection" />
+            <img className="absolute w-full h-full z-[2] backface-escondida off-user-selection" ref={coberturaCard} src={cardEscondido} />
             {props.cardInfos.trunfo
-                ? <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos" src={fundoCardTrunfo} />
-                : <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos" src={fundoCard} />}
+                ? <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos off-user-selection" src={fundoCardTrunfo} />
+                : <img ref={cardBase} className="absolute w-full h-full backface-escondida cardInfos off-user-selection" src={fundoCard} />}
         </div>
     );
 };

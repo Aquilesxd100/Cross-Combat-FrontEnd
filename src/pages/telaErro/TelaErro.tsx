@@ -37,8 +37,8 @@ function TelaErro() {
         <main className="fixed w-full h-full z-30" style={{ background: `url(${IMGFundo})`, backgroundSize: '100% 100%' }}>
             <div className="flex items-center justify-center bg-[rgba(255,255,255,0.25)] w-full h-full backdrop-blur-[1.5px]">
                 <div className="flex items-center justify-center flex-col">
-                    <img className="w-[20vw] max-w-[280px] min-w-[120px] mb-3" src={IMGAviso} />      
-                    <h3 className="mensagem-aviso">Desculpe, o Cross Combat não é compatível com dispositivos móveis.</h3>
+                    <img className="w-[20vw] max-w-[280px] min-w-[120px] mb-3 off-user-selection" src={IMGAviso} />      
+                    <h3 className="mensagem-aviso off-user-selection">Desculpe, o Cross Combat não é compatível com dispositivos móveis.</h3>
                 </div>
             </div>
         </main>

@@ -18,6 +18,9 @@
     height: 1px;
     width: 1px;
 }
+.off-user-selection {
+    user-select: none;
+}
 .cursor-padrao {
     cursor: url('../resources/cursors/defaultCursor.cur'), auto;
 }

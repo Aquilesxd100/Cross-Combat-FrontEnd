@@ -27,7 +27,7 @@ function CardFake(props: FakeCardPropsType) {
 
     return(
         <div ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 z-[3]" style={fakeCardStyle}>
-            <img className="absolute w-full h-full z-[2]" ref={coberturaCard} src={cardEscondido} />
+            <img className="absolute w-full h-full z-[2] off-user-selection" ref={coberturaCard} src={cardEscondido} />
         </div>
     );
 };
