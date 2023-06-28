@@ -77,7 +77,7 @@ export interface PontuacaoStoreType {
     pontosJogador: number
 };
 export interface SoundStorageType {
-    musicType: undefined | 'combate' | 'selecao',
+    musicType: undefined | 'combate' | 'selecao' | 'desativadaDerrota' | 'desativadaVitoria' | 'ativadaVitoria',
     soundEffect: {
         effectType: undefined | string,
         effectActive: boolean

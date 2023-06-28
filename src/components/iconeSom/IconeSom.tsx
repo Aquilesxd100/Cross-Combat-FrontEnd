@@ -26,11 +26,17 @@ function IconeSom() {
             musicaCombate.current.pause();
             musicaSelecao.current.pause();            
         } else {
-            if (musicType === 'selecao') {
-                musicaSelecao.current.play(); 
-            } else {
-                musicaCombate.current.play();
-            }
+            switch (musicType) {
+                case 'selecao':
+                    musicaSelecao.current.play();   
+                break;
+                case 'combate':
+                    musicaCombate.current.play();  
+                break;
+                case 'ativadaVitoria':
+                    musicaCombate.current.play();  
+                break;
+            };
         }
     }, [musicStatus])
 
@@ -40,11 +46,19 @@ function IconeSom() {
                 musicaCombate.current.pause();
                 musicaSelecao.current.currentTime = 0;
                 musicaSelecao.current.play();
-            } else {
+            } else if (musicType === 'combate') {
                 musicaSelecao.current.pause();
                 musicaCombate.current.currentTime = 0;
                 musicaCombate.current.play();
-            }
+            } else if (musicType === 'desativadaDerrota') {
+                musicaCombate.current.pause(); 
+                musicaCombate.current.currentTime = 0;  
+            } else if (musicType === 'desativadaVitoria') {
+                musicaCombate.current.pause();  
+            } else if (musicType === 'ativadaVitoria') {
+                musicaCombate.current.play();   
+            };
+            
         }
     }, [musicType]);
 

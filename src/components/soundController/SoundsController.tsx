@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
-import { resetEffect } from "../../redux/slices/soundSlice";
+import { changeMusic, resetEffect } from "../../redux/slices/soundSlice";
 
 import MP3SelecaoHover from "../../resources/sounds/selecao-hover.mp3";
 import MP3BotaoPadrao from "../../resources/sounds/botao-padrao.mp3";
@@ -75,9 +75,11 @@ function SoundsController() {
                 break;
                 case 'vitoria':
                     efeitoVitoria.current.play();
+                    dispatch(changeMusic("desativadaVitoria"));
                 break;
                 case 'derrota':
                     efeitoDerrota.current.play();
+                    dispatch(changeMusic("desativadaDerrota"));
                 break;
                 case 'desativarDerrota':
                     efeitoDerrota.current.pause();

@@ -8,7 +8,7 @@ import IMGLogoVitoria from "../../resources/images/vitoria_logo.png";
 import IMGLogoDerrota from "../../resources/images/derrota_logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice"
-import { activateEffect } from "../../redux/slices/soundSlice";
+import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 import { setFakeCardsState, setUserReadyState } from "../../redux/slices/setCardsSlice";
 
@@ -27,7 +27,10 @@ function MenuVitoriaDerrota() {
             dispatch(setVitoriaModal(false));
             dispatch(activateEffect('botaoPadrao'));
             dispatch(setUserReadyState(true))
-            setTimeout(() => { dispatch(setFakeCardsState(false)); }, 200);
+            setTimeout(() => {
+                dispatch(setFakeCardsState(false));
+                dispatch(changeMusic("ativadaVitoria"));
+            }, 200);
 
         } else if (modalDerrotaActive) {
             dispatch(setDerrotaModal(false));
