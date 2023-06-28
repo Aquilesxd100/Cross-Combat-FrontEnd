@@ -274,13 +274,7 @@ function Card(props: CardPropsType) {
     };
 
     const virarCardParaBaixo = () => {
-/*         const elemsToChangeClass : Array<any> = [cardInfos, cardPersoImagem, cardBase]; */
         cardRef.current.classList.remove("card-virada");
-/*         coberturaCard.current.classList.remove("backface-escondida");
-        elemsToChangeClass.forEach((elem) => {
-            elem.current.classList.add("backface-escondida");
-            elem.current.classList.remove("card-virada");
-        }); */
     };
 
     return(
