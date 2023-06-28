@@ -8,7 +8,7 @@ import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
-import { setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { setFakeCardsState, setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
 import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import { useEffect, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
@@ -47,6 +47,7 @@ function TelaSelecao() {
         dispatch(clearAllModalStates());
         dispatch(setTimeJogador([]));
         dispatch(setTimeInimigo([]));
+        dispatch(setFakeCardsState(false));
         setTimeout(() => { setHoverSoundEffectsON(true) }, 50)
     }, [])
 

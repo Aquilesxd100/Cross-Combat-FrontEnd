@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import IMGLogo from "../../resources/images/logo.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
-import { setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { setFakeCardsState, setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
 import { useEffect, useRef, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
@@ -23,6 +23,7 @@ function TelaInicial() {
         dispatch(clearAllModalStates());
         dispatch(setTimeJogador([]));
         dispatch(setTimeInimigo([]));
+        dispatch(setFakeCardsState(false));
     }, []);
 
     useEffect(() => {
