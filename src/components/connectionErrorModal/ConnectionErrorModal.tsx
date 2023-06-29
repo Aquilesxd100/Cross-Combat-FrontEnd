@@ -26,7 +26,7 @@ function ConnectionErrorModal() {
     };
 
     return(
-        <div ref={errorModal} className="fixed w-full h-full z-[28] bg-[rgba(0,0,0,0.4)] ">
+        <div ref={errorModal} className="fixed w-full h-full z-[32] bg-[rgba(0,0,0,0.4)] ">
             <div className="flex items-center justify-center w-full h-full backdrop-blur-[1.5px]">
                 <div className="relative flex flex-col items-center justify-center py-[calc(7vh+15px)] px-4 bg-100%" style={{backgroundImage:`url(${IMGModalMenuMaior})`}}>
                     <img src={IMGAviso} className="relative w-[calc(5.5vw+50px)] h-[calc(5.5vw+50px)] sombra-padrao-img off-user-selection mb-6" />
