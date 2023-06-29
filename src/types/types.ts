@@ -59,6 +59,7 @@ export interface PlayerCardType {
 export interface SaveGameType {
     playerCardType: 'disney' | 'herois' | 'animes' | 'aleatorio',
     pontos: number,
+    quantidadeCristais: number,
     cardsInimigos: Array<CardType>,
     cardsJogador: Array<CardType>
 };
@@ -75,7 +76,8 @@ export interface ModalStateType {
     modalErroConexao: false
 };
 export interface PontuacaoStoreType {
-    pontosJogador: number
+    pontosJogador: number,
+    quantidadeCristais: number
 };
 export interface SoundStorageType {
     musicType: undefined | 'combate' | 'selecao' | 'desativadaDerrota' | 'desativadaVitoria' | 'ativadaVitoria',
