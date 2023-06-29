@@ -88,7 +88,8 @@ export interface LoadingStoreType {
     resourcesLoadingState: boolean,
     serverLoadingState: boolean,
     cardsLoadingState: boolean,
-    cardsPreLoadingState: boolean
+    cardsPreLoadingState: boolean,
+    connectionError: boolean
 };
 
 export interface APIRequestFillCards {

@@ -4,10 +4,11 @@ import IMGFundo from "../../resources/images/fundo-app.jpg";
 import IMGLoading from "../../resources/images/loading.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { connectionTest } from "../../redux/slices/loadingSlice";
+import { setErroConexaoModal } from "../../redux/slices/modalSlice";
 
 function LoadingScreen() {
     const dispatch = useStoreDispatch()
-    const { resourcesLoadingState, serverLoadingState } = useSelector((state : RootState) => state.loadingScreen);
+    const { resourcesLoadingState, serverLoadingState, connectionError } = useSelector((state : RootState) => state.loadingScreen);
     const loadingScreen : any = useRef();
     const imgCarregamento : any = useRef();
     const loadingMSG : any = useRef();
@@ -16,6 +17,12 @@ function LoadingScreen() {
     useEffect(() => {
         dispatch(connectionTest());
     }, []);
+
+    useEffect(() => {
+        if (connectionError) {
+            dispatch(setErroConexaoModal(true));
+        };
+    }, [connectionError])
 
     useEffect(() => {
         if (resourcesLoadingState) {

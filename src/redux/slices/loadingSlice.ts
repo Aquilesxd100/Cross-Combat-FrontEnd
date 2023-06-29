@@ -23,7 +23,8 @@ const initialState : LoadingStoreType = {
     resourcesLoadingState: true,
     serverLoadingState: true,
     cardsLoadingState: true,
-    cardsPreLoadingState: false
+    cardsPreLoadingState: false,
+    connectionError: false
 };
 
 const loadingSlice = createSlice({
@@ -47,8 +48,17 @@ const loadingSlice = createSlice({
         builder.addCase(connectionTest.fulfilled, (state : any, action : any) => {
             if (action.payload.message === "Conectado!") {
                 state.serverLoadingState = false;
+            } else {
+                state.connectionError = true;
             };
-        })
+        });
+        builder.addCase(connectionTest.rejected, (state : any, action : any) => {
+            if (action.payload.message === "Conectado!") {
+                state.serverLoadingState = false;
+            } else {
+                state.connectionError = true;
+            };
+        });
     }
 });
 
