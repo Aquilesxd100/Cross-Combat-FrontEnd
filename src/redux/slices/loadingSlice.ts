@@ -46,14 +46,14 @@ const loadingSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(connectionTest.fulfilled, (state : any, action : any) => {
-            if (action.payload.message === "Conectado!") {
+            if (action.payload && action.payload.message === "Conectado!") {
                 state.serverLoadingState = false;
             } else {
                 state.connectionError = true;
             };
         });
         builder.addCase(connectionTest.rejected, (state : any, action : any) => {
-            if (action.payload.message === "Conectado!") {
+            if (action.payload && action.payload.message === "Conectado!") {
                 state.serverLoadingState = false;
             } else {
                 state.connectionError = true;
