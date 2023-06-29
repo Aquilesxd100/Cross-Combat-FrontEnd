@@ -45,7 +45,7 @@ async function completarTimesAPI(temaJogador : string, timeJogador : Array<CardT
     let timeJogadorFill : Array<CardType> = [];
     let timeInimigo : Array<CardType> = [];
 
-    if (!respostaAPI.message) {
+    if (respostaAPI && !respostaAPI.message) {
         const cardsAProcessar : APIResponseFillCards = respostaAPI as APIResponseFillCards;
         let cardsAnime : Array<CardType> = [];
         let cardsHeroi : Array<CardType> = [];
