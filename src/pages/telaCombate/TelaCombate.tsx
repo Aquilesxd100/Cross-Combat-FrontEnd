@@ -151,6 +151,15 @@ function TelaCombate() {
 
             const cardsSubs = await completarTimesAPI(playerCardType, cardsJogadorVivos);
 
+            if (cardsSubs.timeInimigo.length !== 3) {
+                dispatch(setErroConexaoModal(true));
+            };
+
+            if (cardsJogadorVivos.length !== 3 
+                && cardsSubs.timeJogadorFill.length + cardsJogadorVivos.length !== 3) {
+                dispatch(setErroConexaoModal(true));
+            };
+
             if (cardsJogadorVivos.length < 3) {
                 if (cardsSubs.timeJogadorFill.length) {
                     let novoTimeJogador : Array<CardType> = timeJogadorParam.concat();
