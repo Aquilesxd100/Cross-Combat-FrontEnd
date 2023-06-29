@@ -22,6 +22,9 @@ import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import IMGLogoVitoria from "../../resources/images/vitoria_logo.png";
 import IMGLogoDerrota from "../../resources/images/derrota_logo.png";
+import CURDefault from "../../resources/cursors/defaultCursor.cur";
+import CURPointer from "../../resources/cursors/pointerCursor.cur";
+import CURAttack from "../../resources/cursors/sword-cursor.cur";
 
 import { useEffect, useState } from "react";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
@@ -38,6 +41,15 @@ function PreLoadResources() {
     useEffect(() => {
         const div : any = document.getElementById('base-imagens-pre-load');
         let imagens = Array.from(div.querySelectorAll('img'));
+
+        const cursorDefault = new Image();
+        cursorDefault.src = CURDefault;
+        const cursorPointer = new Image();
+        cursorPointer.src = CURPointer;
+        const cursorAttack = new Image();
+        cursorAttack.src = CURAttack;
+        imagens = imagens.concat(cursorDefault, cursorPointer, cursorAttack);
+
         if (!imagens.some((img : any) => !img.complete)) {
             dispatch(setResourcesLoadingState(false));
         } else {
