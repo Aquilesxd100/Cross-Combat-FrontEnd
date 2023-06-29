@@ -52,6 +52,7 @@ div#root {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(1.5px); 
+    overflow: hidden;
 }
 body .cursorCombate {
     cursor: url("../resources//cursors/sword-cursor.cur"), auto;
@@ -62,6 +63,11 @@ h3, h4 {
 }
 h3 {
     letter-spacing: 0.8px;
+}
+.valor-cristais {
+    background: -webkit-linear-gradient(#DC73FF, #FF26FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .mensagem-carregamento {
     font-size: clamp(14px, 4.3vw, 63px);
@@ -184,37 +190,6 @@ p span {
 .card-fundo-atras {
     z-index: -1;
 }
-
-.card-hidden-cover {
-    /* height: 101.056%; */
-}
-
-/* Virando Cima > Baixo */
-
-/* .card:hover {
-    transform: rotateY(.5turn);
-} */
-
-/* .card-front {
-    backface-visibility: hidden;
-} */
-
-/* --------------------- */
-/* Virando Baixo > Cima */
-
-/* .card:hover .card-front {
-    transform: rotateY(.5turn);
-}
-
-.card-hidden-cover {
-    backface-visibility: hidden;
-}
-
-.card-front {
-    transform: rotateY(.5turn);
-} */
-
-/* --------------------- */
 
 .backface-escondida {
     backface-visibility: hidden;  

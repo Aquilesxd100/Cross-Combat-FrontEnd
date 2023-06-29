@@ -22,6 +22,8 @@ import IMGCardHerois from "../../resources/images/herois.png";
 import IMGCardMisturado from "../../resources/images/misturado.png";
 import IMGLogoVitoria from "../../resources/images/vitoria_logo.png";
 import IMGLogoDerrota from "../../resources/images/derrota_logo.png";
+import IMGCristaisDeposito from "../../resources/images/deposito_cristais.png";
+import IMGCristal from "../../resources/images/cristal.png";
 import CURDefault from "../../resources/cursors/defaultCursor.cur";
 import CURPointer from "../../resources/cursors/pointerCursor.cur";
 import CURAttack from "../../resources/cursors/sword-cursor.cur";
@@ -104,6 +106,8 @@ function PreLoadResources() {
                 <img src={IMGCardMisturado} />
                 <img src={IMGLogoVitoria} />
                 <img src={IMGLogoDerrota} />
+                <img src={IMGCristaisDeposito} />
+                <img src={IMGCristal} />
             </div>
             <div id="cards-imagens-pre-load" className="hidden">
                 {timeJogador.map((card : any) => <img src={card.imagem} key={card.id}/>)}

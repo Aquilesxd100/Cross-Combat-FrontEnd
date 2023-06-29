@@ -22,6 +22,7 @@ import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimations
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
 import { setDerrotaModal, setErroConexaoModal, setVitoriaModal } from "../../redux/slices/modalSlice";
 import CardsFake from "../../components/fakeCards/CardsFake";
+import Cristais from "../../components/cristais/Cristais";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -227,6 +228,7 @@ function TelaCombate() {
     return (
         <div className="h-full w-full px-2.5 flex flex-col" ref={telaCorpo}>
             <Pontuacao />
+            <Cristais />
             <MenuOpcoes />
             <MenuVitoriaDerrota />
             <MenuAjuda />
