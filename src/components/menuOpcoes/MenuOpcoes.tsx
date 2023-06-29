@@ -15,7 +15,7 @@ function MenuOpcoes() {
     const { modalMenuActive } = useSelector((state : RootState) => state.modalStatus);
     const { timeInimigo, timeJogador } = useSelector((state : RootState) => state.setCards);
     const { playerCardType } = useSelector((state : RootState) => state.playerCardType);
-    const { pontosJogador } = useSelector((state : RootState) => state.pontuacao);
+    const { pontosJogador, quantidadeCristais } = useSelector((state : RootState) => state.pontuacao);
     const { saveGameRequest } = useSelector((state : RootState) => state.saveGame);
     const divModalMenu : any = useRef();
     const botaoSalvar : any = useRef();
@@ -32,7 +32,8 @@ function MenuOpcoes() {
                 playerCardType: playerCardType,
                 pontos: pontosJogador,
                 cardsInimigos: timeInimigo,
-                cardsJogador: timeJogador
+                cardsJogador: timeJogador,
+                quantidadeCristais: quantidadeCristais
             };
             dispatch(saveGame(newSaveGame));  
             dispatch(setSaveGameRequest(false))         
@@ -46,7 +47,8 @@ function MenuOpcoes() {
                 playerCardType: playerCardType,
                 pontos: pontosJogador,
                 cardsInimigos: timeInimigo,
-                cardsJogador: timeJogador
+                cardsJogador: timeJogador,
+                quantidadeCristais: quantidadeCristais
             };
             dispatch(saveGame(newSaveGame))
         } else {
