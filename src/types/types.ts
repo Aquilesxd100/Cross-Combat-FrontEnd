@@ -71,7 +71,8 @@ export interface ModalStateType {
     modalMenuActive: boolean,
     modalInfosActive: boolean,
     modalVitoriaActive: false,
-    modalDerrotaActive: false
+    modalDerrotaActive: false,
+    modalErroConexao: false
 };
 export interface PontuacaoStoreType {
     pontosJogador: number

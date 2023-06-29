@@ -5,7 +5,8 @@ const initialState : ModalStateType = {
     modalMenuActive: false,
     modalInfosActive: false,
     modalVitoriaActive: false,
-    modalDerrotaActive: false
+    modalDerrotaActive: false,
+    modalErroConexao: false
 };
 
 export const modalSlice = createSlice({
@@ -24,6 +25,9 @@ export const modalSlice = createSlice({
         setDerrotaModal: (state, action) => {
             state.modalDerrotaActive = action.payload;
         },
+        setErroConexaoModal: (state, action) => {
+            state.modalErroConexao = action.payload;
+        },
         clearAllModalStates: (state) => {
             state.modalMenuActive = false;
             state.modalInfosActive = false;
@@ -33,5 +37,5 @@ export const modalSlice = createSlice({
     }
 });
 
-export const { setMenuModal, setInfosModal, setVitoriaModal, setDerrotaModal, clearAllModalStates } = modalSlice.actions;
+export const { setMenuModal, setInfosModal, setVitoriaModal, setDerrotaModal, clearAllModalStates, setErroConexaoModal } = modalSlice.actions;
 export default modalSlice.reducer;
