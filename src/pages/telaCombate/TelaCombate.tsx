@@ -20,7 +20,7 @@ import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slices/loadingSlice";
 import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
-import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice";
+import { setDerrotaModal, setErroConexaoModal, setVitoriaModal } from "../../redux/slices/modalSlice";
 import CardFake from "../../components/fakeCards/CardFake";
 import CardsFake from "../../components/fakeCards/CardsFake";
 
@@ -58,6 +58,9 @@ function TelaCombate() {
 
     const gerarCardsIniciais = async () => {
         const cardsGerados = await completarTimesAPI(playerCardType, []);
+        if (!cardsGerados.timeJogadorFill.length || !cardsGerados.timeInimigo.length) {
+            dispatch(setErroConexaoModal(true));
+        };
         dispatch(setTimeJogador(cardsGerados.timeJogadorFill));
         dispatch(setTimeInimigo(cardsGerados.timeInimigo));
     };
