@@ -120,6 +120,10 @@ p {
     letter-spacing: 0.5px;
     white-space: nowrap;
 }
+p.sombra-realcada {
+    text-shadow: 2px 0px 1px rgba(0, 0, 0, 0.45), -2px 0px 1px rgba(0, 0, 0, 0.45), 0px 2px 1px rgba(0, 0, 0, 0.45), 0px -2px 1px rgba(0, 0, 0, 0.7), 2px 0px 1px rgba(0, 0, 0, 0.7), -2px 0px 1px rgba(0, 0, 0, 0.45), 0px 2px 1px rgba(0, 0, 0, 0.45), 0px -2px 1px rgba(0, 0, 0, 0.45);
+}
+
 h4 {
     position: absolute;
     width: 100%;
