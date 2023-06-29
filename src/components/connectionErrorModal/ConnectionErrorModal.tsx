@@ -4,23 +4,29 @@ import IMGModalMenuMaior from "../../resources/images/menu-maior.png";
 import IMGAviso from "../../resources/images/iconeErro.png";
 import botaoPadrao from "../../resources/images/botao-padrao.png";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
+import { activateEffect } from "../../redux/slices/soundSlice";
 
 function ConnectionErrorModal() {
     const dispatch = useStoreDispatch()
-    const { resourcesLoadingState, serverLoadingState } = useSelector((state : RootState) => state.loadingScreen);
+    const { modalErroConexao } = useSelector((state : RootState) => state.modalStatus);
     const errorModal : any = useRef();
     const botaoConfirmar : any = useRef();
 
     useEffect(() => {
-
-    }, []);
+        if (modalErroConexao) {
+            errorModal.current.classList.remove("escondido");
+        } else {
+            errorModal.current.classList.add("escondido");
+        };
+    }, [modalErroConexao]);
 
     const confirmError = () => {
-
+        dispatch(activateEffect("botaoPadrao"));
+        setTimeout(() => { window.open("https://cross-combat.vercel.app/", '_self') }, 350);
     };
 
     return(
-        <div ref={errorModal} className="fixed w-full h-full z-[28] bg-[rgba(0,0,0,0.4)] escondido">
+        <div ref={errorModal} className="fixed w-full h-full z-[28] bg-[rgba(0,0,0,0.4)] ">
             <div className="flex items-center justify-center w-full h-full backdrop-blur-[1.5px]">
                 <div className="relative flex flex-col items-center justify-center py-[calc(7vh+15px)] px-4 bg-100%" style={{backgroundImage:`url(${IMGModalMenuMaior})`}}>
                     <img src={IMGAviso} className="relative w-[calc(5.5vw+50px)] h-[calc(5.5vw+50px)] sombra-padrao-img off-user-selection mb-6" />
