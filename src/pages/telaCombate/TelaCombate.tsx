@@ -21,7 +21,6 @@ import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slice
 import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
 import { setDerrotaModal, setErroConexaoModal, setVitoriaModal } from "../../redux/slices/modalSlice";
-import CardFake from "../../components/fakeCards/CardFake";
 import CardsFake from "../../components/fakeCards/CardsFake";
 
 function TelaCombate() {
