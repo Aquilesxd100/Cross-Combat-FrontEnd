@@ -58,7 +58,9 @@ function TelaCombate() {
 
     const gerarCardsIniciais = async () => {
         const cardsGerados = await completarTimesAPI(playerCardType, []);
-        if (!cardsGerados.timeJogadorFill.length || !cardsGerados.timeInimigo.length) {
+        if (cardsGerados.timeJogadorFill.length !== 3 || 
+            cardsGerados.timeInimigo.length !== 3) 
+        {
             dispatch(setErroConexaoModal(true));
         };
         dispatch(setTimeJogador(cardsGerados.timeJogadorFill));
