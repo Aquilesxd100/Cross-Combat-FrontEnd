@@ -3,7 +3,8 @@ import { ExtraAnimationsType } from "../../types/types";
 
 const initialState : ExtraAnimationsType = {
     pendingStartAnimation: true,
-    pendingResetDefeatedCards: false
+    pendingResetDefeatedCards: false,
+    pendingCristalAnimation: false
 };
 
 const extraAnimationsSlice = createSlice({
@@ -16,8 +17,11 @@ const extraAnimationsSlice = createSlice({
         setPendingResetDefeatedCards: (state, action) => {
             state.pendingResetDefeatedCards = action.payload;
         },
+        setPendingCristalAnimation: (state, action) => {
+            state.pendingCristalAnimation = action.payload;
+        },
     }
 });
 
-export const { setPendingStartAnimation, setPendingResetDefeatedCards } = extraAnimationsSlice.actions;
+export const { setPendingStartAnimation, setPendingResetDefeatedCards, setPendingCristalAnimation } = extraAnimationsSlice.actions;
 export default extraAnimationsSlice.reducer;
