@@ -18,11 +18,12 @@ import MenuAjuda from "../../components/menuAjuda/MenuAjuda";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import completarTimesAPI from "../../requests/completarTimes";
 import { setCardsLoadingState, setCardsPreLoadingState } from "../../redux/slices/loadingSlice";
-import { setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
+import { setPendingCristalAnimation, setPendingResetDefeatedCards } from "../../redux/slices/extraAnimationsSlice";
 import MenuVitoriaDerrota from "../../components/menuVitória&Derrota/MenuVitoriaDerrota";
 import { setDerrotaModal, setErroConexaoModal, setVitoriaModal } from "../../redux/slices/modalSlice";
 import CardsFake from "../../components/fakeCards/CardsFake";
 import Cristais from "../../components/cristais/Cristais";
+import dropCrystal from "../../helpers/dropCrystal";
 
 function TelaCombate() {
     const dispatch = useDispatch();
@@ -202,7 +203,13 @@ function TelaCombate() {
                     dispatch(setVitoriaModal(true));
                     setTimeout(() => { dispatch(setFakeCardsState(true)); }, 1200);
                     setTimeout(() => {
-                        setTimeout(() => {dispatch(activateEffect("vitoria"));}, 200);
+                        setTimeout(() => {
+                            dispatch(activateEffect("vitoria"));
+                            const dropCristalCheck = dropCrystal();
+                            if (dropCristalCheck) {
+                                dispatch(setPendingCristalAnimation(true));
+                            };
+                        }, 200);
                         completarTimes(timeJogador);
                     }, 500);
                 }, 850)
