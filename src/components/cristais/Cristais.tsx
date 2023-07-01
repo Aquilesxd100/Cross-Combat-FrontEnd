@@ -1,18 +1,23 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/configureStore";
+import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import IMGCristaisDeposito from "../../resources/images/deposito_cristais.png";
 import IMGCristal from "../../resources/images/cristal.png";
 import { useEffect, useRef } from "react";
+import { aumentarCristais } from "../../redux/slices/pontuacaoSlice";
 
 function Cristais() {
     const { quantidadeCristais } = useSelector((state : RootState) => state.pontuacao);
     const { pendingCristalAnimation } = useSelector((state : RootState) => state.extraAnimations);
+    const dispatch = useStoreDispatch();
     const cristal : any = useRef();
 
     useEffect(() => {
         if (pendingCristalAnimation) {
             cristal.current.classList.remove("escondido");
             setTimeout(() => {
+                setTimeout(() => {
+                    dispatch(aumentarCristais());
+                }, 2800);
                 cristal.current.classList.add("animacao-cristal");  
             }, 125);
         } else {
