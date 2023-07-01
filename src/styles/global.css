@@ -175,6 +175,10 @@ p span {
     animation: ataque 0.5s;
 }
 
+.animacao-cristal {
+    animation: cristal 2.7s forwards linear;
+}
+
 .carregamento {
     animation-name: carregamento-anim;
     animation-duration: 0.85s;
@@ -215,6 +219,28 @@ body .card-jogador-hide {
 body .card-inimigo-hide {
     transform: translateY(-50vh);
 }
+
+@keyframes cristal {
+    0% { top: 37%; right: 50% }
+    20% { top: 20%; right: 30% }
+    30% { top: 10%; right: 25% }
+    40% { top: 8%; right: 20% }
+    60% { top: 40%; right: 23% }
+    80% { top: 48%; right: 22% }
+    90% { top: 70%; right: 18% }
+    100% { top: 90%; right: 3% }
+}
+
+/* @keyframes cristal {
+    0% { top: 37%; right: 50% }
+    15% { top: 20%; right: 29.5% }
+    30% { top: 11%; right: 24.5% }
+    45% { top: 8.5%; right: 18% }
+    60% { top: 39%; right: 22.5% }
+    75% { top: 47.5%; right: 23.5% }
+    90% { top: 70%; right: 17.5% }
+    100% { top: 90%; right: 2.5% }
+} */
 
 @keyframes carregamento-anim {
     0% { transform: rotate(0deg) }
