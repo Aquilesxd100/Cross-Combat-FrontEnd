@@ -14,8 +14,11 @@ export const setModoSlice = createSlice({
         },
         setModoAnimacao: (state) => {
             state.modoAtual = "animacao";
+        },
+        setModoUpgradeCristal: (state) => {
+            state.modoAtual = "upgradeCristal";
         }
     }
 });
-export const { setModoCombate, setModoNormal, setModoAnimacao } = setModoSlice.actions;
+export const { setModoCombate, setModoNormal, setModoAnimacao, setModoUpgradeCristal } = setModoSlice.actions;
 export default setModoSlice.reducer;
