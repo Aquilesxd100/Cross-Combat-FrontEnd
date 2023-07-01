@@ -9,7 +9,7 @@ import { setModoNormal } from "../../redux/slices/setModoSlice";
 import { setTimeJogador, setTimeInimigo, setPreLoadTimeInimigo, setPreLoadTimeJogador, setFakeCardsState } from "../../redux/slices/setCardsSlice";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import MenuOpcoes from "../../components/menuOpcoes/MenuOpcoes";
-import { aumentarPontuacao, setPontuacao } from "../../redux/slices/pontuacaoSlice";
+import { aumentarPontuacao, setCristais, setPontuacao } from "../../redux/slices/pontuacaoSlice";
 import Pontuacao from "../../components/pontuacao/Pontuacao";
 import checkCardsMortos from "../../helpers/checkCardsMortos";
 import { useNavigate } from "react-router-dom";
@@ -90,6 +90,7 @@ function TelaCombate() {
             dispatch(setTimeInimigo(saveGame.cardsInimigos));
             dispatch(setPlayerCardType(saveGame.playerCardType)); 
             dispatch(setPontuacao(saveGame.pontos));
+            dispatch(setCristais(saveGame.quantidadeCristais));
             dispatch(setLoadedGameType(true));
         };
     }, [saveGame]);
