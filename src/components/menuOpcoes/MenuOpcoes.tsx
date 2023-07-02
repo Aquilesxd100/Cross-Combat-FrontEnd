@@ -35,7 +35,6 @@ function MenuOpcoes() {
                 cardsJogador: timeJogador,
                 quantidadeCristais: quantidadeCristais
             };
-            console.log(newSaveGame)
             dispatch(saveGame(newSaveGame));  
             dispatch(setSaveGameRequest(false))         
         };
