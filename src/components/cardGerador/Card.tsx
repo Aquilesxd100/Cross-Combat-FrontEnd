@@ -7,10 +7,11 @@ import { CardPropsType, SelectedStatusType } from "../../types/types";
 import { useSelector, useDispatch } from "react-redux";
 import { setInfosCombate } from "../../redux/slices/infosCombateSlice";
 import { RootState } from "../../redux/store/configureStore";
-import { resolverConflito, revelarInimigo, setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { resolverConflito, revelarInimigo, setUserReadyState, upgradeTrunfo } from "../../redux/slices/setCardsSlice";
 import { activateEffect } from "../../redux/slices/soundSlice";
 import { setLoadedGameType, setSaveGameRequest } from "../../redux/slices/saveGameSlice";
 import { setPendingResetDefeatedCards, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
+import { diminuirCristais } from "../../redux/slices/pontuacaoSlice";
 
 function Card(props: CardPropsType) {
     const dispatch = useDispatch();
@@ -110,7 +111,7 @@ function Card(props: CardPropsType) {
         };
     }, [selectedStatus, modoAtual])
 
-    const realizarAtaque = () => {
+    const interagirCard = () => {
         if (modoAtual === "combate" && props.tipo === "Inimigo" && !props.cardInfos.morto) {
             if (userReadyState) {
                 dispatch(setUserReadyState(false));
@@ -148,6 +149,16 @@ function Card(props: CardPropsType) {
             }
             dispatch(setModoNormal());
         };
+
+        if (modoAtual === "upgradeCristal" && props.tipo === "Aliado" && !props.cardInfos.morto) {
+            dispatch(upgradeTrunfo(props.cardInfos.id));
+            dispatch(diminuirCristais());
+            dispatch(activateEffect("upgradeCard"));
+            setTimeout(() => {
+                dispatch(setSaveGameRequest(true));
+            }, 600);
+            dispatch(setModoNormal());
+        };
     };
     useEffect(() => {
         if(props.tipo === "Inimigo") {
@@ -155,6 +166,7 @@ function Card(props: CardPropsType) {
             cardRef.current.classList.add("cardInimigo");
         }
         else {
+            cardRef.current.classList.add("cardJogador");
             atributoForca.current.classList.add("cardJogador");
             atributoDestreza.current.classList.add("cardJogador");
             atributoInteligencia.current.classList.add("cardJogador");
@@ -183,12 +195,19 @@ function Card(props: CardPropsType) {
         }
     }, [checkMorte]);
     useEffect(() => {
-        if(modoAtual === "combate" && !props.cardInfos.morto && props.tipo === "Inimigo") {
+        if (modoAtual === "combate" && !props.cardInfos.morto && props.tipo === "Inimigo") {
             cardRef.current.classList.add("hoverInimigo");
         }
         else {
             cardRef.current.classList.remove("hoverInimigo");
+        };
+
+        if (modoAtual === "upgradeCristal" && !props.cardInfos.morto && props.tipo === "Aliado") {
+            cardRef.current.classList.add("hoverCristal");
         }
+        else {
+            cardRef.current.classList.remove("hoverCristal");
+        };
     }, [modoAtual])
 
     useEffect(() => {
@@ -280,7 +299,7 @@ function Card(props: CardPropsType) {
     };
 
     return(
-        <div onClick={(() => { realizarAtaque() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card">
+        <div onClick={(() => { interagirCard() })} ref={cardRef} className="relative w-[24%] max-w-[40vh] h-[98%] m-1.5 card">
             <div ref={cardInfos} className="absolute w-full h-full z-[1] text-center backface-escondida cardInfos">
                 <h1 className="font-[hobostd] font-bold absolute w-full top-[5%] text-[calc(0.55vw+1.5vh)] text-[#2D2431] off-user-selection">{props.cardInfos.nome}</h1>
                 <h3 className="sombra-padrao reset-filter font-[hobostd] absolute top-[56%] w-full text-[calc(0.6vw+1.2vh)] text-[#DBB866] off-user-selection">ATRIBUTOS</h3>
