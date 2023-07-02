@@ -19,11 +19,14 @@ const pontuacaoSlice = createSlice({
         aumentarCristais: (state) => {
             state.quantidadeCristais += 1;
         },
+        diminuirCristais: (state) => {
+            state.quantidadeCristais -= 1;
+        },
         setCristais: (state, action) => {
             state.quantidadeCristais = action.payload;
         }
     }
 });
 
-export const { aumentarPontuacao, setPontuacao, aumentarCristais, setCristais } = pontuacaoSlice.actions;
+export const { aumentarPontuacao, setPontuacao, aumentarCristais, setCristais, diminuirCristais } = pontuacaoSlice.actions;
 export default pontuacaoSlice.reducer;
