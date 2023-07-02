@@ -9,7 +9,7 @@ import IMGCardMisturado from "../../resources/images/misturado.png";
 import { setPlayerCardType } from "../../redux/slices/playerCardTypeSlice";
 import { deleteSaveGame } from "../../redux/slices/saveGameSlice";
 import { setFakeCardsState, setTimeInimigo, setTimeJogador, setUserReadyState } from "../../redux/slices/setCardsSlice";
-import { setPontuacao } from "../../redux/slices/pontuacaoSlice";
+import { setPontuacao, setCristais } from "../../redux/slices/pontuacaoSlice";
 import { useEffect, useState } from "react";
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { useSelector } from "react-redux";
@@ -64,6 +64,7 @@ function TelaSelecao() {
     const selecaoHandler = (cardType : string) => {
         dispatch(activateEffect('botaoSelecaoUniverso'));
         dispatch(setPontuacao(0));
+        dispatch(setCristais(0));
         dispatch(setTimeJogador([]));
         dispatch(setTimeInimigo([]));
         dispatch(setPlayerCardType(cardType));
