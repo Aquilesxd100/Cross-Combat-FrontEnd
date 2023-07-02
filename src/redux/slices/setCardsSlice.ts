@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PropInfoCardCombateType, SetCardsStateType } from "../../types/types";
+import { CardStatusType, CardType, PropInfoCardCombateType, SetCardsStateType } from "../../types/types";
+import setAtributos from "../../helpers/setAtributos";
 const initialState : SetCardsStateType = {
     timeInimigo: [],
     timeJogador: [],
@@ -39,6 +40,16 @@ export const setCardsSlice = createSlice({
                 state.timeJogador[indexJogadorDerrotado].morto = true;
             }
         },
+        upgradeTrunfo: (state, action) => {
+            const cardToUpgrade : CardType | undefined = state.timeJogador.find((card) => card.id === action.payload);
+            if (cardToUpgrade) {
+                const novosStatus : CardStatusType = setAtributos(true);
+                cardToUpgrade.trunfo = true;
+                cardToUpgrade.destreza = novosStatus.destreza;
+                cardToUpgrade.forca = novosStatus.forca;
+                cardToUpgrade.inteligencia = novosStatus.inteligencia;
+            };
+        },
         setPreLoadTimeJogador: (state, action) => {
             state.preLoadTimeJogador = action.payload;
         },
@@ -53,5 +64,5 @@ export const setCardsSlice = createSlice({
         }
     }
 });
-export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo, setUserReadyState, setFakeCardsState } = setCardsSlice.actions;
+export const { setTimeJogador, setTimeInimigo, resolverConflito, revelarInimigo, setPreLoadTimeJogador, setPreLoadTimeInimigo, setUserReadyState, setFakeCardsState, upgradeTrunfo } = setCardsSlice.actions;
 export default setCardsSlice.reducer;
