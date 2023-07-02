@@ -27,6 +27,7 @@ import IMGCristal from "../../resources/images/cristal.png";
 import CURDefault from "../../resources/cursors/defaultCursor.cur";
 import CURPointer from "../../resources/cursors/pointerCursor.cur";
 import CURAttack from "../../resources/cursors/sword-cursor.cur";
+import CURCristal from "../../resources/cursors/cristal.cur";
 
 import { useEffect, useState } from "react";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
@@ -50,6 +51,8 @@ function PreLoadResources() {
         cursorPointer.src = CURPointer;
         const cursorAttack = new Image();
         cursorAttack.src = CURAttack;
+        const cursorUpgradeCristal = new Image();
+        cursorUpgradeCristal.src = CURCristal;
         imagens = imagens.concat(cursorDefault, cursorPointer, cursorAttack);
 
         if (!imagens.some((img : any) => !img.complete)) {
