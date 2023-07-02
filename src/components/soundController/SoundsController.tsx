@@ -58,7 +58,7 @@ function SoundsController() {
                     const temporaryAudioClickCristal = document.createElement("audio");
                     temporaryAudioClickCristal.setAttribute("src", MP3ClickCristal);
                     temporaryAudioClickCristal.play();
-                    setTimeout(() => {temporaryAudioCombate.remove()}, 450);
+                    setTimeout(() => {temporaryAudioClickCristal.remove()}, 450);
                 break;
                 case 'hit':
                     const temporaryAudioHit = document.createElement("audio");
