@@ -45,7 +45,7 @@ function SoundsController() {
                     const temporaryAudioSelecao = document.createElement("audio");
                     temporaryAudioSelecao.setAttribute("src", MP3SelecaoHover);
                     temporaryAudioSelecao.play();
-                    setTimeout(() => {temporaryAudioSelecao.remove()}, 450);
+                    setTimeout(() => {temporaryAudioSelecao.remove()}, 250);
                 break;
                 case 'botaoSelecaoUniverso':
                     efeitoSelecaoUniverso.current.play();
@@ -54,13 +54,13 @@ function SoundsController() {
                     const temporaryAudioCombate = document.createElement("audio");
                     temporaryAudioCombate.setAttribute("src", MP3AtaqueEspada);
                     temporaryAudioCombate.play();
-                    setTimeout(() => {temporaryAudioCombate.remove()}, 450);
+                    setTimeout(() => {temporaryAudioCombate.remove()}, 350);
                 break;
                 case 'modoCristalUpgrade':
                     const temporaryAudioClickCristal = document.createElement("audio");
                     temporaryAudioClickCristal.setAttribute("src", MP3ClickCristal);
                     temporaryAudioClickCristal.play();
-                    setTimeout(() => {temporaryAudioClickCristal.remove()}, 450);
+                    setTimeout(() => {temporaryAudioClickCristal.remove()}, 150);
                 break;
                 case 'hit':
                     const temporaryAudioHit = document.createElement("audio");
