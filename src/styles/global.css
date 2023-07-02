@@ -206,6 +206,10 @@ body .card-virada {
     filter: drop-shadow(3.5px 3px 2px rgba(250, 95, 238, 0.8)) drop-shadow(-3.5px -3px 2px rgba(250, 95, 238, 0.8)); 
 }
 
+.hoverCristal:hover {
+    filter: drop-shadow(3.5px 3px 2px rgba(235, 81, 222, 0.8)) drop-shadow(-3.5px -3px 2px rgba(235, 81, 222, 0.8)); 
+}
+
 .animacao-cristal {
     animation: cristal 2.8s forwards ease-in-out;
 }
