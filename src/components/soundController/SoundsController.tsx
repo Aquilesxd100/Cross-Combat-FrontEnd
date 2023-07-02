@@ -14,6 +14,7 @@ import MP3VirarCard2 from "../../resources/sounds/virar-card2.mp3";
 import MP3HitDano from "../../resources/sounds/som-hit.mp3";
 import MP3Vitoria from "../../resources/sounds/vitoria.mp3";
 import MP3Derrota from "../../resources/sounds/derrota.mp3";
+import MP3ClickCristal from "../../resources/sounds/click-cristal.mp3";
 
 function SoundsController() {
     const { soundEffect } = useSelector((state : RootState) => state.sounds)
@@ -27,6 +28,7 @@ function SoundsController() {
     const efeitoHitDano : any = useRef();
     const efeitoVitoria : any = useRef();
     const efeitoDerrota : any = useRef();
+    const efeitoClickCristal : any = useRef();
 
     useEffect(() => {
         if (soundEffect.effectActive) {
@@ -50,6 +52,12 @@ function SoundsController() {
                     const temporaryAudioCombate = document.createElement("audio");
                     temporaryAudioCombate.setAttribute("src", MP3AtaqueEspada);
                     temporaryAudioCombate.play();
+                    setTimeout(() => {temporaryAudioCombate.remove()}, 450);
+                break;
+                case 'modoCristalUpgrade':
+                    const temporaryAudioClickCristal = document.createElement("audio");
+                    temporaryAudioClickCristal.setAttribute("src", MP3ClickCristal);
+                    temporaryAudioClickCristal.play();
                     setTimeout(() => {temporaryAudioCombate.remove()}, 450);
                 break;
                 case 'hit':
@@ -103,6 +111,7 @@ function SoundsController() {
             <audio ref={efeitoHitDano} src={MP3HitDano} />
             <audio ref={efeitoVitoria} src={MP3Vitoria} />
             <audio ref={efeitoDerrota} src={MP3Derrota} />
+            <audio ref={efeitoClickCristal} src={MP3ClickCristal} />
         </>
     );
 };
