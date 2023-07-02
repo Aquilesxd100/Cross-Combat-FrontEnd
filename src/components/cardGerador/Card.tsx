@@ -148,6 +148,9 @@ function Card(props: CardPropsType) {
                 dispatch(resolverConflito(infosConflito));
             }
             dispatch(setModoNormal());
+        } else if (modoAtual === "combate" && props.tipo === "Inimigo") {
+            dispatch(setModoNormal());
+            dispatch(activateEffect("botaoNegativo"));
         };
 
         if (modoAtual === "upgradeCristal" && props.tipo === "Aliado" && !props.cardInfos.morto) {
@@ -158,6 +161,9 @@ function Card(props: CardPropsType) {
                 dispatch(setSaveGameRequest(true));
             }, 600);
             dispatch(setModoNormal());
+        } else if (modoAtual === "upgradeCristal" && props.tipo === "Aliado") {
+            dispatch(setModoNormal());
+            dispatch(activateEffect("botaoNegativo"));
         };
     };
     useEffect(() => {
