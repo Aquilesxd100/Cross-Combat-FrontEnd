@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useStoreDispatch } from "../../redux/store/configureStore";
 import { changeMusic, resetEffect } from "../../redux/slices/soundSlice";
@@ -15,6 +15,7 @@ import MP3HitDano from "../../resources/sounds/som-hit.mp3";
 import MP3Vitoria from "../../resources/sounds/vitoria.mp3";
 import MP3Derrota from "../../resources/sounds/derrota.mp3";
 import MP3ClickCristal from "../../resources/sounds/click-cristal.mp3";
+import MP3UpgradeCard from "../../resources/sounds/upgrade-card.mp3";
 
 function SoundsController() {
     const { soundEffect } = useSelector((state : RootState) => state.sounds)
@@ -29,6 +30,7 @@ function SoundsController() {
     const efeitoVitoria : any = useRef();
     const efeitoDerrota : any = useRef();
     const efeitoClickCristal : any = useRef();
+    const efeitoUpgradeCard : any = useRef();
 
     useEffect(() => {
         if (soundEffect.effectActive) {
@@ -65,21 +67,18 @@ function SoundsController() {
                     temporaryAudioHit.setAttribute("src", MP3HitDano);
                     temporaryAudioHit.play();
                     setTimeout(() => {temporaryAudioHit.remove()}, 150);
-                    dispatch(resetEffect());
                 break;
                 case 'cardSend':
                     const temporaryAudioCardSend = document.createElement("audio");
                     temporaryAudioCardSend.setAttribute("src", MP3VirarCard);
                     temporaryAudioCardSend.play();
                     setTimeout(() => {temporaryAudioCardSend.remove()}, 150);
-                    dispatch(resetEffect());
                 break;
                 case 'virarCard':
                     const temporaryAudioCardFlip = document.createElement("audio");
                     temporaryAudioCardFlip.setAttribute("src", MP3VirarCard2);
                     temporaryAudioCardFlip.play();
                     setTimeout(() => {temporaryAudioCardFlip.remove()}, 150);
-                    dispatch(resetEffect());
                 break;
                 case 'vitoria':
                     efeitoVitoria.current.play();
@@ -92,6 +91,12 @@ function SoundsController() {
                 case 'desativarDerrota':
                     efeitoDerrota.current.pause();
                     efeitoDerrota.current.currentTime = 0;
+                break;
+                case 'upgradeCard':
+                    const temporaryAudioUpgradeCard = document.createElement("audio");
+                    temporaryAudioUpgradeCard.setAttribute("src", MP3UpgradeCard);
+                    temporaryAudioUpgradeCard.play();
+                    setTimeout(() => {temporaryAudioUpgradeCard.remove()}, 1450);
                 break;
             }
             dispatch(resetEffect());
@@ -112,6 +117,7 @@ function SoundsController() {
             <audio ref={efeitoVitoria} src={MP3Vitoria} />
             <audio ref={efeitoDerrota} src={MP3Derrota} />
             <audio ref={efeitoClickCristal} src={MP3ClickCristal} />
+            <audio ref={efeitoUpgradeCard} src={MP3UpgradeCard} />
         </>
     );
 };
