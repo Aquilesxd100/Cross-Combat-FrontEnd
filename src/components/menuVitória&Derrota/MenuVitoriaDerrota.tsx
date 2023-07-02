@@ -11,6 +11,7 @@ import { setDerrotaModal, setVitoriaModal } from "../../redux/slices/modalSlice"
 import { activateEffect, changeMusic } from "../../redux/slices/soundSlice";
 import { setPendingCristalAnimation, setPendingStartAnimation } from "../../redux/slices/extraAnimationsSlice";
 import { setFakeCardsState, setUserReadyState } from "../../redux/slices/setCardsSlice";
+import { setModoNormal } from "../../redux/slices/setModoSlice";
 
 function MenuVitoriaDerrota() {
     const { modalVitoriaActive, modalDerrotaActive } = useSelector((state : RootState) => state.modalStatus);
@@ -47,6 +48,7 @@ function MenuVitoriaDerrota() {
     useEffect(() => {
         if (cardsPreLoadingState && modalVitoriaActive) 
         {
+            dispatch(setModoNormal());
             fundoTela.current.classList.add("cursor-loading");
             botaoConfirmar.current.classList.add("cursor-loading");
             botaoConfirmar.current.classList.add("pretoEBranco");
