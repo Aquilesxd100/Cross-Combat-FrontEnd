@@ -103,32 +103,60 @@ function TelaCombate() {
         };
     }, [checkModoCombate]);
 
+    const [checkModoCristalUpgrade, setCheckModoCristalUpgrade] = useState(0);
+    useEffect(() => {
+        if (modoAtual === 'upgradeCristal') {
+            dispatch(setModoNormal());
+            dispatch(activateEffect('botaoNegativo'));
+        };
+    }, [checkModoCristalUpgrade]);
+
     useEffect(() => {
         window.addEventListener("click", (event : any) => {
             const cardsInimigos = document.querySelectorAll(".cardInimigo, h5.cardJogador");
-            let clickFora = 0;
+            const cardsJogador = document.querySelectorAll(".cardJogador, .fake-cristal-box");
+            let clickForaInimigos = 0;
+            let clickForaJogador = 0;
             for(let c = 0; c < cardsInimigos.length; c++) {
                 if(cardsInimigos[c].contains(event.target)){}
                 else {
-                    clickFora++;
+                    clickForaInimigos++;
                 };
-            }
-            if(clickFora === cardsInimigos.length) {
+            };
+            for(let c = 0; c < cardsJogador.length; c++) {
+                if(cardsJogador[c].contains(event.target)){}
+                else {
+                    clickForaJogador++;
+                };
+            };
+            if(clickForaInimigos === cardsInimigos.length) {
                 setCheckModoCombate(Math.random());
+            }
+            if(clickForaJogador === cardsJogador.length) {
+                setCheckModoCristalUpgrade(Math.random());
             };
         });
     }, [])
 
     useEffect(() => {
         const elementosCursor = document.querySelectorAll("h5, button");
+        
         if(modoAtual === "combate") {
             elementosCursor.forEach((elemento) => elemento.classList.add("cursorCombate"));
             telaCorpo.current.classList.add("cursorCombate");
-        }
-        else {
-            telaCorpo.current.classList.remove("cursorCombate");  
-            elementosCursor.forEach((elemento) => elemento.classList.remove("cursorCombate"));  
+        } else {
+            telaCorpo.current.classList.remove("cursorCombate");
+            elementosCursor.forEach((elemento) => elemento.classList.remove("cursorCombate"));
         };
+
+        if (modoAtual === "upgradeCristal") {
+            elementosCursor.forEach((elemento) => elemento.classList.add("cursorUpdateCristal"));
+            telaCorpo.current.classList.add("cursorUpdateCristal");
+        } else {
+            telaCorpo.current.classList.remove("cursorUpdateCristal");
+            elementosCursor.forEach((elemento) => elemento.classList.remove("cursorUpdateCristal"));
+        };
+
     }, [modoAtual]);
     useEffect(() => {
         if (cardsInimigos.length) {
