@@ -57,6 +57,9 @@ div#root {
 body .cursorCombate {
     cursor: url("../resources//cursors/sword-cursor.cur"), auto;
 }
+body .cursorUpdateCristal {
+    cursor: url("../resources//cursors/cristal-roxo.cur"), auto;
+}
 h3, h4 {
     font-family: impact1;
     filter: drop-shadow(2px 0 0 rgba(0, 0, 0, 0.3)) drop-shadow(-2px 0 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 0 rgba(0, 0, 0, 0.3)) drop-shadow(0 -2px 0 rgba(0, 0, 0, 0.3)) drop-shadow(1px 1px rgba(0, 0, 0, 0.3)) drop-shadow(-1px -1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(1px -1px 0 rgba(0, 0, 0, 0.3)) drop-shadow(-1px 1px 0 rgba(0, 0, 0, 0.3)); 
@@ -197,6 +200,10 @@ p span {
 
 body .card-virada {
     transform: rotateY(.5turn);
+}
+
+.fake-cristal-box:hover + .deposito-cristais {
+    filter: drop-shadow(3.5px 3px 2px rgba(250, 95, 238, 0.8)) drop-shadow(-3.5px -3px 2px rgba(250, 95, 238, 0.8)); 
 }
 
 .animacao-cristal {
